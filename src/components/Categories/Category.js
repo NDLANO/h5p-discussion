@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Statement from "../StatementTypes/Statement";
 import Column from "../Column/Column";
 import HeaderIcon from "./components/HeaderIcon";
 import AddArgument from "./components/AddArgument";

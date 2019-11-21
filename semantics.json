@@ -8,6 +8,8 @@
   {
     "name": "description",
     "type": "text",
+    "widget": "textarea",
+    "lines": 3,
     "label": "Task description",
     "importance": "low",
     "optional": true
@@ -34,6 +36,22 @@
           }
         }
       ]
+  },
+  {
+    "name": "summaryHeader",
+    "type": "text",
+    "label": "Summary",
+    "default": "Summary",
+    "importance": "medium"
+  },
+  {
+    "name": "summaryInstruction",
+    "type": "text",
+    "widget": "textarea",
+    "lines": 3,
+    "label": "Summary instruction",
+    "importance": "low",
+    "optional": true
   },
   {
     "name": "resources",
@@ -91,16 +109,28 @@
     "common": true,
     "fields": [
       {
-        "name": "summary",
+        "name": "argumentsFor",
         "type": "text",
-        "label": "Basis",
-        "default": "Basis"
+        "label": "Header for the 'For' column",
+        "default": "Arguments FOR"
+      },
+      {
+        "name": "argumentsAgainst",
+        "type": "text",
+        "label": "Header for the 'Against' column",
+        "default": "Arguments AGAINST"
       },
       {
         "name": "typeYourReasonsForSuchAnswers",
         "type": "text",
         "label": "Placeholder for the text boxes",
         "default": "Type your reasons for such answers"
+      },
+      {
+        "name": "noArguments",
+        "type": "text",
+        "label": "Placeholder when no arguments are connected",
+        "default": "No arguments"
       },
       {
         "name": "resources",
@@ -117,8 +147,8 @@
       {
         "name": "add",
         "type": "text",
-        "label": "Label for the \"Add alternative\"-button",
-        "default": "Add alternative"
+        "label": "Label for the \"Add argument\"-button",
+        "default": "Add argument"
       },
       {
         "name": "yes",
@@ -139,10 +169,9 @@
         "default": "If you continue all your changes will be lost"
       },
       {
-        "name": "areYouSure",
+        "name": "continue",
         "type": "text",
-        "label": "Ask the user if he/she wants to continue",
-        "default": "Are you sure?"
+        "default": "Continue"
       }
     ]
   },
@@ -172,31 +201,25 @@
         "default": "Select all"
       },
       {
-        "name": "headerStatement",
-        "type": "text",
-        "label": "Statement header in statement table",
-        "default": "Statements"
-      },
-      {
-        "name": "header",
+        "name": "resourceHeader",
         "type": "text",
         "label": "Header above the \"Resource\" table",
         "default": "Resources"
       },
       {
-        "name": "headerTitle",
+        "name": "resourceHeaderTitle",
         "type": "text",
         "label": "Title header in resource table",
         "default": "Title"
       },
       {
-        "name": "headerIntro",
+        "name": "resourceHeaderIntro",
         "type": "text",
         "label": "Intro header in resource table",
         "default": "Intro"
       },
       {
-        "name": "headerUrl",
+        "name": "resourceHeaderUrl",
         "type": "text",
         "label": "Url header in resource table",
         "default": "Url"
@@ -206,12 +229,6 @@
         "type": "text",
         "label": "Label when no resources are found",
         "default": "No resources"
-      },
-      {
-        "name": "labelSummaryComment",
-        "type": "text",
-        "label": "Header for \"Summary comment\"",
-        "default": "Summary comment"
       },
       {
         "name": "labelNoSummaryComment",

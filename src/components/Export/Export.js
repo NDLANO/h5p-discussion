@@ -1,29 +1,26 @@
-import React, {Component, Fragment} from 'react';
+import React, {useContext, useRef} from 'react';
 import {DiscussionContext} from "context/DiscussionContext";
 
-export default class Export extends Component {
-    static contextType = DiscussionContext;
+function Export() {
 
-    exportDocument = null;
-    exportContainer = null;
+    const context = useContext(DiscussionContext);
+    const {
+        translate
+    } = context;
+    const exportContainer = useRef();
+    let exportDocument;
+    let exportObject;
 
-    exportObject = null;
-
-    constructor(props) {
-        super(props);
-
-        this.handleExport = this.handleExport.bind(this);
-    }
-
-    getExportObject() {
+    function getExportObject() {
         const {
             params: {
                 header,
-                description
+                description,
+                summaryHeader,
             },
             translations,
             collectExportValues,
-        } = this.context;
+        } = context;
 
         const {
             resources,
@@ -31,103 +28,98 @@ export default class Export extends Component {
             userInput
         } = collectExportValues();
 
-        const labelsStructured = userInput.labels.reduce((accumulated, current) => {
-            accumulated[current.id] = current.label;
-            return accumulated;
-        }, {});
-
         return Object.assign({}, translations, {
             mainTitle: header,
             description,
+            summaryHeader,
             hasResources: resources.length > 0,
-            hasLabels: userInput.labels.length > 0,
             hasSummaryComment: summary && summary.length > 0,
             summaryComment: summary,
-            allLabels: userInput.labels.map(label => label.label),
             resources: resources,
-            sortedStatementList: userInput.sequencedStatements
-                .map(statement => userInput.statements[statement])
-                .map(statement => {
-                    return {
-                        labels: statement.selectedLabels.map(label => labelsStructured[label]),
-                        comment: statement.comment || "",
-                        title: statement.statement,
-                    }
-                })
+            unprocessedArguments: userInput
+                .filter(category => category.isArgumentDefaultList)
+                .map(category => category.connectedArguments)
+                .reduce((acc, val) => acc.concat(val), []),
+            proArguments: userInput
+                .filter(category => category.id === 'pro')
+                .map(category => category.connectedArguments)
+                .reduce((acc, val) => acc.concat(val), []),
+            contraArguments: userInput
+                .filter(category => category.id === 'contra')
+                .map(category => category.connectedArguments)
+                .reduce((acc, val) => acc.concat(val), []),
         });
     }
 
-    getExportPreview() {
+    function getExportPreview() {
         const documentExportTemplate =
             '<div class="export-preview">' +
             '<div class="page-header" role="heading" tabindex="-1">' +
             ' <h1 class="page-title">{{mainTitle}}</h1>' +
             '</div>' +
             '<div class="page-description">{{description}}</div>' +
-            '<table>' +
-            '<tr><th>{{headerStatement}}</th><th>{{headerLabels}}</th><th>{{headerComment}}</th></tr>' +
-            '{{#sortedStatementList}}<tr><td>{{title}}</td><td>{{#labels}}<li>{{.}}</li>{{/labels}}</td><td>{{comment}}</td></tr>{{/sortedStatementList}}' +
+            '<table class="page-pro-arguments">' +
+            '<tr><th>{{argumentsFor}}</th></tr>' +
+            '<tr><td><ul>{{#proArguments}}<li>{{argumentText}}</li>{{/proArguments}}</ul>{{^proArguments}}{{noArguments}}{{/proArguments}}</td></tr>' +
             '</table>' +
-            '<h2>{{labelSummaryComment}}</h2>' +
+            '<table class="page-contra-arguments">' +
+            '<tr><th>{{argumentsAgainst}}</th></tr>' +
+            '<tr><td><ul>{{#contraArguments}}<li>{{argumentText}}</li>{{/contraArguments}}</ul>{{^contraArguments}}{{noArguments}}{{/contraArguments}}</td></tr>' +
+            '</table>' +
+            '<h2>{{summaryHeader}}</h2>' +
             '<p>{{^hasSummaryComment}}{{labelNoSummaryComment}}{{/hasSummaryComment}}{{summaryComment}}</p>' +
-            '<h2>{{header}}</h2>' +
+            '<h2>{{resourceHeader}}</h2>' +
             '{{^resources}}<p>{{labelNoResources}}</p>{{/resources}}' +
             '{{#hasResources}}' +
-            '<table>' +
-            '<tr><th>{{headerTitle}}</th><th>{{headerIntro}}</th><th>{{headerUrl}}</th></tr>' +
+            '<table class="page-resources">' +
+            '<tr><th>{{resourceHeaderTitle}}</th><th>{{resourceHeaderIntro}}</th><th>{{resourceHeaderUrl}}</th></tr>' +
             '{{#resources}}<tr><td>{{title}}</td><td>{{introduction}}</td><td>{{url}}</td></tr>{{/resources}}' +
             '</table>' +
             '{{/hasResources}}' +
-            '<h2>{{headerAvailableLabels}}</h2>' +
-            '{{^hasLabels}}<p>{{labelNoLabels}}</p>{{/hasLabels}}' +
-            '{{#allLabels}}' +
-            '<li>{{.}}</li>' +
-            '{{/allLabels}}' +
             '</div>';
 
-        return Mustache.render(documentExportTemplate, this.exportObject);
+        return Mustache.render(documentExportTemplate, exportObject);
     }
 
-    handleExport() {
+    function handleExport() {
         const {
-            translations,
-        } = this.context;
+            translate,
+        } = context;
 
-        this.exportObject = this.getExportObject();
+        exportObject = getExportObject();
 
-        this.context.triggerXAPIScored(0, 0, 'completed');
+        context.triggerXAPIScored(0, 0, 'completed');
 
-        this.exportDocument = new H5P.ExportPage(
-            this.exportObject.mainTitle,
-            this.getExportPreview(),
+        exportDocument = new H5P.ExportPage(
+            exportObject.mainTitle,
+            getExportPreview(),
             true,
-            translations.submitText,
-            translations.submitConfirmedText,
-            translations.selectAll,
-            translations.export,
+            translate('submitText'),
+            translate('submitConfirmedText'),
+            translate('selectAll'),
+            translate('export'),
             H5P.instances[0].getLibraryFilePath('exportTemplate.docx'),
-            this.exportObject
+            exportObject
         );
-        this.exportDocument.getElement().prependTo(this.exportContainer);
-        H5P.$window.on('resize', () => this.exportDocument.trigger('resize'));
+        exportDocument.getElement().prependTo(exportContainer.current);
+        H5P.$window.on('resize', () => exportDocument.trigger('resize'));
     }
 
-    render() {
-        const {
-            translations
-        } = this.context;
-
-        return (
-            <Fragment>
-                <button
-                    className={"h5p-discussion-button-export pull-right"}
-                    onClick={this.handleExport}
-                >
-                    <span className={"h5p-ri hri-document"}/>
-                    {translations.createDocument}
-                </button>
-                <div className={"export-container"} ref={el => this.exportContainer = el}/>
-            </Fragment>
-        )
-    }
+    return (
+        <>
+            <button
+                className={"h5p-discussion-button-export"}
+                onClick={handleExport}
+            >
+                <span
+                    className={"h5p-ri hri-document"}
+                    aria-hidden={true}
+                />
+                {translate('createDocument')}
+            </button>
+            <div className={"export-container"} ref={exportContainer}/>
+        </>
+    );
 }
+
+export default Export;

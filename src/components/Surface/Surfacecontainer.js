@@ -20,6 +20,7 @@ function CategoryDataObject(initValues) {
     this.id = null;
     this.title = null;
     this.connectedArguments = [];
+    this.isArgumentDefaultList = false;
     this.theme = 'h5p-discussion-category-default';
     this.useNoArgumentsPlaceholder = false;
     return Object.assign(this, initValues);
@@ -29,21 +30,23 @@ function Surfacecontainer() {
 
     const [categories, setCategories] = useState([]);
     const context = useContext(DiscussionContext);
-    const [moveHandle, setMoveHandle] = useState();
 
     let api;
-    const useMyCoolSensor = value => {
+    const autoDragSensor = value => {
         api = value;
     };
 
+    const {
+        collectExportValues,
+        registerReset,
+        translate
+    } = context;
+
+    registerReset(init);
+    collectExportValues('userInput', () => categories);
+
     useEffect(() => {
-        const {
-            registerReset,
-            collectExportValues,
-        } = context;
         init();
-        registerReset(init);
-        collectExportValues('userInput', sendExportValues);
         context.trigger('resize');
     }, []);
 
@@ -64,6 +67,7 @@ function Surfacecontainer() {
         const categories = [];
         categories.push(new CategoryDataObject({
             id: 'unprocessed',
+            isArgumentDefaultList: true,
             connectedArguments: argumentsList.map((argument, index) => (new ArgumentDataObject({
                 id: index,
                 argumentText: argument,
@@ -83,14 +87,6 @@ function Surfacecontainer() {
         }));
 
         setCategories(categories);
-    }
-
-    function sendExportValues() {
-        return {
-            argumentsList,
-            proArguments,
-            contraArguments,
-        } = state;
     }
 
     function onDropEnd(dragResult) {
@@ -160,12 +156,6 @@ function Surfacecontainer() {
         moveStepByStep(drag, points);
     };
 
-    const {
-        collectExportValues,
-        registerReset,
-        translate
-    } = context;
-
     return (
         <div
             className="h5p-discussion-surface"
@@ -174,7 +164,7 @@ function Surfacecontainer() {
                 onDragEnd={onDropEnd}
                 //onDragUpdate={onDropUpdate}
                 //onDragStart={onDragStart}
-                sensors={[useMyCoolSensor]}
+                sensors={[autoDragSensor]}
             >
                 {categories.map(category => (
                     <Category

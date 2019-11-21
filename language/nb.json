@@ -7,16 +7,20 @@
       "label": "Beskrivelse"
     },
     {
-      "label": "Påstander",
-      "entity": "påstand",
+      "label": "Argumenter",
+      "entity": "argument",
       "field": {
-        "label": "Påstand",
-        "description": "Påstand som brukeren skal ta stilling til"
+        "label": "Argument",
+        "description": "Argument som brukeren skal ta stilling til"
       }
     },
     {
-      "label": "Antall landingsfelter",
-      "description": "Hvor mange landingsfelter skal brukeren ta stilling til?"
+      "label": "Oppsummering",
+      "default": "Oppsummering"
+    },
+    {
+      "label": "Instruksjoner til oppsummeringen",
+      "description": "Skriv noen ord om hva du ønsker skal være med i oppsummeringen"
     },
     {
       "label": "Ressurser",
@@ -44,12 +48,20 @@
       "label": "Localize",
       "fields": [
         {
-          "label": "Begrunnelse",
-          "default": "Begrunnelse"
+          "label": "Tittel som bruker si 'For'-kolonnen",
+          "default": "Argumenter FOR"
+        },
+        {
+          "label": "Tittel som bruker si 'Mot'-kolonnen",
+          "default": "Argumenter MOT"
         },
         {
           "label": "Midlertidig tekst for tekstfeltene",
           "default": "Skriv en begrunnelse for dine svar"
+        },
+        {
+          "label": "Plassholder som vises når ingen argumenter er satt",
+          "default": "Ingen argumenter"
         },
         {
           "label": "Tekst på \"Ressurs\"-knappen",
@@ -65,7 +77,7 @@
         },
         {
           "label": "Tekst på \"Ja\"-knappen",
-          "default": "Yes"
+          "default": "Ja"
         },
         {
           "label": "Tekst på \"Nei\"-knappen",
@@ -76,8 +88,8 @@
           "default": "Hvis du fortsetter vil alle data gå tapt."
         },
         {
-          "label": "Spør brukeren om vedkommende vil fortsette",
-          "default": "Er du sikker?"
+          "label": "Fortsett",
+          "default": "Fortsett"
         }
       ]
     },
@@ -85,8 +97,8 @@
       "label": "Ressursrapport",
       "fields": [
         {
-          "label": "Tekst på \"Vis liste\"-knappen",
-          "default": "Vis liste"
+          "label": "Tekst på \"Opprett dokument\"-knappen",
+          "default": "Opprett dokument"
         },
         {
           "label": "Tekst på \"Eksporter\"-knappen",
@@ -95,10 +107,6 @@
         {
           "label": "Tekst på \"Velg alt\"-knappen",
           "default": "Velg alt"
-        },
-        {
-          "label": "Overskrift i \"Påstand\"-kolonnen,",
-          "default": "Påstand"
         },
         {
           "label": "Overskrift over \"Ressurser\"-tabellen",
@@ -119,10 +127,6 @@
         {
           "label": "Tekst når ingen ressurser er registrert",
           "default": "Ingen ressurser"
-        },
-        {
-          "label": "Overskrift for \"Oppsummering kommentar\"",
-          "default": "Oppsummering kommentar"
         },
         {
           "label": "Tekst som vises når ingen oppsummering er gitt",

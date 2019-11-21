@@ -683,16 +683,81 @@ article, aside, details, figcaption, figure, footer, header, main, menu, nav, se
 
   table {
     width: 100%;
-    border: 1px solid rgba(0, 90, 255, 0.34);
-  }
-  table tr:nth-child(even){
-    background-color: rgba(176, 200, 236, 0.34);
+    border-collapse: collapse;
+    margin-bottom: 1rem;
   }
 
-  th {
-    text-align: start;
-    background-color: rgba(45, 119, 193, 0.34);
-    border-collapse: collapse;
+  .page-pro-arguments,
+  .page-contra-arguments {
+
+    th {
+      text-align: start;
+      color: #ffffff;
+      border-collapse: collapse;
+      font-size: 1.5rem;
+      font-style: italic;
+      padding: 0.6rem;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    ul li::before {
+      content: "\2022";
+      font-weight: bold;
+      display: inline-block;
+      width: 1em;
+      margin-left: -1em;
+    }
+  }
+
+  .page-pro-arguments {
+    $proBorderColor: #54a169;
+    border: 1px solid $proBorderColor;
+
+    th {
+      background-color: $proBorderColor;
+    }
+
+    tr {
+      background-color: #d9ead3;
+    }
+
+    ul li::before {
+      color: $proBorderColor;
+    }
+  }
+
+  .page-contra-arguments {
+    $contraBorderColor: #de5050;
+    border: 1px solid $contraBorderColor;
+
+    th {
+      background-color: $contraBorderColor;
+    }
+
+    tr {
+      background-color: #f4cccc;
+    }
+
+    ul li::before {
+      color: $contraBorderColor;
+    }
+  }
+
+  .page-resources {
+    border: 1px solid rgba(0, 90, 255, 0.34);
+
+    & tr:nth-child(even){
+      background-color: rgba(176, 200, 236, 0.34);
+    }
+
+    th {
+      text-align: start;
+      background-color: rgba(45, 119, 193, 0.34);
+      border-collapse: collapse;
+    }
   }
 
   li {

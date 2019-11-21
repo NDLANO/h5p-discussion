@@ -7,16 +7,19 @@
       "label": "Task description"
     },
     {
-      "label": "Statements",
-      "entity": "statement",
+      "label": "Arguments",
+      "entity": "argument",
       "field": {
-        "label": "Statement",
+        "label": "Argument",
         "description": "The statement that the user needs to process"
       }
     },
     {
-      "label": "Number of landingfields",
-      "description": "How many landingfields should the user reflect on?"
+      "label": "Basis",
+      "default": "Basis"
+    },
+    {
+      "label": "Basis instruction"
     },
     {
       "label": "Resources",
@@ -44,12 +47,20 @@
       "label": "Localize",
       "fields": [
         {
-          "label": "Basis",
-          "default": "Basis"
+          "label": "Header for the 'For' column",
+          "default": "Arguments FOR"
+        },
+        {
+          "label": "Header for the 'Against' column",
+          "default": "Arguments AGAINST"
         },
         {
           "label": "Placeholder for the text boxes",
           "default": "Type your reasons for such answers"
+        },
+        {
+          "label": "Placeholder when no arguments are connected",
+          "default": "No arguments"
         },
         {
           "label": "Label for \"Resources\"-button",
@@ -60,8 +71,8 @@
           "default": "Restart"
         },
         {
-          "label": "Label for the \"Add alternative\"-button",
-          "default": "Add alternative"
+          "label": "Label for the \"Add argument\"-button",
+          "default": "Add argument"
         },
         {
           "label": "Label for the \"Yes\"-button",
@@ -76,8 +87,7 @@
           "default": "If you continue all your changes will be lost"
         },
         {
-          "label": "Ask the user if he/she wants to continue",
-          "default": "Are you sure?"
+          "default": "Continue"
         }
       ]
     },
@@ -95,10 +105,6 @@
         {
           "label": "Label on \"Select all\" button",
           "default": "Select all"
-        },
-        {
-          "label": "Statement header in statement table",
-          "default": "Statements"
         },
         {
           "label": "Header above the \"Resource\" table",
@@ -119,10 +125,6 @@
         {
           "label": "Label when no resources are found",
           "default": "No resources"
-        },
-        {
-          "label": "Header for \"Summary comment\"",
-          "default": "Summary comment"
         },
         {
           "label": "Label when no summary is provided",
