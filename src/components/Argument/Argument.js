@@ -6,24 +6,22 @@ import ActionMenu from "./components/ActionMenu";
 import classnames from "classnames";
 import DeleteStatement from "../DeleteStatement/DeleteStatement";
 import DragArrows from "./components/DragArrows";
+import {getDnDId} from "../utils";
 
 function Argument(props) {
 
     const {
         argument,
-        onStatementChange,
+        onArgumentChange,
         enableEditing = false,
         isDragging = false,
-        onStatementDelete,
+        onArgumentDelete,
         isDragEnabled = true,
         onMove
     } = props;
 
     const elementRef = useRef();
-    const [refReady, setRefReady] = useState(false);
     const [showPopover, togglePopover] = useState(false);
-
-    useEffect(() => setRefReady(true), [elementRef]);
 
     function toggle() {
         togglePopover(prevState => !prevState);
@@ -33,9 +31,9 @@ function Argument(props) {
     if (enableEditing) {
         displayStatement = (
             <EditableArgument
-                statement={argument.argumentText}
+                argument={argument.argumentText}
                 inEditMode={argument.editMode}
-                onBlur={onStatementChange}
+                onBlur={onArgumentChange}
                 idBase={argument.id}
             />
         );
@@ -52,13 +50,12 @@ function Argument(props) {
             role={"listitem"}
             className={"h5p-discussion-statement-container"}
             ref={elementRef}
-            //onClick={toggle}
         >
             <ActionMenu
                 actions={[{label: "FOR", target: 'pro'}, {label: "AGAINST", target: 'contra'}]}
                 show={showPopover}
                 handleClose={toggle}
-                onMove={(target) => onMove(elementRef.current, 'test-' + argument.id, target)}
+                onMove={(target) => onMove(elementRef.current, getDnDId(argument), target)}
             >
                 <div
                     className={classnames("h5p-discussion-statement", {
@@ -71,7 +68,7 @@ function Argument(props) {
                         {isDragEnabled && (
                             <>
                                 <DeleteStatement
-                                    onClick={onStatementDelete}
+                                    onClick={onArgumentDelete}
                                 />
                                 <DragArrows/>
                             </>
@@ -92,9 +89,9 @@ function Argument(props) {
 
 Argument.propTypes = {
     argument: PropTypes.object,
-    onStatementChange: PropTypes.func,
+    onArgumentChange: PropTypes.func,
     enableEditing: PropTypes.bool,
-    onStatementDelete: PropTypes.func,
+    onArgumentDelete: PropTypes.func,
     isDragging: PropTypes.bool,
     isDragEnabled: PropTypes.bool,
 };

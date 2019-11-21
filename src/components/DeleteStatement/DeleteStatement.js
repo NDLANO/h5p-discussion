@@ -11,7 +11,7 @@ function DeleteStatement(props) {
 
     const {
         behaviour: {
-            allowAddingOfStatements = false,
+            allowAddingOfStatements = true,
         },
         translate
     } = context;

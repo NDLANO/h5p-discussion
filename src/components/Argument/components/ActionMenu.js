@@ -23,27 +23,32 @@ function ActionMenu(props) {
             windowBorderPadding={0}
             disableReposition={true}
             onClickOutside={handleClose}
-            content={({ targetRect }) => (
+            content={({targetRect}) => (
                 <div
                     className={"h5p-discussion-popover-actionmenu"}
                     role={"listitem"}
                     style={{width: targetRect.width + 10}}
                 >
                     <ul>
-                    {actions.map((action, index) => (
-                        <li
-                            key={"action-" + index}
-                        ><label>
-                            <span className={"h5p-ri hri-unchecked"} onClick={event => {
-                            onMove(action.target);
-                            handleClose();
-                        }}/>{action.label}</label></li>
-                    ))}
+                        {actions.map((action, index) => (
+                            <li
+                                key={"action-" + index}
+                            >
+                                <label>
+                            <span
+                                className={"h5p-ri hri-unchecked"}
+                                onClick={() => handleClose(onMove(action.target))}
+                            />
+                                    {action.label}
+                                </label>
+                            </li>
+                        ))}
                     </ul>
                     <button
                         onClick={handleClose}
                         className={"visible-hidden"}
-                    >Close</button>
+                    >Close
+                    </button>
                 </div>
             )}
         >

@@ -11,7 +11,7 @@ function EditableArgument(props) {
     const handleClick = () => {
         if (inEditMode === false) {
             toggleEditMode(true);
-            inputRef.current.value = props.statement;
+            inputRef.current.value = props.argument;
             setTimeout(() => inputRef.current.focus(), 0);
         }
     };
@@ -45,18 +45,18 @@ function EditableArgument(props) {
         >
             <div>
                 <label
-                    title={props.statement}
+                    title={props.argument}
                     htmlFor={inputId}
                     id={labelId}
                 >
-                    <span className={"visible-hidden"}>Statement</span>
+                    <span className={"visible-hidden"}>Argument</span>
                     <input
                         className={classnames("h5p-discussion-editable", {
                             "hidden": inEditMode === false,
                         })}
                         ref={inputRef}
                         onBlur={handleBlur}
-                        aria-label={"Edit statement " + props.statement}
+                        aria-label={"Edit argument " + props.argument}
                         aria-hidden={!inEditMode}
                         id={inputId}
                     />
@@ -67,7 +67,7 @@ function EditableArgument(props) {
                         "hidden": inEditMode === true,
                     })}
                 >
-                    {props.statement}
+                    {props.argument}
                 </p>
             </div>
         </div>
@@ -75,7 +75,7 @@ function EditableArgument(props) {
 }
 
 EditableArgument.propTypes = {
-    statement: PropsTypes.string,
+    argument: PropsTypes.string,
     inEditMode: PropsTypes.bool,
     onBlur: PropsTypes.func,
     idBase: PropsTypes.oneOfType([

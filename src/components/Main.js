@@ -2,7 +2,7 @@ import './Discussion.scss';
 import 'fonts/H5PReflectionFont.scss';
 import React, {useEffect, useRef} from 'react';
 import PropTypes from 'prop-types';
-import Surfacecontainer from './Surface/Surfacecontainer';
+import Surface from './Surface/Surface';
 import Footer from "./Footer/Footer";
 
 function Main(props) {
@@ -49,7 +49,7 @@ function Main(props) {
                 >
                     <p className={'h5p-discussion-description'}>{description}</p>
                 </div>
-                <Surfacecontainer/>
+                <Surface/>
             </div>
             <Footer/>
         </article>

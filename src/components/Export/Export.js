@@ -36,17 +36,17 @@ function Export() {
             hasSummaryComment: summary && summary.length > 0,
             summaryComment: summary,
             resources: resources,
-            unprocessedArguments: userInput
+            unprocessedArguments: userInput.categories
                 .filter(category => category.isArgumentDefaultList)
                 .map(category => category.connectedArguments)
                 .reduce((acc, val) => acc.concat(val), []),
-            proArguments: userInput
+            proArguments: userInput.categories
                 .filter(category => category.id === 'pro')
-                .map(category => category.connectedArguments)
+                .map(category => category.connectedArguments.map(argumentId => userInput.argumentsList[argumentId]))
                 .reduce((acc, val) => acc.concat(val), []),
-            contraArguments: userInput
+            contraArguments: userInput.categories
                 .filter(category => category.id === 'contra')
-                .map(category => category.connectedArguments)
+                .map(category => category.connectedArguments.map(argumentId => userInput.argumentsList[argumentId]))
                 .reduce((acc, val) => acc.concat(val), []),
         });
     }
