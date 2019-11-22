@@ -18,6 +18,7 @@ function Surface() {
     const initalState = {
         categories: [],
         argumentsList: [],
+        idCounter: 0,
     };
 
     function stateHeadQuarter(state, action) {
@@ -39,8 +40,8 @@ function Surface() {
                     id,
                     argumentText,
                 } = action.payload;
-                const newArguments = Array.from(state.argumentsList);
-                newArguments[id].argumentText = argumentText;
+                const newArguments = JSON.parse(JSON.stringify(state.argumentsList));
+                newArguments[newArguments.findIndex(argument => argument.id === id)].argumentText = argumentText;
                 return {
                     ...state,
                     argumentsList: newArguments
@@ -63,8 +64,37 @@ function Surface() {
                     argumentsList,
                 }
             }
-            case 'reset':
+            case 'addArgument': {
+                const {
+                    id
+                } = action.payload;
+
+                const argumentsList = Array.from(state.argumentsList);
+                const argumentId = state.idCounter + 1;
+                argumentsList.push(new ArgumentDataObject({
+                    id: argumentId,
+                    added: true,
+                    editMode: true,
+                }));
+
+                const categories = JSON.parse(JSON.stringify(state.categories));
+                const targetIndex = categories.findIndex(category => category.id === id);
+                if (targetIndex === -1) {
+                    return {
+                        ...state
+                    };
+                }
+                categories[targetIndex].connectedArguments.push(argumentId);
+                return {
+                    ...state,
+                    argumentsList,
+                    categories,
+                    idCounter: argumentId,
+                }
+            }
+            case 'reset': {
                 return init();
+            }
             default:
                 return state;
         }
@@ -132,6 +162,7 @@ function Surface() {
         return {
             categories,
             argumentsList: argumentDataList,
+            idCounter: argumentDataList.length - 1,
         }
     }
 
@@ -223,6 +254,12 @@ function Surface() {
                         additionalClassName={[category.theme]}
                         useNoArgumentsPlaceholder={category.useNoArgumentsPlaceholder}
                         addArgument={allowAddingOfArguments}
+                        onAddArgument={() => dispatch(
+                            {
+                                type: 'addArgument', payload: {
+                                    id: category.id,
+                                }
+                            })}
                     >
                         <Column
                             additionalClassName={"h5p-discussion-argument-list"}
@@ -241,10 +278,19 @@ function Surface() {
                                     >
                                         <Argument
                                             argument={argument}
+                                            currentCategory={category.id}
                                             enableEditing={allowAddingOfArguments}
                                             onMove={startMoving}
-                                            onArgumentChange={argumentText => dispatch({type: 'editArgument', payload: {id: argument.id, argumentText}})}
-                                            onArgumentDelete={() => dispatch({type: 'deleteArgument', payload: {id: argument.id}})}
+                                            onArgumentChange={argumentText => dispatch(
+                                                {
+                                                    type: 'editArgument',
+                                                    payload: {id: argument.id, argumentText}
+                                                })}
+                                            onArgumentDelete={() => dispatch(
+                                                {
+                                                    type: 'deleteArgument',
+                                                    payload: {id: argument.id}
+                                                })}
                                         />
                                     </Element>
                                 ))}

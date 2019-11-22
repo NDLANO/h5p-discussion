@@ -47,6 +47,7 @@ Category.propTypes = {
     addArgument: PropTypes.bool,
     includeHeader: PropTypes.bool,
     useNoArgumentsPlaceholder: PropTypes.bool,
+    onAddArgument: PropTypes.func,
 };
 
 Category.defaultProps = {

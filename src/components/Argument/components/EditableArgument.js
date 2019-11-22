@@ -1,12 +1,19 @@
-import React, {useState, useRef} from 'react';
+import React, {useState, useRef, useEffect} from 'react';
 import PropsTypes from 'prop-types';
 import classnames from 'classnames';
+import {debounce} from "../../utils";
 
 function EditableArgument(props) {
 
     const [inEditMode, toggleEditMode] = useState(props.inEditMode);
 
     const inputRef = useRef();
+
+    useEffect(() => {
+        if (inEditMode === true) {
+            inputRef.current.focus();
+        }
+    }, []);
 
     const handleClick = () => {
         if (inEditMode === false) {
@@ -28,7 +35,6 @@ function EditableArgument(props) {
 
     const handleBlur = () => {
         toggleEditMode(false);
-        props.onBlur(inputRef.current.value);
     };
 
     const id = "es_" + props.idBase;
@@ -56,6 +62,7 @@ function EditableArgument(props) {
                         })}
                         ref={inputRef}
                         onBlur={handleBlur}
+                        onChange={debounce(() => props.onBlur(inputRef.current.value), 200)}
                         aria-label={"Edit argument " + props.argument}
                         aria-hidden={!inEditMode}
                         id={inputId}
