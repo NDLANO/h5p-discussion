@@ -41,7 +41,12 @@ function Surface() {
                     argumentText,
                 } = action.payload;
                 const newArguments = JSON.parse(JSON.stringify(state.argumentsList));
-                newArguments[newArguments.findIndex(argument => argument.id === id)].argumentText = argumentText;
+                const argumentIndex = newArguments.findIndex(argument => argument.id === id);
+                if( argumentIndex !== -1 ){
+                    const argument = newArguments[argumentIndex];
+                    argument.argumentText = argumentText;
+                    argument.editMode = false;
+                }
                 return {
                     ...state,
                     argumentsList: newArguments
@@ -168,16 +173,11 @@ function Surface() {
 
     function onDropEnd(dragResult) {
         let {
-            combine,
             destination,
             source,
         } = dragResult;
 
-        if (!combine && !destination) {
-            return;
-        }
-
-        if (destination !== null && destination.droppableId === source.droppableId) {
+        if (!destination) {
             return;
         }
 
