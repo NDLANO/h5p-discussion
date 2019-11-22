@@ -107,6 +107,24 @@ article, aside, details, figcaption, figure, footer, header, main, menu, nav, se
   .h5p-discussion-argument-container div {
     display: flex;
   }
+
+  .h5p-discussion-pro,
+  .h5p-discussion-against {
+    .h5p-discussion-header-argument-add {
+      display: flex;
+      align-items: center;
+
+      :not(.fa){
+        display: block;
+        text-decoration: underline;
+      }
+
+      .fa {
+        font-size: 0.8rem;
+        margin-right: 0.4rem;
+      }
+    }
+  }
 }
 
 .h5p-discussion-surface {
@@ -141,6 +159,7 @@ article, aside, details, figcaption, figure, footer, header, main, menu, nav, se
   align-items: flex-start;
 
   .h5p-resource-list-wrapper {
+    margin-bottom: 0.625rem;
     margin-left: auto;
   }
 }
@@ -521,6 +540,7 @@ article, aside, details, figcaption, figure, footer, header, main, menu, nav, se
   align-items: center;
   padding: 0.3em 0.6em;
 
+  label,
   div {
     width: 100%;
   }
@@ -555,6 +575,58 @@ article, aside, details, figcaption, figure, footer, header, main, menu, nav, se
   border-radius: 5px;
 }
 
+.h5p-discussion-category-default {
+  border-radius: 5px;
+  border: 2px solid #dbe2e8;
+  padding: 1rem;
+
+  .h5p-discussion-header-argument-add {
+    display: none;
+  }
+}
+
+.h5p-discussion-pro,
+.h5p-discussion-against {
+  .h5p-discussion-category-header {
+    overflow: hidden;
+    min-height: 2.5rem;
+    padding-left: 3.75rem;
+    display: flex;
+    align-items: center;
+    font-style: italic;
+    text-decoration: none solid rgb(255, 255, 255);
+    line-height: 1.5625rem;
+    text-shadow: 2px 1px 3px rgba(28,28,28,0.5);
+    border-radius: 5px 5px 0 0;
+
+  }
+
+  .h5p-discussion-header-argument-add {
+    margin-left: auto;
+    margin-right: 0.5rem;
+    background: transparent;
+    border: 0;
+    color: inherit;
+    display: flex;
+
+    :not(.fa){
+      display: none;
+    }
+
+    .fa {
+      font-size: 1.6rem;
+    }
+
+  }
+
+  .h5p-discussion-category-content {
+    padding: 1rem;
+    border: 2px solid #dbe2e8;
+    border-radius: 0 0 5px 5px;
+    border-top: 0;
+  }
+}
+
 .h5p-discussion-pro {
   .h5p-discussion-category-header {
     background-color: #54a169;
@@ -565,10 +637,6 @@ article, aside, details, figcaption, figure, footer, header, main, menu, nav, se
     background-color: #5bb06e;
     border: 3px solid #74d690;
   }
-}
-
-.pro {
-  border:1px solid green;
 }
 
 .h5p-discussion-against {
@@ -851,31 +919,6 @@ article, aside, details, figcaption, figure, footer, header, main, menu, nav, se
 .h5p-discussion-category {
   margin-bottom: 0.7rem;
   position: relative;
-}
-
-.h5p-discussion-category-header {
-  overflow: hidden;
-  min-height: 2.5rem;
-  padding-left: 3.75rem;
-  display: flex;
-  align-items: center;
-  font-style: italic;
-  text-decoration: none solid rgb(255, 255, 255);
-  line-height: 1.5625rem;
-  text-shadow: 2px 1px 3px rgba(28,28,28,0.5);
-  border-radius: 0 5px;
-
-  .fa {
-    margin-left: auto;
-    margin-right: 0.8rem;
-    font-size: 1.6rem;
-  }
-}
-
-.h5p-discussion-category-content {
-  padding: 1rem;
-  border: 1px solid #dbe2e8;
-  border-radius: 0 0 5px 5px;
 }
 
 .visible-hidden {

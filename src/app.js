@@ -57,7 +57,7 @@ H5P.Discussion = (function () {
             labelResources: "Resources",
             selectAll: "Select all",
             export: "Export",
-            add: "Add alternative",
+            addArgument: "Add argument",
             ifYouContinueAllYourChangesWillBeLost: "All the changes will be lost. Are you sure you wish to continue?",
             close: "Close",
             drag: "Drag",

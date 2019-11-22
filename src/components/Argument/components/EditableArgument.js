@@ -54,12 +54,13 @@ function EditableArgument(props) {
                     title={props.argument}
                     htmlFor={inputId}
                     id={labelId}
+                    className={classnames("h5p-discussion-editable", {
+                        "hidden": inEditMode === false,
+                    })}
                 >
                     <span className={"visible-hidden"}>Argument</span>
                     <input
-                        className={classnames("h5p-discussion-editable", {
-                            "hidden": inEditMode === false,
-                        })}
+                        className={"h5p-discussion-editable"}
                         ref={inputRef}
                         onBlur={handleBlur}
                         onChange={debounce(() => props.onBlur(inputRef.current.value), 200)}

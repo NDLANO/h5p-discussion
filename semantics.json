@@ -145,7 +145,7 @@
         "default": "Restart"
       },
       {
-        "name": "add",
+        "name": "addArgument",
         "type": "text",
         "label": "Label for the \"Add argument\"-button",
         "default": "Add argument"
