@@ -75,6 +75,8 @@ H5P.Discussion = (function () {
             noArguments: "No arguments",
             argumentsFor: "Arguments FOR",
             argumentsAgainst: "Arguments AGAINST",
+            moveTo: "Move to",
+            deleteArgument: "Delete argument",
         }, params.l10n, params.resourceReport);
 
         const createElements = () => {

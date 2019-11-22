@@ -24,7 +24,7 @@ article, aside, details, figcaption, figure, footer, header, main, menu, nav, se
 
 .h5p-discussion {
   font-family: "Open Sans", sans-serif;
-  –webkit-overflow-scrolling: touch;
+//  –webkit-overflow-scrolling: touch;
 }
 
 .h5p-discussion-surface-main {
@@ -76,13 +76,14 @@ article, aside, details, figcaption, figure, footer, header, main, menu, nav, se
     justify-content: space-between;
   }
 
-  .h5p-discussion-statement-list {
-    flex-basis: 100%;
+  .h5p-discussion-summary,
+  .h5p-discussion-category-default {
+    width: 100%;
   }
 
-  .h5p-discussion-statement-pro-list,
-  .h5p-discussion-statement-against-list {
-    flex-basis: 49%;
+  .h5p-discussion-pro,
+  .h5p-discussion-against {
+    width: 49%;
     margin-top: 1rem;
   }
 
@@ -103,7 +104,7 @@ article, aside, details, figcaption, figure, footer, header, main, menu, nav, se
     max-width: em(500px);
   }
 
-  .h5p-discussion-statement-container div {
+  .h5p-discussion-argument-container div {
     display: flex;
   }
 }
@@ -137,7 +138,11 @@ article, aside, details, figcaption, figure, footer, header, main, menu, nav, se
 
 .h5p-discussion-surface-info {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
+
+  .h5p-resource-list-wrapper {
+    margin-left: auto;
+  }
 }
 
 .h5p-discussion-resources-btn {
@@ -159,7 +164,7 @@ article, aside, details, figcaption, figure, footer, header, main, menu, nav, se
   margin: em(10px) 0;
 }
 
-.h5p-discussion-statement-common {
+.h5p-discussion-argument-common {
   padding: 0.25rem;
   display: flex;
   flex-grow: 1;
@@ -175,7 +180,7 @@ article, aside, details, figcaption, figure, footer, header, main, menu, nav, se
 }
 
 .h5p-droparea {
-  @extend .h5p-discussion-statement-common;
+  @extend .h5p-discussion-argument-common;
   border: 2px dashed #d1d1d1;
   background-color: white;
   flex-flow: column;
@@ -193,9 +198,9 @@ article, aside, details, figcaption, figure, footer, header, main, menu, nav, se
       box-shadow: 0 0 em(3px) em(2px) rgba(26,115,217,0.2);
       border-color: #1a73d9;
 
-      .h5p-discussion-statement-sequenced,
+      .h5p-discussion-argument-sequenced,
       .h5p-discussion-actionlist > div,
-      .h5p-discussion-statement-container > div {
+      .h5p-discussion-argument-container > div {
         background-color: #edf4fd;
       }
   }
@@ -219,8 +224,8 @@ article, aside, details, figcaption, figure, footer, header, main, menu, nav, se
   }
 }
 
-.h5p-discussion-statement {
-  @extend .h5p-discussion-statement-common;
+.h5p-discussion-argument {
+  @extend .h5p-discussion-argument-common;
   background-color: #f6f8f9;
   min-height: em(42px);
   font-weight: bold;
@@ -281,13 +286,13 @@ article, aside, details, figcaption, figure, footer, header, main, menu, nav, se
     margin: 0;
   }
 
-  .h5p-discussion-statement-sequenced {
+  .h5p-discussion-argument-sequenced {
     width: 100%;
     padding: 0.25rem 0;
     background-color: #f6f8f9;
   }
 
-  .h5p-discussion-statement-remaining {
+  .h5p-discussion-argument-remaining {
     border-radius: $borderRadius;
     width: 100%;
     padding: 0.25rem 0;
@@ -295,7 +300,7 @@ article, aside, details, figcaption, figure, footer, header, main, menu, nav, se
     background-color: #f6f8f9;
   }
 
-  .h5p-discussion-statement-provided {
+  .h5p-discussion-argument-provided {
     display: flex;
     flex: auto;
   }
@@ -350,7 +355,7 @@ article, aside, details, figcaption, figure, footer, header, main, menu, nav, se
   }
 }
 
-.h5p-discussion-statement-container {
+.h5p-discussion-argument-container {
 
   padding: 0.25rem;
   border: 2px solid #dbe2e8;
@@ -364,16 +369,6 @@ article, aside, details, figcaption, figure, footer, header, main, menu, nav, se
     box-shadow: 0 0 3px 2px rgba(26,115,217,0.2);
     border-color: #1a73d9;
   }
-
-  //
-  //& > div {
-  //  margin: 0 0.25rem 0.25rem 0.25rem;
-  //  border-bottom-left-radius: $borderRadius;
-  //  border-bottom-right-radius: $borderRadius;
-  //  overflow: hidden;
-  //  background-color: #f6f8f9;
-  //}
-
 }
 
 .h5p-discussion-select-list {
@@ -394,7 +389,7 @@ article, aside, details, figcaption, figure, footer, header, main, menu, nav, se
 
 .h5p-discussion-description {
   flex-grow: 5;
-  margin: em(10px) 0;
+  margin: 0 0.625rem 0.625rem 0;
 }
 
 .h5p-discussion-action {
@@ -598,6 +593,12 @@ article, aside, details, figcaption, figure, footer, header, main, menu, nav, se
   box-shadow: 0 11px 12px rgba(0,0,0,0.2);
   background-color: #ffffff;
   border: 2px solid #ffffff;
+
+  input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+  }
 }
 
 .h5p-discussion-popover-actionmenu ul {
@@ -607,11 +608,21 @@ article, aside, details, figcaption, figure, footer, header, main, menu, nav, se
 }
 
 .h5p-discussion-popover-actionmenu {
+  @extend .h5p-discussion;
+
   label {
     padding: 1rem 0.9rem;
-    width: 100%;
-    display: block;
+    display: flex;
     overflow: hidden;
+    align-items: center;
+  }
+
+  ul button {
+    border: 0;
+    background-color: transparent;
+    font-size: 1.2rem;
+    padding: 0;
+    display: flex;
   }
 
   li {
@@ -622,9 +633,32 @@ article, aside, details, figcaption, figure, footer, header, main, menu, nav, se
   li:last-child {
     border-bottom: 0;
   }
+
+  .h5p-ri,
+  .fa {
+    margin-right: 0.5rem;
+  }
+
+  .h5i-checked {
+    color: #121212;
+  }
+
+  .h5p-discussion-popover-actionmenu-delete .h5p-discussion-popover-actionmenu-labeltext {
+    color: #1a1616;
+  }
 }
 
-.h5p-discussion-statement-actions {
+.h5p-discussion-popover-actionmenu-labeltext {
+  color: #757575;
+  font-style: italic;
+
+  span {
+    color: #1a1616;
+    font-weight: 600;
+  }
+}
+
+.h5p-discussion-argument-actions {
   margin-left: auto;
   display: flex;
   align-items: center;

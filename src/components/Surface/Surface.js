@@ -1,4 +1,4 @@
-import React, {useState, useContext, useReducer, useCallback} from 'react';
+import React, {useEffect, useContext, useReducer, useCallback} from 'react';
 import PropTypes from 'prop-types';
 import {getBox} from 'css-box-model';
 import {DiscussionContext} from 'context/DiscussionContext';
@@ -11,15 +11,10 @@ import Element from "../DragAndDrop/Element";
 import Argument from "../Argument/Argument";
 import Column from "../DragAndDrop/Column";
 import {CategoryDataObject, ArgumentDataObject, getDnDId} from '../utils.js';
+import {ActionMenuDataObject} from "../utils";
 
 function Surface() {
     const context = useContext(DiscussionContext);
-
-    const initalState = {
-        categories: [],
-        argumentsList: [],
-        idCounter: 0,
-    };
 
     function stateHeadQuarter(state, action) {
         switch (action.type) {
@@ -42,7 +37,7 @@ function Surface() {
                 } = action.payload;
                 const newArguments = JSON.parse(JSON.stringify(state.argumentsList));
                 const argumentIndex = newArguments.findIndex(argument => argument.id === id);
-                if( argumentIndex !== -1 ){
+                if (argumentIndex !== -1) {
                     const argument = newArguments[argumentIndex];
                     argument.argumentText = argumentText;
                     argument.editMode = false;
@@ -106,12 +101,16 @@ function Surface() {
     }
 
     const memoizedReducer = useCallback(stateHeadQuarter, []);
-    const [state, dispatch] = useReducer(memoizedReducer, initalState, init);
+    const [state, dispatch] = useReducer(memoizedReducer, init());
 
     let api;
     const autoDragSensor = value => {
         api = value;
     };
+
+    useEffect(() => {
+        context.trigger('resize');
+    }, [state.argumentsList]);
 
     const {
         collectExportValues,
@@ -211,20 +210,19 @@ function Surface() {
         });
     }
 
-    const startMoving = function start(draggableElement, id, target) {
-        const targetContainer = getBox(document.getElementById(target));
-
-        const preDrag = api.tryGetLock(id);
+    const startMoving = function start(draggableElement, target) {
+        const preDrag = api.tryGetLock(draggableElement);
         if (!preDrag) {
             return;
         }
-        const dragElement = getBox(draggableElement);
+        const targetContainer = getBox(document.getElementById(target));
+        const dragElement = getBox(document.getElementById(draggableElement));
         const start = dragElement.borderBox.center;
         const end = targetContainer.borderBox.center;
         const drag = preDrag.fluidLift(start);
 
         const points = [];
-        const numberOfPoints = 10;
+        const numberOfPoints = 20;
         for (let i = 0; i < numberOfPoints; i++) {
             points.push({
                 x: tweenFunctions.easeOutCirc(i, start.x, end.x, numberOfPoints),
@@ -277,20 +275,24 @@ function Surface() {
                                         dragIndex={index}
                                     >
                                         <Argument
+                                            actions={state.categories
+                                                .filter(category => category.isArgumentDefaultList !== true)
+                                                .map(category => new ActionMenuDataObject({
+                                                    title: category.title,
+                                                    activeCategory: category.connectedArguments.findIndex(argumentId => argumentId === argument.id) !== -1,
+                                                    onSelect: () => startMoving(getDnDId(argument), category.id)
+                                                }))}
+                                            isDragEnabled={!isMobile}
                                             argument={argument}
-                                            currentCategory={category.id}
                                             enableEditing={allowAddingOfArguments}
-                                            onMove={startMoving}
-                                            onArgumentChange={argumentText => dispatch(
-                                                {
-                                                    type: 'editArgument',
-                                                    payload: {id: argument.id, argumentText}
-                                                })}
-                                            onArgumentDelete={() => dispatch(
-                                                {
-                                                    type: 'deleteArgument',
-                                                    payload: {id: argument.id}
-                                                })}
+                                            onArgumentChange={argumentText => dispatch({
+                                                type: 'editArgument',
+                                                payload: {id: argument.id, argumentText}
+                                            })}
+                                            onArgumentDelete={() => dispatch({
+                                                type: 'deleteArgument',
+                                                payload: {id: argument.id}
+                                            })}
                                         />
                                     </Element>
                                 ))}

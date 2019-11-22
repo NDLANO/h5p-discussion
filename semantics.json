@@ -171,7 +171,20 @@
       {
         "name": "continue",
         "type": "text",
+        "label": "Label for the \"Continue\"-button",
         "default": "Continue"
+      },
+      {
+        "name": "moveTo",
+        "type": "text",
+        "label": "Short text in front of the options to where you can move the arguments",
+        "default": "Move to"
+      },
+      {
+        "name": "deleteArgument",
+        "type": "text",
+        "label": "Label used to show the delete action",
+        "default": "Delete argument"
       }
     ]
   },

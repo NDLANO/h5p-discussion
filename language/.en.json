@@ -87,7 +87,16 @@
           "default": "If you continue all your changes will be lost"
         },
         {
+          "label": "Label for the \"Continue\"-button",
           "default": "Continue"
+        },
+        {
+          "label": "Short text in front of the options to where you can move the arguments",
+          "default": "Move to"
+        },
+        {
+          "label": "Label used to show the delete action",
+          "default": "Delete argument"
         }
       ]
     },

@@ -20,6 +20,14 @@ function CategoryDataObject(initValues) {
     return Object.assign(this, initValues);
 }
 
+function ActionMenuDataObject(initValues) {
+    this.title = null;
+    this.activeCategory = null;
+    this.onSelect = null;
+
+    return Object.assign(this, initValues);
+}
+
 function getDnDId(element) {
     return element.prefix + "-" + element.id;
 }
@@ -37,11 +45,12 @@ function debounce(func, wait, immediate) {
         timeout = setTimeout(later, wait);
         if (callNow) func.apply(context, args);
     };
-};
+}
 
 export {
     ArgumentDataObject,
     CategoryDataObject,
     getDnDId,
     debounce,
+    ActionMenuDataObject,
 }

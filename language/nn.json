@@ -88,8 +88,16 @@
           "default": "Hvis du fortsetter vil alle data gå tapt."
         },
         {
-          "label": "Fortsett",
+          "label": "Tekst på \"Fortsett\"-knappen",
           "default": "Fortsett"
+        },
+        {
+          "label": "Kort tekst foran alternativene man kan flytte argumenter til",
+          "default": "Flytt til"
+        },
+        {
+          "label": "Tekst som brukes for i indikere 'Slett argument' muligheten",
+          "default": "Slett argument"
         }
       ]
     },

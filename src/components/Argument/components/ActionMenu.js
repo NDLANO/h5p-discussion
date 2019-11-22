@@ -1,23 +1,31 @@
-import React, {useState} from 'react';
+import React, {useContext} from 'react';
 import PropTypes from 'prop-types';
 import TinyPopover from "react-tiny-popover";
+import classnames from 'classnames';
+import trash from '@assets/trash.svg';
+import {DiscussionContext} from "context/DiscussionContext";
 
 function ActionMenu(props) {
 
+    const context = useContext(DiscussionContext);
+    const {
+        translate
+    } = context;
     const {
         children,
         show,
         handleClose,
         actions,
-        classnames = [],
-        onMove,
+        onDelete,
+        classNames = [],
     } = props;
 
-    classnames.push("h5p-discussion-actionmenu");
+
+    classNames.push("h5p-discussion-actionmenu");
 
     return (
         <TinyPopover
-            containerClassName={classnames.join(" ")}
+            containerClassName={classNames.join(" ")}
             isOpen={show}
             position={["bottom"]}
             windowBorderPadding={0}
@@ -27,22 +35,58 @@ function ActionMenu(props) {
                 <div
                     className={"h5p-discussion-popover-actionmenu"}
                     role={"listitem"}
-                    style={{width: targetRect.width + 10}}
+                    style={{width: targetRect.width + 8}}
                 >
                     <ul>
                         {actions.map((action, index) => (
                             <li
                                 key={"action-" + index}
                             >
-                                <label>
-                            <span
-                                className={"h5p-ri hri-unchecked"}
-                                onClick={() => handleClose(onMove(action.target))}
-                            />
-                                    {action.label}
+                                <label
+                                    onClick={action.onSelect}
+                                >
+                                    <input
+                                        value={action.id}
+                                        type={"checkbox"}
+                                        checked={action.activeCategory}
+                                        onChange={action.onSelect}
+                                        aria-labelledby={"action-" + index}
+                                    />
+                                    <span
+                                        className={classnames("h5p-ri", {
+                                        'hri-checked': action.activeCategory,
+                                        'hri-unchecked': !action.activeCategory,
+                                    })}/>
+                                    <span
+                                        id={"action-" + index}
+                                        className={"h5p-discussion-popover-actionmenu-labeltext"}
+                                    >
+                                        {translate('moveTo')} "<span>{action.title}</span>"
+                                    </span>
                                 </label>
                             </li>
                         ))}
+                        <li>
+                            <label
+                                onClick={onDelete}
+                                className={"h5p-discussion-popover-actionmenu-delete"}
+                            >
+                                <button
+                                    onClick={e => {
+                                        e.preventDefault();
+                                        onDelete();
+                                    }}
+                                >
+                                    <img
+                                        src={trash}
+                                        aria-hidden={true}
+                                        alt={translate('deleteArgument')}
+                                    />
+                                    <span className="visible-hidden">{translate('close')}</span>
+                                </button>
+                                <span className={"h5p-discussion-popover-actionmenu-labeltext"}>{translate('deleteArgument')}</span>
+                            </label>
+                        </li>
                     </ul>
                     <button
                         onClick={handleClose}
@@ -64,7 +108,8 @@ ActionMenu.propTypes = {
     translate: PropTypes.func,
     show: PropTypes.bool,
     handleClose: PropTypes.func,
-    classnames: PropTypes.array,
+    classNames: PropTypes.array,
+
 };
 
 export default ActionMenu;

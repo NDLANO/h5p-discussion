@@ -17,10 +17,9 @@ function Argument(props) {
         isDragging = false,
         onArgumentDelete,
         isDragEnabled = true,
-        onMove
+        actions,
     } = props;
 
-    const elementRef = useRef();
     const [showPopover, togglePopover] = useState(false);
 
     function toggle() {
@@ -47,23 +46,23 @@ function Argument(props) {
 
     return (
         <div
+            id={getDnDId(argument)}
             role={"listitem"}
-            className={"h5p-discussion-statement-container"}
-            ref={elementRef}
+            className={"h5p-discussion-argument-container"}
         >
             <ActionMenu
-                actions={[{label: "FOR", target: 'pro'}, {label: "AGAINST", target: 'contra'}]}
+                actions={actions}
                 show={showPopover}
                 handleClose={toggle}
-                onMove={(target) => onMove(elementRef.current, getDnDId(argument), target)}
+                onDelete={onArgumentDelete}
             >
                 <div
-                    className={classnames("h5p-discussion-statement", {
+                    className={classnames("h5p-discussion-argument", {
                         "h5p-discussion-active-draggable": isDragEnabled && isDragging
                     })}
                 >
                     <div
-                        className={"h5p-discussion-statement-provided"}
+                        className={"h5p-discussion-argument-provided"}
                     >
                         {isDragEnabled && (
                             <>
@@ -75,7 +74,7 @@ function Argument(props) {
                         )}
                         {displayStatement}
                         <div
-                            className={"h5p-discussion-statement-actions"}
+                            className={"h5p-discussion-argument-actions"}
                             onClick={toggle}
                         >
                             <span className={"fa fa-caret-down"}/>
@@ -94,6 +93,7 @@ Argument.propTypes = {
     onArgumentDelete: PropTypes.func,
     isDragging: PropTypes.bool,
     isDragEnabled: PropTypes.bool,
+    actions: PropTypes.array,
 };
 
 export default Argument;
