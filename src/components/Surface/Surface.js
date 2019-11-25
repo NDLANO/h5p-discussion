@@ -218,15 +218,15 @@ function Surface() {
         const targetContainer = getBox(document.getElementById(target));
         const dragElement = getBox(document.getElementById(draggableElement));
         const start = dragElement.borderBox.center;
-        const end = targetContainer.borderBox.center;
+        const end = {x: targetContainer.borderBox.center.x, y: targetContainer.borderBox.bottom - (Math.min(15, targetContainer.borderBox.height / 4))};
         const drag = preDrag.fluidLift(start);
 
         const points = [];
-        const numberOfPoints = 20;
+        const numberOfPoints = 60;
         for (let i = 0; i < numberOfPoints; i++) {
             points.push({
-                x: tweenFunctions.easeOutCirc(i, start.x, end.x, numberOfPoints),
-                y: tweenFunctions.easeOutCirc(i, start.y, end.y, numberOfPoints)
+                x: tweenFunctions.easeOutQuad(i, start.x, end.x, numberOfPoints),
+                y: tweenFunctions.easeOutQuad(i, start.y, end.y, numberOfPoints)
             });
         }
 

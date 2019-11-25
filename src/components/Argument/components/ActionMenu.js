@@ -23,6 +23,11 @@ function ActionMenu(props) {
 
     classNames.push("h5p-discussion-actionmenu");
 
+    function handleSelect(callback){
+        handleClose()
+        callback();
+    }
+
     return (
         <TinyPopover
             containerClassName={classNames.join(" ")}
@@ -43,13 +48,14 @@ function ActionMenu(props) {
                                 key={"action-" + index}
                             >
                                 <label
-                                    onClick={action.onSelect}
+                                    htmlFor={"input-" + action.id}
                                 >
                                     <input
+                                        id={"input-" + action.id}
                                         value={action.id}
                                         type={"checkbox"}
                                         checked={action.activeCategory}
-                                        onChange={action.onSelect}
+                                        onChange={() => handleSelect(action.onSelect)}
                                         aria-labelledby={"action-" + index}
                                     />
                                     <span

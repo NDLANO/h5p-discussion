@@ -127,6 +127,10 @@ article, aside, details, figcaption, figure, footer, header, main, menu, nav, se
   }
 }
 
+.h5p-discussion-column{
+  padding: 1rem;
+}
+
 .h5p-discussion-surface {
   clear: both;
 }
@@ -620,7 +624,6 @@ article, aside, details, figcaption, figure, footer, header, main, menu, nav, se
   }
 
   .h5p-discussion-category-content {
-    padding: 1rem;
     border: 2px solid #dbe2e8;
     border-radius: 0 0 5px 5px;
     border-top: 0;
