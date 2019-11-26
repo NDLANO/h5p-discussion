@@ -1,21 +1,22 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useEffect, useRef, useState, forwardRef} from 'react';
 import PropTypes from 'prop-types';
 import EditableArgument from "./components/EditableArgument";
 import UnEditableArgument from "./components/UnEditableArgument";
 import ActionMenu from "./components/ActionMenu";
 import classnames from "classnames";
-import DeleteStatement from "../DeleteStatement/DeleteStatement";
 import DragArrows from "./components/DragArrows";
 import {getDnDId} from "../utils";
 
 function Argument(props) {
+
+    const innerRef = useRef();
+    const [refReady, setRef] = useState(false);
 
     const {
         argument,
         onArgumentChange,
         enableEditing = false,
         isDragging = false,
-        onArgumentDelete,
         isDragEnabled = true,
         actions,
     } = props;
@@ -25,6 +26,10 @@ function Argument(props) {
     function toggle() {
         togglePopover(prevState => !prevState);
     }
+
+    useEffect(() => {
+        setRef(true);
+    }, [innerRef]);
 
     let displayStatement;
     if (enableEditing) {
@@ -49,39 +54,39 @@ function Argument(props) {
             id={getDnDId(argument)}
             role={"listitem"}
             className={"h5p-discussion-argument-container"}
+            ref={innerRef}
         >
-            <ActionMenu
-                actions={actions}
-                show={showPopover}
-                handleClose={toggle}
-                onDelete={onArgumentDelete}
-            >
-                <div
-                    className={classnames("h5p-discussion-argument", {
-                        "h5p-discussion-active-draggable": isDragEnabled && isDragging
-                    })}
+            {refReady && (
+                <ActionMenu
+                    actions={actions}
+                    show={showPopover}
+                    handleClose={toggle}
+                    innerRef={innerRef.current}
                 >
                     <div
-                        className={"h5p-discussion-argument-provided"}
+                        className={classnames("h5p-discussion-argument", {
+                            "h5p-discussion-active-draggable": isDragEnabled && isDragging
+                        })}
                     >
-                        {isDragEnabled && (
-                            <>
-                                <DeleteStatement
-                                    onClick={onArgumentDelete}
-                                />
-                                <DragArrows/>
-                            </>
-                        )}
-                        {displayStatement}
                         <div
-                            className={"h5p-discussion-argument-actions"}
-                            onClick={toggle}
+                            className={"h5p-discussion-argument-provided"}
                         >
-                            <span className={"fa fa-caret-down"}/>
+                            {isDragEnabled && (
+                                <>
+                                    <DragArrows/>
+                                </>
+                            )}
+                            {displayStatement}
+                            <button
+                                className={"h5p-discussion-argument-actions"}
+                                onClick={toggle}
+                            >
+                                <span className={"fa fa-caret-down"}/>
+                            </button>
                         </div>
                     </div>
-                </div>
-            </ActionMenu>
+                </ActionMenu>
+            )}
         </div>
     );
 }

@@ -11,6 +11,10 @@ function Summary() {
         registerReset,
         collectExportValues,
         translate,
+        params: {
+            summaryHeader,
+            summaryInstruction,
+        }
     } = context;
 
     collectExportValues('summary', () => comment);
@@ -25,8 +29,11 @@ function Summary() {
                 id={"summary-header"}
                 htmlFor={'summary'}
             >
-                <h2>{translate('summary')}</h2>
+                <h2>{summaryHeader ? summaryHeader : translate('summary')}</h2>
             </label>
+            {summaryInstruction && (
+                <p>{summaryInstruction}</p>
+            )}
             <textarea
                 id={"summary"}
                 placeholder={translate('typeYourReasonsForSuchAnswers')}

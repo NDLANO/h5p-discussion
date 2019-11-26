@@ -21,9 +21,12 @@ function CategoryDataObject(initValues) {
 }
 
 function ActionMenuDataObject(initValues) {
+    this.id = null;
     this.title = null;
     this.activeCategory = null;
     this.onSelect = null;
+    this.type = null;
+    this.label = null;
 
     return Object.assign(this, initValues);
 }

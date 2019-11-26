@@ -104,7 +104,7 @@ article, aside, details, figcaption, figure, footer, header, main, menu, nav, se
     max-width: em(500px);
   }
 
-  .h5p-discussion-argument-container div {
+  .h5p-discussion-argument-container > div {
     display: flex;
   }
 
@@ -113,6 +113,7 @@ article, aside, details, figcaption, figure, footer, header, main, menu, nav, se
     .h5p-discussion-header-argument-add {
       display: flex;
       align-items: center;
+      cursor: pointer;
 
       :not(.fa){
         display: block;
@@ -654,7 +655,7 @@ article, aside, details, figcaption, figure, footer, header, main, menu, nav, se
 
     img {
       transform: rotateX(180deg);
-      filter: drop-shadow(-2px -2px 2px rgba(0,0,0,0.2));
+      filter: drop-shadow(2px -2px 2px rgba(0,0,0,0.2));
     }
   }
 }
@@ -664,6 +665,7 @@ article, aside, details, figcaption, figure, footer, header, main, menu, nav, se
   box-shadow: 0 11px 12px rgba(0,0,0,0.2);
   background-color: #ffffff;
   border: 2px solid #ffffff;
+  min-width: 100%;
 
   input {
     position: absolute;
@@ -676,38 +678,49 @@ article, aside, details, figcaption, figure, footer, header, main, menu, nav, se
   list-style: none;
   margin: 0;
   padding: 0;
+  flex: auto;
 }
 
 .h5p-discussion-popover-actionmenu {
-  @extend .h5p-discussion;
+  flex: auto;
 
-  label {
+  label,
+  .h5p-discussion-popover-actionmenu-delete {
     padding: 1rem 0.9rem;
     display: flex;
     overflow: hidden;
     align-items: center;
+    &:hover {
+      background-color: rgba(3,3,3,0.05);
+    }
   }
 
   ul button {
     border: 0;
     background-color: transparent;
-    font-size: 1.2rem;
     padding: 0;
     display: flex;
+    width: 100%;
   }
 
   li {
     width: 100%;
     border-bottom: 1px solid #dadada;
+    white-space: nowrap;
   }
 
   li:last-child {
     border-bottom: 0;
   }
 
-  .h5p-ri,
-  .fa {
+  .h5p-ri {
     margin-right: 0.5rem;
+    margin-left: 0.25rem;
+  }
+
+  img {
+    margin: 0;
+    margin-right: 0.25rem;
   }
 
   .h5i-checked {
@@ -734,8 +747,10 @@ article, aside, details, figcaption, figure, footer, header, main, menu, nav, se
   display: flex;
   align-items: center;
   padding: 0.6rem;
+  border: transparent;
   border-left: 1px solid rgba(83,92,105,0.3);
   color: #535c69;
+  background-color: transparent;
 }
 
 .h5p-discussion-header-icon {

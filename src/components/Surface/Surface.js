@@ -128,7 +128,7 @@ function Surface() {
         const {
             translate,
             params: {
-                argumentsList = [],
+                argumentsList: argumentDataList = [],
             },
             behaviour: {
                 randomizeArguments = true,
@@ -136,20 +136,27 @@ function Surface() {
         } = context;
 
         if (randomizeArguments === true) {
-            argumentsList.sort(() => 0.5 - Math.random());
+            argumentDataList.sort(() => 0.5 - Math.random());
         }
 
-        const argumentDataList = argumentsList.map((argument, index) => (new ArgumentDataObject({
+        const argumentsList = argumentDataList.map((argument, index) => (new ArgumentDataObject({
             id: index,
             argumentText: argument,
         })));
 
         const categories = [];
-        categories.push(new CategoryDataObject({
-            id: 'unprocessed',
-            isArgumentDefaultList: true,
-            connectedArguments: argumentDataList.map(argument => argument.id)
-        }));
+        if (argumentsList.length > 0) {
+            categories.push(new CategoryDataObject({
+                id: 'unprocessed',
+                isArgumentDefaultList: true,
+                connectedArguments: argumentsList.filter(argument => argument.id % 2 === 0).map(argument => argument.id)
+            }));
+            categories.push(new CategoryDataObject({
+                id: 'unprocessed-2',
+                isArgumentDefaultList: true,
+                connectedArguments: argumentsList.filter(argument => argument.id % 2 === 1).map(argument => argument.id)
+            }));
+        }
         categories.push(new CategoryDataObject({
             id: 'pro',
             theme: 'h5p-discussion-pro',
@@ -165,8 +172,8 @@ function Surface() {
 
         return {
             categories,
-            argumentsList: argumentDataList,
-            idCounter: argumentDataList.length - 1,
+            argumentsList,
+            idCounter: argumentsList.length - 1,
         }
     }
 
@@ -186,6 +193,29 @@ function Surface() {
                 to: destination
             }
         });
+    }
+
+    function getDynamicActions(argument) {
+        const dynamicActions = state.categories
+            .filter(category => category.isArgumentDefaultList !== true)
+            .map(category => new ActionMenuDataObject({
+                id: category.id,
+                title: category.title,
+                type: 'category',
+                activeCategory: category.connectedArguments.findIndex(argumentId => argumentId === argument.id) !== -1,
+                onSelect: () => startMoving(getDnDId(argument), category.id)
+            }));
+        if( allowAddingOfArguments === true ){
+            dynamicActions.push(new ActionMenuDataObject({
+                type: 'delete',
+                title: translate('deleteArgument'),
+                onSelect: () => dispatch({
+                    type: 'deleteArgument',
+                    payload: {id: argument.id},
+                })
+            }));
+        }
+        return dynamicActions;
     }
 
     function moveStepByStep(drag, values) {
@@ -218,7 +248,10 @@ function Surface() {
         const targetContainer = getBox(document.getElementById(target));
         const dragElement = getBox(document.getElementById(draggableElement));
         const start = dragElement.borderBox.center;
-        const end = {x: targetContainer.borderBox.center.x, y: targetContainer.borderBox.bottom - (Math.min(15, targetContainer.borderBox.height / 4))};
+        const end = {
+            x: targetContainer.borderBox.center.x,
+            y: targetContainer.borderBox.bottom - (Math.min(15, targetContainer.borderBox.height / 4))
+        };
         const drag = preDrag.fluidLift(start);
 
         const points = [];
@@ -239,8 +272,6 @@ function Surface() {
         >
             <DragDropContext
                 onDragEnd={onDropEnd}
-                //onDragUpdate={onDropUpdate}
-                //onDragStart={onDragStart}
                 sensors={[autoDragSensor]}
             >
                 {state.categories.map(category => (
@@ -275,23 +306,13 @@ function Surface() {
                                         dragIndex={index}
                                     >
                                         <Argument
-                                            actions={state.categories
-                                                .filter(category => category.isArgumentDefaultList !== true)
-                                                .map(category => new ActionMenuDataObject({
-                                                    title: category.title,
-                                                    activeCategory: category.connectedArguments.findIndex(argumentId => argumentId === argument.id) !== -1,
-                                                    onSelect: () => startMoving(getDnDId(argument), category.id)
-                                                }))}
+                                            actions={getDynamicActions(argument)}
                                             isDragEnabled={!isMobile}
                                             argument={argument}
                                             enableEditing={allowAddingOfArguments}
                                             onArgumentChange={argumentText => dispatch({
                                                 type: 'editArgument',
                                                 payload: {id: argument.id, argumentText}
-                                            })}
-                                            onArgumentDelete={() => dispatch({
-                                                type: 'deleteArgument',
-                                                payload: {id: argument.id}
                                             })}
                                         />
                                     </Element>
