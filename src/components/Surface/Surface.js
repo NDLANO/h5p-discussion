@@ -26,9 +26,11 @@ function Surface() {
                 const newCategories = Array.from(state.categories);
                 const movedArgument = newCategories[newCategories.findIndex(category => getDnDId(category) === from.droppableId)].connectedArguments.splice(from.index, 1);
                 newCategories[newCategories.findIndex(category => getDnDId(category) === to.droppableId)].connectedArguments.splice(to.index, 0, movedArgument[0]);
+
                 return {
                     ...state,
-                    categories: newCategories
+                    categories: newCategories,
+                    hasRemainingUnprocessedArguments: newCategories.filter(category => category.isArgumentDefaultList && category.connectedArguments.length > 0).length > 0,
                 };
             case 'editArgument': {
                 const {
@@ -110,7 +112,7 @@ function Surface() {
 
     useEffect(() => {
         context.trigger('resize');
-    }, [state.argumentsList]);
+    }, [state.argumentsList, state.categories]);
 
     const {
         collectExportValues,
@@ -174,6 +176,7 @@ function Surface() {
             categories,
             argumentsList,
             idCounter: argumentsList.length - 1,
+            hasRemainingUnprocessedArguments: argumentsList.length > 0,
         }
     }
 
@@ -227,7 +230,9 @@ function Surface() {
                 moveStepByStep(drag, values);
             } else {
                 drag.drop();
-                scroll(newPosition);
+                if( isMobile ){
+                    scroll(newPosition);
+                }
             }
         });
     }
@@ -274,7 +279,49 @@ function Surface() {
                 onDragEnd={onDropEnd}
                 sensors={[autoDragSensor]}
             >
-                {state.categories.map(category => (
+                <Category
+                    categoryId={"unprocessed"}
+                    includeHeader={false}
+                    additionalClassName={["h5p-discussion-unprocessed", !state.hasRemainingUnprocessedArguments ? "hidden" : ""]}
+                    useNoArgumentsPlaceholder={false}
+                >
+                {state.categories
+                    .filter(category => category.isArgumentDefaultList)
+                    .map(category => (
+                        <div
+                            key={category.id}
+                        >
+                            <Column
+                                additionalClassName={"h5p-discussion-unprocessed-argument-list"}
+                                droppableId={getDnDId(category)}
+                            >
+                                {category.connectedArguments
+                                    .map(argument => state.argumentsList[state.argumentsList.findIndex(element => element.id === argument)])
+                                    .map((argument, index) => (
+                                        <Element
+                                            key={getDnDId(argument)}
+                                            draggableId={getDnDId(argument)}
+                                            dragIndex={index}
+                                        >
+                                            <Argument
+                                                actions={getDynamicActions(argument)}
+                                                isDragEnabled={!isMobile}
+                                                argument={argument}
+                                                enableEditing={allowAddingOfArguments}
+                                                onArgumentChange={argumentText => dispatch({
+                                                    type: 'editArgument',
+                                                    payload: {id: argument.id, argumentText}
+                                                })}
+                                            />
+                                        </Element>
+                                    ))}
+                            </Column>
+                        </div>
+                    ))}
+                    </Category>
+                {state.categories
+                    .filter(category => !category.isArgumentDefaultList)
+                    .map(category => (
                     <Category
                         key={category.id}
                         categoryId={category.id}

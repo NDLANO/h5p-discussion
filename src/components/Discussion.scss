@@ -87,6 +87,25 @@ article, aside, details, figcaption, figure, footer, header, main, menu, nav, se
     margin-top: 1rem;
   }
 
+  .h5p-discussion-column {
+    flex: auto;
+  }
+
+  #unprocessed {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+
+    & > div {
+      width: 100%;
+      display: flex;
+    }
+  }
+
+  .h5p-discussion-unprocessed-argument-list {
+    display: flex;
+  }
+
 }
 
 .h5p-large-tablet-size,
@@ -129,7 +148,7 @@ article, aside, details, figcaption, figure, footer, header, main, menu, nav, se
 }
 
 .h5p-discussion-column{
-  padding: 1rem;
+  padding: 0 1rem;
 }
 
 .h5p-discussion-surface {
@@ -629,6 +648,10 @@ article, aside, details, figcaption, figure, footer, header, main, menu, nav, se
     border-radius: 0 0 5px 5px;
     border-top: 0;
   }
+
+  .h5p-discussion-column{
+    padding: 1rem;
+  }
 }
 
 .h5p-discussion-pro {
@@ -679,6 +702,29 @@ article, aside, details, figcaption, figure, footer, header, main, menu, nav, se
   margin: 0;
   padding: 0;
   flex: auto;
+}
+
+.h5p-discussion-unprocessed {
+  width: 100%;
+  border: 2px solid #dbe2e8;
+  border-radius: 5px;
+}
+
+.h5p-discussion-unprocessed-populated {
+
+}
+
+.h5p-discussion-unprocessed-argument-list {
+  width: 100%;
+}
+
+.test {
+  height: 80px;
+  border: 2px dashed green;
+
+  &:hover {
+    background-color: indianred;
+  }
 }
 
 .h5p-discussion-popover-actionmenu {
