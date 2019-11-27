@@ -718,15 +718,6 @@ article, aside, details, figcaption, figure, footer, header, main, menu, nav, se
   width: 100%;
 }
 
-.test {
-  height: 80px;
-  border: 2px dashed green;
-
-  &:hover {
-    background-color: indianred;
-  }
-}
-
 .h5p-discussion-popover-actionmenu {
   flex: auto;
 
