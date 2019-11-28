@@ -16,7 +16,6 @@ function Main(props) {
         header,
         description = '',
         resources: resourcesList,
-        surface,
     } = props;
 
     useEffect(() => {

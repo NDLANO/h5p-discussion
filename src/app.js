@@ -4,6 +4,7 @@ import React from 'react';
 import ReactDOM from "react-dom";
 import Main from "components/Main";
 import {DiscussionContext} from 'context/DiscussionContext';
+import {sanitizeParams} from "./components/utils";
 
 // Load library
 H5P = H5P || {};
@@ -33,8 +34,8 @@ H5P.Discussion = (function () {
         } = extras;
 
         let container;
-        this.params = params;
-        this.behaviour = params.behaviour || {};
+        this.params = sanitizeParams(params);
+        this.behaviour = this.params.behaviour || {};
         this.resetStack = [];
         this.collectExportValuesStack = [];
         this.wrapper = null;
@@ -77,7 +78,7 @@ H5P.Discussion = (function () {
             argumentsAgainst: "Arguments AGAINST",
             moveTo: "Move to",
             deleteArgument: "Delete argument",
-        }, params.l10n, params.resourceReport);
+        }, this.params.l10n, this.params.resourceReport);
 
         const createElements = () => {
             const wrapper = document.createElement('div');
@@ -87,7 +88,7 @@ H5P.Discussion = (function () {
             ReactDOM.render(
                 <DiscussionContext.Provider value={this}>
                     <Main
-                        {...params}
+                        {...this.params}
                         id={contentId}
                         language={language}
                         collectExportValues={this.collectExportValues}
