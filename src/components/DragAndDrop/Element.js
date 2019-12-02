@@ -26,6 +26,7 @@ function Element(props) {
                         <div
                             className={classnames("h5p-discussion-draggable-element", {
                                 'h5p-discussion-no-transform': disableTransform,
+                                'h5p-discussion-active-draggable': snapshot.isDragging,
                             })}
                             ref={provided.innerRef}
                             {...provided.dragHandleProps}

@@ -108,7 +108,7 @@ function ActionMenu(props) {
             containerClassName={classNames.join(" ")}
             contentDestination={innerRef}
             contentLocation={() => {
-                return {top: parentBox.borderBox.height, left: -(parentBox.padding.left + parentBox.border.left)}
+                return {top: parentBox.borderBox.height, left: -parentBox.border.left}
             }}
             isOpen={show}
             position={["bottom"]}
