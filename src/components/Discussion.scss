@@ -201,6 +201,7 @@ article, aside, details, figcaption, figure, footer, header, main, menu, nav, se
   min-height: 2.625rem;
   font-weight: bold;
   padding: 0;
+  border-radius: $borderRadius;
 
   &:hover,
   &:active {
@@ -264,7 +265,6 @@ article, aside, details, figcaption, figure, footer, header, main, menu, nav, se
     margin-bottom: 0.25rem;
     border-top-right-radius: $borderRadius;
     border-bottom-right-radius: $borderRadius;
-    overflow: hidden;
   }
 }
 
