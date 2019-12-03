@@ -18,6 +18,9 @@ function Export() {
                 description,
                 summaryHeader,
             },
+            behaviour: {
+                provideSummary = true,
+            },
             translations,
             collectExportValues,
         } = context;
@@ -33,6 +36,7 @@ function Export() {
             description,
             summaryHeader,
             hasResources: resources.length > 0,
+            useSummary: provideSummary,
             hasSummaryComment: summary && summary.length > 0,
             summaryComment: summary,
             resources: resources,
@@ -66,8 +70,10 @@ function Export() {
             '<tr><th>{{argumentsAgainst}}</th></tr>' +
             '<tr><td><ul>{{#contraArguments}}<li>{{argumentText}}</li>{{/contraArguments}}</ul>{{^contraArguments}}{{noArguments}}{{/contraArguments}}</td></tr>' +
             '</table>' +
+            '{{#useSummary}}' +
             '<h2>{{summaryHeader}}</h2>' +
             '<p>{{^hasSummaryComment}}{{labelNoSummaryComment}}{{/hasSummaryComment}}{{summaryComment}}</p>' +
+            '{{/useSummary}}' +
             '<h2>{{resourceHeader}}</h2>' +
             '{{^resources}}<p>{{labelNoResources}}</p>{{/resources}}' +
             '{{#hasResources}}' +

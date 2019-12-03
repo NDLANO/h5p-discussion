@@ -41,6 +41,10 @@
         {
           "label": "La brukeren legge inn egne påstander",
           "description": "Lar brukeren opprette sine egne påstander"
+        },
+        {
+          "label": "Vis oppsummering",
+          "description": "Vil du at brukeren skal oppgi en oppsummering der vedkommende begrunner sine valg?"
         }
       ]
     },

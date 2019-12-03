@@ -40,6 +40,10 @@
         {
           "label": "Display the provided comments below the statement",
           "description": "If the user has provided a comment, this is shown in the statements list"
+        },
+        {
+          "label": "Show summary",
+          "description": "Do you want the user to provide a summary explaining the reasons for his/her answers"
         }
       ]
     },

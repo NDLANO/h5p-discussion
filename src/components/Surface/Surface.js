@@ -120,6 +120,7 @@ function Surface() {
         translate,
         behaviour: {
             allowAddingOfArguments = true,
+            provideSummary = true,
         }
     } = context;
 
@@ -368,7 +369,9 @@ function Surface() {
                     </Category>
                 ))}
             </DragDropContext>
-            <Summary/>
+            {provideSummary === true && (
+                <Summary/>
+            )}
         </div>
     );
 }
