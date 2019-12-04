@@ -9,7 +9,8 @@ function Element(props) {
         children,
         draggableId,
         dragIndex,
-        disableTransform
+        disableTransform,
+        ariaLabel,
     } = props;
 
     return (
@@ -21,7 +22,7 @@ function Element(props) {
                 return (
                     <div
                         className={"h5p-discussion-draggable-container"}
-                        //aria-label={getAriaLabel()}
+                        aria-label={ariaLabel}
                     >
                         <div
                             className={classnames("h5p-discussion-draggable-element", {
@@ -45,6 +46,7 @@ Element.propTypes = {
     draggableId: PropTypes.string,
     dragIndex: PropTypes.number,
     disableTransform: PropTypes.bool,
+    ariaLabel: PropTypes.string,
 };
 
 export default Element;

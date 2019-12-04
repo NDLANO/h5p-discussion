@@ -1,3 +1,20 @@
+export function getBreakpoints() {
+    return [
+        {
+            "className": "h5p-medium-tablet-size",
+            "shouldAdd": width => width >= 500 && width < 768
+        },
+        {
+            "className": "h5p-large-tablet-size",
+            "shouldAdd": width => width >= 768 && width < 1024
+        },
+        {
+            "className": "h5p-large-size",
+            "shouldAdd": width => width >= 1024
+        },
+    ];
+}
+
 export function ArgumentDataObject(initValues) {
     this.id = null;
     this.added = false;

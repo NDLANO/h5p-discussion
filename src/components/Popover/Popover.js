@@ -25,7 +25,6 @@ const Popover = ({handleClose, show, children, popoverContent, classnames = [], 
                 >
                     <div
                         className={"h5p-discussion-popover-container"}
-                        role={"listitem"}
                     >
                         <div className={"h5p-discussion-popover-header"}>
                             <div>
@@ -33,13 +32,13 @@ const Popover = ({handleClose, show, children, popoverContent, classnames = [], 
                             </div>
                             <button
                                 onClick={handleClose}
+                                aria-label={close}
                                 className={"close-button"}
                             >
                                     <span
                                         className={"h5p-ri hri-close"}
                                         aria-hidden={true}
                                     />
-                                <span className="visible-hidden">{close}</span>
                             </button>
                         </div>
                         <div

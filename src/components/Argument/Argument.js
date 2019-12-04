@@ -49,10 +49,12 @@ function Argument(props) {
         );
     }
 
+
+
     return (
         <div
             id={getDnDId(argument)}
-            role={"listitem"}
+            aria-expanded={showPopover}
             className={"h5p-discussion-argument-container"}
             ref={innerRef}
         >
@@ -79,6 +81,7 @@ function Argument(props) {
                             {displayStatement}
                             <button
                                 className={"h5p-discussion-argument-actions"}
+                                aria-label={"See available actions"}
                                 onClick={toggle}
                             >
                                 <span className={"fa fa-caret-down"}/>

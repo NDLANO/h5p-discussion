@@ -35,7 +35,7 @@ function Export() {
             mainTitle: header,
             description,
             summaryHeader,
-            hasResources: resources.length > 0,
+            hasResources: resources && resources.length > 0,
             useSummary: provideSummary,
             hasSummaryComment: summary && summary.length > 0,
             summaryComment: summary,

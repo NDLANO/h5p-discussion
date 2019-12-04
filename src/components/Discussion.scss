@@ -1,19 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
 
-$browser-context : 16;
-
-@function em($pixels, $context: $browser-context) {
-  @if (unitless($pixels)) {
-    $pixels: $pixels * 1px;
-  }
-
-  @if (unitless($context)) {
-    $context: $context * 1px;
-  }
-
-  @return $pixels / $context * 1em;
-}
-
 $borderRadius: 5px;
 
 article, aside, details, figcaption, figure, footer, header, main, menu, nav, section, summary {
@@ -157,7 +143,7 @@ article, aside, details, figcaption, figure, footer, header, main, menu, nav, se
   margin: 0;
   align-items: center;
   padding: 1.3125rem;
-  color: white;
+  color: #ffffff;
   font-weight: normal;
   font-size: 1.25rem;
 }

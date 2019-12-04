@@ -10,8 +10,9 @@ function ActionMenu(props) {
 
     const context = useContext(DiscussionContext);
     const {
-        translate
+        translate,
     } = context;
+
     const {
         children,
         show,
@@ -20,7 +21,6 @@ function ActionMenu(props) {
         classNames = [],
         innerRef,
     } = props;
-
 
     classNames.push("h5p-discussion-actionmenu");
 
@@ -87,6 +87,7 @@ function ActionMenu(props) {
         return (
             <button
                 className={"h5p-discussion-popover-actionmenu-delete"}
+                aria-label={settings.title}
                 onClick={e => {
                     e.preventDefault();
                     settings.onSelect();
@@ -118,8 +119,14 @@ function ActionMenu(props) {
             content={() => (
                 <div
                     className={"h5p-discussion-popover-actionmenu"}
-                    role={"listitem"}
+                    role={"dialog"}
+                    aria-labelledby={"actionMenuTitle"}
+                    aria-describedby={"actionMenuDescription"}
                 >
+                    <div className={"visible-hidden"}>
+                        <h1 id={"actionMenuTitle"}>{translate('actionMenuTitle')}</h1>
+                        <p id={"actionMenuDescription"}>{translate('actionMenuDescription')}</p>
+                    </div>
                     <ul>
                         {actions.map((action, index) => {
                             let content;

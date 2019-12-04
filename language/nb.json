@@ -145,6 +145,32 @@
           "default": "Ingen oppsummering"
         }
       ]
+    },
+    {
+      "label": "Tilgjengelighet",
+      "fields": [
+        {
+          "label": "Brukt istedenfor 'Lukk' ikonet",
+          "default": "Lukk"
+        },
+        {
+          "label": "Brukt istedenfor 'Dra' ikonet",
+          "default": "Dra"
+        },
+        {
+          "label": "'Flyttbar element' etikett for skjermleser",
+          "description": "Tilgjengelige variabler er :argument",
+          "default": "Flyttbar element: :argument"
+        },
+        {
+          "label": "Tittel for handlingsmenyen i dialogboks",
+          "default": "Handlingsmeny"
+        },
+        {
+          "label": "Beskrivelse av tilgjengelige handlinger i dialogboksen",
+          "default": "Velg den handlingen du vil utføre på dette argumentet"
+        }
+      ]
     }
   ]
 }

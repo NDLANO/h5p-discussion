@@ -257,5 +257,45 @@
         "default": "No comment"
       }
     ]
+  },
+  {
+    "label": "Accessibility",
+    "importance": "low",
+    "name": "accessibility",
+    "type": "group",
+    "common": true,
+    "fields": [
+      {
+        "name": "close",
+        "type": "text",
+        "label": "Used instead of 'Close'-icon",
+        "default": "Close"
+      },
+      {
+        "name": "drag",
+        "type": "text",
+        "label": "Used instead of 'Drag'-icon",
+        "default": "Drag"
+      },
+      {
+        "name": "draggableItem",
+        "type": "text",
+        "label": "'Draggable item' label for screenreaders",
+        "description": "Available variables are :argument",
+        "default": "Draggable item: :argument"
+      },
+      {
+        "name": "actionMenuTitle",
+        "type": "text",
+        "label": "Title for the actions menu dialog",
+        "default": "Actions menu"
+      },
+      {
+        "name": "actionMenuDescription",
+        "type": "text",
+        "label": "Description for the actions menu dialog",
+        "default": "Select the action you want to perform on this argument"
+      }
+    ]
   }
 ]

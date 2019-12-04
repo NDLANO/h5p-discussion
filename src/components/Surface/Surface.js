@@ -1,5 +1,4 @@
 import React, {useEffect, useContext, useReducer, useCallback} from 'react';
-import PropTypes from 'prop-types';
 import {getBox} from 'css-box-model';
 import {DiscussionContext} from 'context/DiscussionContext';
 import Summary from "../Summary/Summary";
@@ -230,10 +229,10 @@ function Surface() {
             if (values.length) {
                 moveStepByStep(drag, values);
             } else {
-                drag.drop();
                 if( isMobile ){
                     scroll(newPosition);
                 }
+                drag.drop();
             }
         });
     }
@@ -303,6 +302,9 @@ function Surface() {
                                             key={getDnDId(argument)}
                                             draggableId={getDnDId(argument)}
                                             dragIndex={index}
+                                            ariaLabel={translate('draggableItem', {
+                                                argument: argument.argumentText
+                                            })}
                                         >
                                             <Argument
                                                 actions={getDynamicActions(argument)}
@@ -352,6 +354,9 @@ function Surface() {
                                         key={getDnDId(argument)}
                                         draggableId={getDnDId(argument)}
                                         dragIndex={index}
+                                        ariaLabel={translate('draggableItem', {
+                                            statement: argument.argumentText
+                                        })}
                                     >
                                         <Argument
                                             actions={getDynamicActions(argument)}

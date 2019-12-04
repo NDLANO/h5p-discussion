@@ -144,6 +144,32 @@
           "default": "No comment"
         }
       ]
+    },
+    {
+      "label": "Accessibility",
+      "fields": [
+        {
+          "label": "Close",
+          "default": "Close"
+        },
+        {
+          "label": "Drag",
+          "default": "Drag"
+        },
+        {
+          "label": "'Draggable item' label for screenreaders",
+          "description": "Available variables are :argument",
+          "default": "Draggable item: :argument"
+        },
+        {
+          "label": "Title for the actions menu dialog",
+          "default": "Actions menu"
+        },
+        {
+          "label": "Description for the actions menu dialog",
+          "default": "Select the action you want to perform on this argument"
+        }
+      ]
     }
   ]
 }

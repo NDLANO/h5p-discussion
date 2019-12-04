@@ -30,16 +30,19 @@ function Reset() {
                 <Popover
                     handleClose={togglePopover}
                     show={showPopover}
-                    classnames={discussionProcessContext.activeBreakpoints}
+                    classnames={Array.from(discussionProcessContext.activeBreakpoints)}
                     close={translations.close}
                     header={translations.restart}
                     align={"start"}
                     popoverContent={(
                         <div
                             role={"dialog"}
+                            aria-labelledby={"resetTitle"}
                             className={"h5p-discussion-reset-modal"}
                         >
-                            <div>
+                            <div
+                                id={"resetTitle"}
+                            >
                                 {translations.ifYouContinueAllYourChangesWillBeLost}
                             </div>
                             <div>

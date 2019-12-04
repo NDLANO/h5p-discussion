@@ -4,26 +4,11 @@ import React from 'react';
 import ReactDOM from "react-dom";
 import Main from "components/Main";
 import {DiscussionContext} from 'context/DiscussionContext';
-import {sanitizeParams} from "./components/utils";
+import {getBreakpoints, sanitizeParams} from "./components/utils";
 
 // Load library
 H5P = H5P || {};
 H5P.Discussion = (function () {
-
-    const breakPoints = [
-        {
-            "className": "h5p-medium-tablet-size",
-            "shouldAdd": width => width >= 500 && width < 768
-        },
-        {
-            "className": "h5p-large-tablet-size",
-            "shouldAdd": width => width >= 768 && width < 1024
-        },
-        {
-            "className": "h5p-large-size",
-            "shouldAdd": width => width >= 1024
-        },
-    ];
 
     function Wrapper(params, contentId, extras = {}) {
         // Initialize event inheritance
@@ -78,6 +63,8 @@ H5P.Discussion = (function () {
             argumentsAgainst: "Arguments AGAINST",
             moveTo: "Move to",
             deleteArgument: "Delete argument",
+            actionMenuTitle: "Action menu",
+            actionMenuDescription: "Select the action you want to perform on this argument",
         }, this.params.l10n, this.params.resourceReport);
 
         const createElements = () => {
@@ -130,16 +117,17 @@ H5P.Discussion = (function () {
         };
 
         this.addBreakPoints = wrapper => {
-            this.activeBreakpoints = [];
+            const activeBreakpoints = [];
             const rect = this.getRect();
-            breakPoints.forEach(item => {
+            getBreakpoints().forEach(item => {
                 if (item.shouldAdd(rect.width)) {
                     wrapper.classList.add(item.className);
-                    this.activeBreakpoints.push(item.className);
+                    activeBreakpoints.push(item.className);
                 } else {
                     wrapper.classList.remove(item.className);
                 }
             });
+            this.activeBreakpoints = activeBreakpoints;
         };
 
         this.resize = () => {
