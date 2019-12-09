@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState, forwardRef} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import PropTypes from 'prop-types';
 import EditableArgument from "./components/EditableArgument";
 import UnEditableArgument from "./components/UnEditableArgument";
@@ -49,47 +49,35 @@ function Argument(props) {
         );
     }
 
+    let argumentLayout = (
+        <ArgumentLayout
+            activeDraggable={isDragEnabled && isDragging}
+            isDragEnabled={isDragEnabled}
+            statementDisplay={displayStatement}
+            toggle={toggle}
+        />
+    );
 
+    if( Array.isArray(actions) && actions.length > 0  && refReady){
+        argumentLayout = (
+            <ActionMenu
+                actions={actions}
+                show={showPopover}
+                handleClose={toggle}
+                innerRef={innerRef.current}
+            >
+                {argumentLayout}
+            </ActionMenu>
+        );
+    }
 
     return (
         <div
             id={getDnDId(argument)}
             aria-expanded={showPopover}
-            className={"h5p-discussion-argument-container"}
             ref={innerRef}
         >
-            {refReady && (
-                <ActionMenu
-                    actions={actions}
-                    show={showPopover}
-                    handleClose={toggle}
-                    innerRef={innerRef.current}
-                >
-                    <div
-                        className={classnames("h5p-discussion-argument", {
-                            "h5p-discussion-active-draggable": isDragEnabled && isDragging
-                        })}
-                    >
-                        <div
-                            className={"h5p-discussion-argument-provided"}
-                        >
-                            {isDragEnabled && (
-                                <>
-                                    <DragArrows/>
-                                </>
-                            )}
-                            {displayStatement}
-                            <button
-                                className={"h5p-discussion-argument-actions"}
-                                aria-label={"See available actions"}
-                                onClick={toggle}
-                            >
-                                <span className={"fa fa-caret-down"}/>
-                            </button>
-                        </div>
-                    </div>
-                </ActionMenu>
-            )}
+            {argumentLayout}
         </div>
     );
 }
@@ -104,4 +92,59 @@ Argument.propTypes = {
     actions: PropTypes.array,
 };
 
-export default Argument;
+function ArgumentLayout(props) {
+
+    const {
+        activeDraggable,
+        isDragEnabled,
+        statementDisplay,
+        toggle,
+    } = props;
+
+    return (
+        <div
+            className={"h5p-discussion-argument-container"}
+        >
+            <div
+                className={classnames("h5p-discussion-argument", {
+                    "h5p-discussion-active-draggable": activeDraggable
+                })}
+            >
+                <div
+                    className={"h5p-discussion-argument-provided"}
+                >
+                    {isDragEnabled && (
+                        <DragArrows/>
+                    )}
+                    {statementDisplay}
+                    <button
+                        className={"h5p-discussion-argument-actions"}
+                        aria-label={"See available actions"}
+                        onClick={toggle}
+                    >
+                        <span className={"fa fa-caret-down"}/>
+                    </button>
+                </div>
+            </div>
+        </div>
+    );
+}
+
+ArgumentLayout.propTypes = {
+    activeDraggable: PropTypes.bool,
+    isDragEnabled: PropTypes.bool,
+    statementDisplay: PropTypes.object,
+    toggle: PropTypes.func,
+};
+
+ArgumentLayout.defaultProps = {
+    toggle: () => {
+    },
+    isDragEnabled: true,
+    activeDraggable: false,
+};
+
+export {
+    Argument as default,
+    ArgumentLayout
+};

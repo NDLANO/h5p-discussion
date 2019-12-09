@@ -24,17 +24,13 @@ function Element(props) {
                         className={"h5p-discussion-draggable-container"}
                         aria-label={ariaLabel}
                     >
-                        <div
-                            className={classnames("h5p-discussion-draggable-element", {
-                                'h5p-discussion-no-transform': disableTransform,
-                                'h5p-discussion-active-draggable': snapshot.isDragging,
-                            })}
-                            ref={provided.innerRef}
-                            {...provided.dragHandleProps}
-                            {...provided.draggableProps}
+                        <ElementLayout
+                            provided={provided}
+                            snapshot={snapshot}
+                            ariaLabel={ariaLabel}
                         >
                             {children}
-                        </div>
+                        </ElementLayout>
                     </div>
                 )
             }}
@@ -49,4 +45,28 @@ Element.propTypes = {
     ariaLabel: PropTypes.string,
 };
 
-export default Element;
+function ElementLayout({children, provided, snapshot}) {
+    return (
+        <div
+            className={classnames("h5p-discussion-draggable-element", {
+                'h5p-discussion-active-draggable': snapshot.isDragging,
+            })}
+            ref={provided.innerRef}
+            {...provided.dragHandleProps}
+            {...provided.draggableProps}
+        >
+            {children}
+        </div>
+    );
+}
+
+ElementLayout.propTypes = {
+    provided: PropTypes.object,
+    snapshot: PropTypes.object,
+    ariaLabel: PropTypes.string,
+};
+
+export {
+    Element as default,
+    ElementLayout,
+};

@@ -70,7 +70,11 @@ function ActionMenu(props) {
                     value={settings.id}
                     type={"checkbox"}
                     checked={settings.activeCategory}
-                    onChange={() => handleSelect(settings.onSelect)}
+                    onChange={() => {
+                        if( settings.activeCategory !== true){
+                            handleSelect(settings.onSelect)
+                        }
+                    }}
                     aria-labelledby={"action-" + index}
                 />
                 <span
