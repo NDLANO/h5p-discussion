@@ -33,6 +33,7 @@ export function CategoryDataObject(initValues) {
     this.theme = 'h5p-discussion-category-default';
     this.useNoArgumentsPlaceholder = false;
     this.prefix = 'category';
+    this.actionTargetContainer = false;
 
     return Object.assign(this, initValues);
 }

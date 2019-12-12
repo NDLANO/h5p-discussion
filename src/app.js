@@ -65,6 +65,8 @@ H5P.Discussion = (function () {
             deleteArgument: "Delete argument",
             actionMenuTitle: "Action menu",
             actionMenuDescription: "Select the action you want to perform on this argument",
+            dropArgumentsHere: "Drop arguments here",
+            dropExistingOrAddNewArgument: "Drop existing or write new arguments",
         }, this.params.l10n, this.params.resourceReport);
 
         const createElements = () => {
