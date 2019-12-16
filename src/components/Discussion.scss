@@ -392,7 +392,7 @@ article, aside, details, figcaption, figure, footer, header, main, menu, nav, se
 
 .h5p-discussion-draggable-element,
 .h5p-discussion-draggable-element > div {
-  flex-grow: 1;
+  width: 100%;
 }
 
 .h5p-discussion-add {
@@ -486,12 +486,10 @@ article, aside, details, figcaption, figure, footer, header, main, menu, nav, se
 .h5p-discussion-against {
   .h5p-discussion-category-header {
     overflow: hidden;
-    min-height: 2.5rem;
-    padding-left: 3.75rem;
+    padding: 0.4rem 0 0.4rem 3.75rem;
     display: flex;
     align-items: center;
     font-style: italic;
-    text-decoration: none solid rgb(255, 255, 255);
     line-height: 1.5625rem;
     text-shadow: 2px 1px 3px rgba(28,28,28,0.5);
     border-radius: $borderRadius $borderRadius 0 0;
@@ -865,6 +863,8 @@ article, aside, details, figcaption, figure, footer, header, main, menu, nav, se
     align-items: center;
     justify-content: center;
     display: flex;
+    text-align: center;
+    padding: 0.2rem
   }
 
   &.h5p-discussion-active {
