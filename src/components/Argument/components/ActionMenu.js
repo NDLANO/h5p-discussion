@@ -92,6 +92,7 @@ function ActionMenu(props) {
             <button
                 className={"h5p-discussion-popover-actionmenu-delete"}
                 aria-label={settings.title}
+                type={"button"}
                 onClick={e => {
                     e.preventDefault();
                     settings.onSelect();
@@ -151,6 +152,7 @@ function ActionMenu(props) {
                     <button
                         onClick={handleClose}
                         className={"visible-hidden"}
+                        type={"button"}
                     >{translate('close')}
                     </button>
                 </div>

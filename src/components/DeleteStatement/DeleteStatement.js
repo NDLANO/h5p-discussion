@@ -27,6 +27,7 @@ function DeleteStatement(props) {
     return (
         <button
             onClick={onClick}
+            type={"button"}
             onKeyUp={event => {
                 if (event.keyCode && event.keyCode === 8){
                     onClick();

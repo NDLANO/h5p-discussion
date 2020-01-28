@@ -19,6 +19,7 @@ function AddArgument(props) {
             aria-label={context.translate('addArgument')}
             className={"h5p-discussion-header-argument-add"}
             onClick={onClick}
+            type={"button"}
         >
             <span
                 className={"h5p-discussion-argument-add-icon fa fa-plus"}
