@@ -1,18 +1,18 @@
-import React, {useContext} from 'react';
-import {DiscussionContext} from "context/DiscussionContext";
+import React from 'react';
+import {useDiscussionContext} from "context/DiscussionContext";
 
 function DragArrows() {
-    const context = useContext(DiscussionContext);
+  const context = useDiscussionContext();
 
-    return (
-        <div className={"h5p-discussion-drag-element"}>
-             <span
-                 className="h5p-ri hri-move"
-                 aria-hidden={"true"}
-             />
-            <span className={"visible-hidden"}>{context.translations.drag}</span>
-        </div>
-    );
+  return (
+    <div className={"h5p-discussion-drag-element"}>
+      <span
+        className="h5p-ri hri-move"
+        aria-hidden={"true"}
+      />
+      <span className={"visible-hidden"}>{context.translations.drag}</span>
+    </div>
+  );
 }
 
 export default DragArrows;
