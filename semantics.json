@@ -8,11 +8,19 @@
   {
     "name": "description",
     "type": "text",
-    "widget": "textarea",
+    "widget": "html",
     "lines": 3,
     "label": "Task description",
     "importance": "low",
-    "optional": true
+    "optional": true,
+    "enterMode": "p",
+    "tags": [
+      "strong",
+      "em",
+      "u",
+      "ol",
+      "ul"
+    ]
   },
   {
     "name": "argumentsList",
@@ -47,11 +55,19 @@
   {
     "name": "summaryInstruction",
     "type": "text",
-    "widget": "textarea",
+    "widget": "html",
     "lines": 3,
     "label": "Summary instruction",
     "importance": "low",
-    "optional": true
+    "optional": true,
+    "enterMode": "p",
+    "tags": [
+      "strong",
+      "em",
+      "u",
+      "ol",
+      "ul"
+    ]
   },
   {
     "name": "resources",
