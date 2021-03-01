@@ -72,12 +72,13 @@ function Export() {
             '<tr><td><ul>{{#contraArguments}}<li>{{argumentText}}</li>{{/contraArguments}}</ul>{{^contraArguments}}{{noArguments}}{{/contraArguments}}</td></tr>' +
             '</table>' +
             '{{#useSummary}}' +
+            '{{#hasSummaryComment}}' +
             '<h2>{{summaryHeader}}</h2>' +
-            '<p>{{^hasSummaryComment}}{{labelNoSummaryComment}}{{/hasSummaryComment}}{{summaryComment}}</p>' +
+            '<p>{{summaryComment}}</p>' +
+            '{{/hasSummaryComment}}' +
             '{{/useSummary}}' +
-            '<h2>{{resourceHeader}}</h2>' +
-            '{{^resources}}<p>{{labelNoResources}}</p>{{/resources}}' +
             '{{#hasResources}}' +
+            '<h2>{{resourceHeader}}</h2>' +
             '<table class="page-resources">' +
             '<tr><th>{{resourceHeaderTitle}}</th><th>{{resourceHeaderIntro}}</th><th>{{resourceHeaderUrl}}</th></tr>' +
             '{{#resources}}<tr><td>{{title}}</td><td>{{introduction}}</td><td>{{url}}</td></tr>{{/resources}}' +
