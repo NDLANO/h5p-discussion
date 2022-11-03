@@ -8,23 +8,31 @@
     },
     {
       "label": "Argumenter",
-      "entity": "argument",
-      "field": {
-        "label": "Argument",
-        "description": "Argument som brukeren skal ta stilling til"
-      }
+      "fields": [
+        {
+          "label": "Argumenter",
+          "entity": "argument",
+          "field": {
+            "label": "Argument"
+          }
+        }
+      ]
     },
     {
       "label": "Oppsummering",
       "default": "Oppsummering"
     },
     {
-      "label": "Instruksjoner til oppsummeringen",
-      "description": "Skriv noen ord om hva du ønsker skal være med i oppsummeringen"
+      "label": "Instruksjoner til oppsummeringen"
     },
     {
       "label": "Ressurser",
-      "description": "Valgfrie lenker til ressurser."
+      "fields": [
+        {
+          "label": "Resources",
+          "description": "Valgfrie lenker til ressurser."
+        }
+      ]
     },
     {
       "label": "Innstillinger",
