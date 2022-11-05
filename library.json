@@ -24,6 +24,11 @@
       "path": "dist/h5p-discussion.js"
     }
   ],
+  "preloadedCss": [
+    {
+      "path": "dist/h5p-discussion.css"
+    }
+  ],
   "preloadedDependencies": [
     {
       "machineName": "H5P.ResourceList",
