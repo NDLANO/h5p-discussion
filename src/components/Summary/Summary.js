@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import classnames from 'classnames';
-import {useDiscussionContext} from 'context/DiscussionContext';
-import ReactHtmlParser from 'react-html-parser';
+import {useDiscussionContext} from '../../context/DiscussionContext';
+import ReactHtmlParser from "html-react-parser";
 
 function Summary() {
 
