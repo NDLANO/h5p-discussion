@@ -1,10 +1,11 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import TinyPopover from "react-tiny-popover";
-import classnames from 'classnames';
-import trash from './../../../../assets/trash.svg';
-import {useDiscussionContext} from "context/DiscussionContext";
-import {getBox} from 'css-box-model';
+//@ts-check
+import React, {useEffect} from "react";
+import PropTypes from "prop-types";
+import {Popover as TinyPopover} from "react-tiny-popover";
+import classnames from "classnames";
+import trash from "../../../../assets/trash.svg";
+import {useDiscussionContext} from "../../../context/DiscussionContext";
+import {getBox} from "css-box-model";
 
 function ActionMenu(props) {
 
@@ -19,8 +20,23 @@ function ActionMenu(props) {
     handleClose,
     actions,
     classNames = [],
-    innerRef,
+    parentElement,
   } = props;
+
+  const handleClickOutside = (/** @type {PointerEvent} */ event) => {
+    /** @type {HTMLElement} */
+    const target = event.target;
+    const clickedOutsideParentElement = !parentElement.contains(target);
+
+    if (clickedOutsideParentElement && handleClose) {
+      handleClose();
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener('pointerdown', handleClickOutside);
+    return () => window.removeEventListener('pointerdown', handleClickOutside);
+  }, [parentElement]);
 
   classNames.push("h5p-discussion-actionmenu");
 
@@ -35,10 +51,9 @@ function ActionMenu(props) {
     }
   }
 
-  const parentBox = getBox(innerRef);
+  const parentBox = getBox(parentElement);
 
   function getCategory(settings, index) {
-
     let label;
     if (settings.label) {
       label = (<span
@@ -61,9 +76,11 @@ function ActionMenu(props) {
     }
 
     return (
+      // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
       <label
+        // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex
         tabIndex={0}
-        onKeyUp={event => handleKeyUp(event, settings.onSelect)}
+        onKeyUp={(event) => handleKeyUp(event, settings.onSelect)}
       >
         <input
           tabIndex={-1}
@@ -72,7 +89,7 @@ function ActionMenu(props) {
           type={"checkbox"}
           checked={settings.activeCategory}
           onChange={() => {
-            if ( settings.activeCategory !== true) {
+            if (settings.activeCategory !== true) {
               handleSelect(settings.onSelect);
             }
           }}
@@ -113,15 +130,15 @@ function ActionMenu(props) {
   return (
     <TinyPopover
       containerClassName={classNames.join(" ")}
-      contentDestination={innerRef}
-      contentLocation={() => {
-        return {top: parentBox.borderBox.height, left: -parentBox.border.left};
+      contentLocation={{
+        top: parentBox.borderBox.height, left: -parentBox.border.left
       }}
       isOpen={show}
-      position={["bottom"]}
-      windowBorderPadding={0}
-      disableReposition={true}
-      onClickOutside={handleClose}
+      positions={["bottom"]}
+      padding={0}
+      reposition={false}
+      parentElement={parentElement}
+      containerStyle={{position: 'absolute', top: '56px'}}
       content={() => (
         <div
           className={"h5p-discussion-popover-actionmenu"}
@@ -173,7 +190,11 @@ ActionMenu.propTypes = {
   show: PropTypes.bool,
   handleClose: PropTypes.func,
   classNames: PropTypes.array,
-  innerRef: PropTypes.object,
+  parentElement: PropTypes.object,
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.element),
+    PropTypes.element,
+  ]),
 };
 
 export default ActionMenu;

@@ -9,7 +9,7 @@ import {getDnDId} from "../utils";
 
 function Argument(props) {
 
-  const innerRef = useRef();
+  const innerRef = useRef(null);
   const [refReady, setRef] = useState(false);
 
   const {
@@ -24,7 +24,11 @@ function Argument(props) {
   const [showPopover, togglePopover] = useState(false);
 
   function toggle() {
-    togglePopover(prevState => !prevState);
+    togglePopover((prevState) => !prevState);
+  }
+
+  function closePopover() {
+    togglePopover(false);
   }
 
   useEffect(() => {
@@ -64,8 +68,8 @@ function Argument(props) {
       <ActionMenu
         actions={actions}
         show={showPopover}
-        handleClose={toggle}
-        innerRef={innerRef.current}
+        handleClose={closePopover}
+        parentElement={innerRef.current}
       >
         {argumentLayout}
       </ActionMenu>
@@ -122,7 +126,7 @@ function ArgumentLayout(props) {
             className={"h5p-discussion-argument-actions"}
             aria-label={"See available actions"}
             onClick={toggle}
-            typeof={"button"}
+            type={"button"}
           >
             <span className={"fa fa-caret-down"}/>
           </button>
@@ -137,6 +141,7 @@ ArgumentLayout.propTypes = {
   isDragEnabled: PropTypes.bool,
   statementDisplay: PropTypes.object,
   toggle: PropTypes.func,
+  closePopover: PropTypes.func,
 };
 
 ArgumentLayout.defaultProps = {

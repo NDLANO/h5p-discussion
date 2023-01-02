@@ -11,7 +11,7 @@ import Argument from "../Argument/Argument";
 import Column from "../DragAndDrop/Column";
 import {CategoryDataObject, ArgumentDataObject, getDnDId} from '../utils.js';
 import {ActionMenuDataObject} from "../utils";
-import Dropzone from "../DragAndDrop/Dropzone";
+import Dropzone from "../DragAndDrop/Dropzone"; 
 
 function Surface() {
   const context = useDiscussionContext();
