@@ -1,6 +1,6 @@
 import 'core-js';
 import "regenerator-runtime/runtime";
-import React from "react";
+import React from 'react';
 import ReactDOM from "react-dom";
 import Main from "./components/Main";
 import {DiscussionContextProvider} from "./context/DiscussionContext";
