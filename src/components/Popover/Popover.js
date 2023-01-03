@@ -1,50 +1,52 @@
-import React from 'react';
-import TinyPopover, {ArrowContainer} from 'react-tiny-popover';
+import React from "react";
+import { ArrowContainer, Popover as TinyPopover} from "react-tiny-popover";
 import PropTypes from "prop-types";
 
-const Popover = ({handleClose, show, children, popoverContent, classnames = [], header, close, align = "end"}) => {
+const Popover = ({
+  handleClose,
+  show,
+  children,
+  popoverContent,
+  classnames = [],
+  header,
+  close,
+  align = "end",
+  openerRect,
+}) => {
   classnames.push("h5p-discussion-popover");
+
   return (
     <TinyPopover
       containerClassName={classnames.join(" ")}
       isOpen={show}
-      position={['top', 'bottom']}
-      windowBorderPadding={10}
+      positions={["top", "bottom"]}
+      padding={10}
       containerStyle={{
         overflow: "unset",
       }}
       align={align}
       onClickOutside={handleClose}
-      content={({position, targetRect, popoverRect}) => (
+      content={({ position, popoverRect }) => (
         <ArrowContainer
           position={position}
-          targetRect={targetRect}
           popoverRect={popoverRect}
-          arrowColor={'white'}
+          arrowColor={"white"}
           arrowSize={10}
+          childRect={openerRect}
         >
-          <div
-            className={"h5p-discussion-popover-container"}
-          >
+          <div className={"h5p-discussion-popover-container"}>
             <div className={"h5p-discussion-popover-header"}>
-              <div>
-                {header}
-              </div>
+              <div>{header}</div>
               <button
                 onClick={handleClose}
                 aria-label={close}
-                className={"close-button"}
                 type={"button"}
+                className={"close-button"}
               >
-                <span
-                  className={"h5p-ri hri-close"}
-                  aria-hidden={true}
-                />
+                <span className={"h5p-ri hri-close"} aria-hidden={true} />
               </button>
             </div>
-            <div
-              className={"h5p-discussion-popover-content"}
-            >
+            <div className={"h5p-discussion-popover-content"}>
               {popoverContent}
             </div>
           </div>
@@ -63,7 +65,7 @@ Popover.propTypes = {
   classnames: PropTypes.array,
   header: PropTypes.string,
   close: PropTypes.string,
+  openerRect: PropTypes.object,
 };
-
 
 export default Popover;

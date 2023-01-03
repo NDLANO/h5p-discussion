@@ -1,9 +1,9 @@
-import "core-js";
+import 'core-js';
 import "regenerator-runtime/runtime";
 import React from 'react';
 import ReactDOM from "react-dom";
-import Main from "components/Main";
-import {DiscussionContextProvider} from 'context/DiscussionContext';
+import Main from "./components/Main";
+import {DiscussionContextProvider} from "./context/DiscussionContext";
 import {breakpoints, getRatio, sanitizeParams} from "./components/utils";
 
 // Load library
