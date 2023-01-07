@@ -43,7 +43,7 @@ const Popover = ({
                 type={"button"}
                 className={"close-button"}
               >
-                <span className={"h5p-ri hri-close"} aria-hidden={true} />
+                <span className={"h5p-ri hri-close"} />
               </button>
             </div>
             <div className={"h5p-discussion-popover-content"}>
