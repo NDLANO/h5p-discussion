@@ -7,7 +7,7 @@ function HeaderIcon() {
       className={"h5p-discussion-header-icon"}
     >
       <img
-        alt={"thumb"}
+        alt={""} // Merely decoration
         src={Thumb}
       />
     </span>
