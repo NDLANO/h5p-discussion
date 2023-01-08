@@ -118,8 +118,7 @@ function ActionMenu(props) {
       >
         <img
           src={trash}
-          aria-hidden={true}
-          alt={translate('deleteArgument')}
+          alt={""} // Image is merely decorational
         />
         <span
           className={"h5p-discussion-popover-actionmenu-labeltext"}>{settings.title}</span>
