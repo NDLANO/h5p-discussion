@@ -21,7 +21,6 @@ function Element(props) {
         return (
           <div
             className={"h5p-discussion-draggable-container"}
-            aria-label={ariaLabel}
           >
             <ElementLayout
               provided={provided}
