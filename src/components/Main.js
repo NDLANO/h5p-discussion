@@ -37,9 +37,9 @@ function Main(props) {
 
   return (
     <article>
-      <h1
+      <div
         className={"h5p-discussion-header"}
-      >{header}</h1>
+      >{header}</div>
       <div
         className={"h5p-discussion-surface-main"}
       >
