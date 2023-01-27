@@ -1,0 +1,192 @@
+{
+  "semantics": [
+    {
+      "label": "Antraštė"
+    },
+    {
+      "label": "Užduoties aprašymas"
+    },
+    {
+      "label": "Argumentai",
+      "fields": [
+        {
+          "label": "Argumentai",
+          "entity": "argumentas",
+          "field": {
+            "label": "Argumentas"
+          }
+        }
+      ]
+    },
+    {
+      "label": "Santrauka",
+      "default": "Santrauka"
+    },
+    {
+      "label": "Santraukos instrukcija"
+    },
+    {
+      "label": "Ištekliai",
+      "fields": [
+        {
+          "label": "Ištekliai",
+          "description": "Pasirenkamos nuorodos į išteklius."
+        }
+      ]
+    },
+    {
+      "label": "Veikimo nustatymai",
+      "description": "Šie parametrai padės jums kontroliuoti veikimą.",
+      "fields": [
+        {
+          "label": "Įgalinti bandymą iš naujo?",
+          "description": "Pažymėkite tai, jei norite, kad naudotojas galėtų bandyti dar kartą"
+        },
+        {
+          "label": "Atsitiktinai surūšiuoti argumentus",
+          "description": "Atsitiktinai surūšiuos argumentus"
+        },
+        {
+          "label": "Leisti naudotojams pridėti savo argumentus",
+          "description": "Leidžia naudotojui pridėti savo argumentus"
+        },
+        {
+          "label": "Rodyti santrauką",
+          "description": "Ar norite, kad naudotojas pateiktų santrauką, paaiškindamas jo atsakymų priežastis"
+        }
+      ]
+    },
+    {
+      "label": "Lokalizuoti",
+      "fields": [
+        {
+          "label": "Header for the 'For' column",
+          "default": "Arguments FOR"
+        },
+        {
+          "label": "Header for the 'Against' column",
+          "default": "Arguments AGAINST"
+        },
+        {
+          "label": "Placeholder for the text boxes",
+          "default": "Give a brief summary in your own words"
+        },
+        {
+          "label": "Placeholder when no arguments are connected",
+          "default": "Argumentų nėra"
+        },
+        {
+          "label": "Mygtuko „Ištekliai“ pavadinimas",
+          "default": "Ištekliai"
+        },
+        {
+          "label": "Mygtuko „Paleisti iš naujo“ pavadinimas",
+          "default": "Restart"
+        },
+        {
+          "label": "Label for the \"Add argument\"-button",
+          "default": "Pridėti argumentą"
+        },
+        {
+          "label": "Label for the \"Yes\"-button",
+          "default": "Taip"
+        },
+        {
+          "label": "Label for the \"No\"-button",
+          "default": "No"
+        },
+        {
+          "label": "Informuoti naudotoj1, kad jei jis tęs, duomenys bus prarasti",
+          "default": "Jei tęsite, visi pakeitimai bus prarasti"
+        },
+        {
+          "label": "Label for the \"Continue\"-button",
+          "default": "Tęsti"
+        },
+        {
+          "label": "Short text in front of the options to where you can move the arguments",
+          "default": "Perkelti į"
+        },
+        {
+          "label": "Label used to show the delete action",
+          "default": "Ištrinti argumentą"
+        },
+        {
+          "label": "Text inside the arguments drop zone when adding new arguments are disabled",
+          "default": "Mesti argumentus čia"
+        },
+        {
+          "label": "Text inside the arguments drop zone when adding new arguments are enabled",
+          "default": "Drop existing or write new argument"
+        }
+      ]
+    },
+    {
+      "label": "Resource report",
+      "fields": [
+        {
+          "label": "Label for \"Create document\"-button",
+          "default": "Sukurti dokumentą"
+        },
+        {
+          "label": "Label on \"Export\" button",
+          "default": "Export"
+        },
+        {
+          "label": "Mygtuko „Pasirinkti viską“ pavadinimas",
+          "default": "Pasirinkti viską"
+        },
+        {
+          "label": "Antraštė virš lentelės „Išteklius“",
+          "default": "Ištekliai"
+        },
+        {
+          "label": "Pavadinimo antraštė ištekliaus lentelėje",
+          "default": "Pavadinimas"
+        },
+        {
+          "label": "Intro header in resource table",
+          "default": "Intro"
+        },
+        {
+          "label": "Url header in resource table",
+          "default": "Url"
+        },
+        {
+          "label": "Label when no resources are found",
+          "default": "Nėra išteklių"
+        },
+        {
+          "label": "Label when no summary is provided",
+          "default": "Nėra komentaro"
+        }
+      ]
+    },
+    {
+      "label": "Pritaikymas",
+      "fields": [
+        {
+          "label": "Used instead of 'Close'-icon",
+          "default": "Uždaryti"
+        },
+        {
+          "label": "Used instead of 'Drag'-icon",
+          "default": "Mesti"
+        },
+        {
+          "label": "'Draggable item' label for screenreaders",
+          "description": "Available variables are :argument",
+          "default": "Metamas elementas: :argument"
+        },
+        {
+          "label": "Title for the actions menu dialog",
+          "default": "Actions menu"
+        },
+        {
+          "label": "Description for the actions menu dialog",
+          "default": "Select the action you want to perform on this argument"
+        }
+      ]
+    }
+  ]
+}
