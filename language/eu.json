@@ -1,190 +1,190 @@
 {
   "semantics": [
     {
-      "label": "Header"
+      "label": "Goiburua"
     },
     {
-      "label": "Task description"
+      "label": "Zereginaren deskribapena"
     },
     {
-      "label": "Arguments",
+      "label": "Argudioak",
       "fields": [
         {
-          "label": "Arguments",
-          "entity": "argument",
+          "label": "Argudioak",
+          "entity": "argudioa",
           "field": {
-            "label": "Argument"
+            "label": "argudioa"
           }
         }
       ]
     },
     {
-      "label": "Summary",
-      "default": "Summary"
+      "label": "Laburpena",
+      "default": "Laburpena"
     },
     {
-      "label": "Summary instruction"
+      "label": "Laburpenerako jarraibideak"
     },
     {
-      "label": "Resources",
+      "label": "Baliabideak",
       "fields": [
         {
-          "label": "Resources",
-          "description": "Optional links to resources."
+          "label": "Baliabideak",
+          "description": "Baliabideetarako aukerako estekak."
         }
       ]
     },
     {
-      "label": "Behavioural settings",
-      "description": "These options will let you control the behaviour.",
+      "label": "Jokabide-ezarpenak",
+      "description": "Aukera hauek jokabidea kontrolatzeko aukera emango dizute.",
       "fields": [
         {
-          "label": "Enable retry?",
-          "description": "Tick off this if you want the user to be able to retry"
+          "label": "Berriro saiatzea gaitu?",
+          "description": "Markatu hau erabiltzaileak berriro saiatu ahal izatea nahi baduzu"
         },
         {
-          "label": "Randomize the arguments",
-          "description": "Will randomize the arguments"
+          "label": "Ordenatu argudioak ausaz",
+          "description": "Argudioak ausaz ordenatuko ditu"
         },
         {
-          "label": "Allow users to add their own arguments",
-          "description": "Lets the user add their own arguments"
+          "label": "Eman aukera erabiltzaileei beren argudioak gehitzeko",
+          "description": "Erabiltzaileak bere argudioak gehitzen uzten dio"
         },
         {
-          "label": "Show summary",
-          "description": "Do you want the user to provide a summary explaining the reasons for his/her answers"
+          "label": "Erakutsi laburpena",
+          "description": "Erabiltzaileak bere erantzunen arrazoiak azalduz laburpen bat ematea nahi al duzu?"
         }
       ]
     },
     {
-      "label": "Localize",
+      "label": "Tokiko egokitzapena",
       "fields": [
         {
-          "label": "Header for the 'For' column",
-          "default": "Arguments FOR"
+          "label": "\"Aldekoak\" zutabearen goiburua",
+          "default": "ALDEKO argudioak"
         },
         {
-          "label": "Header for the 'Against' column",
-          "default": "Arguments AGAINST"
+          "label": "'Aurkako' zutabearen goiburua",
+          "default": "AURKAKO argudioak"
         },
         {
-          "label": "Placeholder for the text boxes",
-          "default": "Give a brief summary in your own words"
+          "label": "Testu-koadroetarako behin behineko testua",
+          "default": "Egin laburpen labur bat zure hitzekin"
         },
         {
-          "label": "Placeholder when no arguments are connected",
-          "default": "No arguments"
+          "label": "Behin behineko testua argudiorik ez dagoenean",
+          "default": "Argudiorik ez"
         },
         {
-          "label": "Label for the \"Resources\"-button",
-          "default": "Resources"
+          "label": "\"Baliabideak\" botoiaren etiketa",
+          "default": "Baliabideak"
         },
         {
-          "label": "Label for the \"Restart\"-button",
-          "default": "Restart"
+          "label": "\"Berrabiarazi\" botoiaren etiketa",
+          "default": "Berrabiarazi"
         },
         {
-          "label": "Label for the \"Add argument\"-button",
-          "default": "Add argument"
+          "label": "\"Gehitu argudioa\" botoiaren etiketa",
+          "default": "Gehitu argudioa"
         },
         {
-          "label": "Label for the \"Yes\"-button",
-          "default": "Yes"
+          "label": "\"Bai\" botoiaren etiketa",
+          "default": "Bai"
         },
         {
-          "label": "Label for the \"No\"-button",
-          "default": "No"
+          "label": "\"Ez\" botoiaren etiketa",
+          "default": "Ez"
         },
         {
-          "label": "Inform the user that data will be lost if he/she continues",
-          "default": "If you continue all your changes will be lost"
+          "label": "Jarraituz gero, datuak galduko direla jakinarazi erabiltzaileari",
+          "default": "Jarraitzen baduzu, zure aldaketa guztiak galduko dira"
         },
         {
-          "label": "Label for the \"Continue\"-button",
-          "default": "Continue"
+          "label": "\"Jarraitu\" botoiaren etiketa",
+          "default": "Jarraitu"
         },
         {
-          "label": "Short text in front of the options to where you can move the arguments",
-          "default": "Move to"
+          "label": "Testu laburra argudioak mugi daitezkeen aukeren aurrean",
+          "default": "Mugitu hona"
         },
         {
-          "label": "Label used to show the delete action",
-          "default": "Delete argument"
+          "label": "Ezabatzeko ekintza erakusteko erabiltzen den etiketa",
+          "default": "Ezabatu argudioa"
         },
         {
-          "label": "Text inside the arguments drop zone when adding new arguments are disabled",
-          "default": "Drop arguments here"
+          "label": "Argudioak jaregiteko eremuan dagoen testua ezin denean argudio berriak gehitu",
+          "default": "Jaregin argudioak hona"
         },
         {
-          "label": "Text inside the arguments drop zone when adding new arguments are enabled",
-          "default": "Drop existing or write new argument"
+          "label": "Argudioak jaregiteko eremuan dagoen testua argudio berriak gehitu daitezkeenean",
+          "default": "Jaregin dagoen argudioa edo idatzi berri bat"
         }
       ]
     },
     {
-      "label": "Resource report",
+      "label": "Baliabideen txostena",
       "fields": [
         {
-          "label": "Label for \"Create document\"-button",
-          "default": "Create document"
+          "label": "\"Sortu dokumentua\" botoiaren etiketa",
+          "default": "Sortu dokumentua"
         },
         {
-          "label": "Label on \"Export\" button",
-          "default": "Export"
+          "label": "\"Esportatu\" botoiaren etiketa",
+          "default": "Esportatu"
         },
         {
-          "label": "Label on \"Select all\" button",
-          "default": "Select all"
+          "label": "\"Hautatu denak\" botoiaren etiketa",
+          "default": "Hautatu denak"
         },
         {
-          "label": "Header above the \"Resource\" table",
-          "default": "Resources"
+          "label": "\"Baliabideak\" taularen gaineko izenburua",
+          "default": "Baliabideak"
         },
         {
-          "label": "Title header in resource table",
-          "default": "Title"
+          "label": "Baliabideen taularen izenburua",
+          "default": "Izenburua"
         },
         {
-          "label": "Intro header in resource table",
-          "default": "Intro"
+          "label": "Sartu izenburua baliabideen taulan",
+          "default": "Sarrera"
         },
         {
-          "label": "Url header in resource table",
-          "default": "Url"
+          "label": "Baliabideen taulako URLen goiburua",
+          "default": "URL"
         },
         {
-          "label": "Label when no resources are found",
-          "default": "No resources"
+          "label": "Baliabiderik aurkitzen ez denerako etiketa",
+          "default": "Baliabiderik ez"
         },
         {
-          "label": "Label when no summary is provided",
-          "default": "No comment"
+          "label": "Laburpenik ematen ez denerako etiketa",
+          "default": "Iruzkinik ez"
         }
       ]
     },
     {
-      "label": "Accessibility",
+      "label": "Irisgarritasuna",
       "fields": [
         {
-          "label": "Used instead of 'Close'-icon",
-          "default": "Close"
+          "label": "\"Itxi\" ikonoaren ordez erabiltzen da",
+          "default": "Itxi"
         },
         {
-          "label": "Used instead of 'Drag'-icon",
-          "default": "Drag"
+          "label": "\"Arrastatu\" ikonoaren ordez erabiltzen da",
+          "default": "Arrastatu"
         },
         {
-          "label": "'Draggable item' label for screenreaders",
-          "description": "Available variables are :argument",
-          "default": "Draggable item: :argument"
+          "label": "Pantaila-irakurleentzako 'Elementu arrastagarria' etiketa",
+          "description": "Eskuragarri dauden aldagaiak dira :argument",
+          "default": "Elementu arrastagarria: :argument"
         },
         {
-          "label": "Title for the actions menu dialog",
-          "default": "Actions menu"
+          "label": "Ekintzen menuko elkarrizketa-koadroaren izenburua",
+          "default": "Ekintzen menua"
         },
         {
-          "label": "Description for the actions menu dialog",
-          "default": "Select the action you want to perform on this argument"
+          "label": "Ekintzen menuko elkarrizketa-koadroaren deskribapena",
+          "default": "Hautatu argudio honetan egin nahi duzun ekintza"
         }
       ]
     }
