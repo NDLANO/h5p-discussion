@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import HeaderIcon from "./components/HeaderIcon";
-import AddArgument from "./components/AddArgument";
+import HeaderIcon from './components/HeaderIcon';
+import AddArgument from './components/AddArgument';
 
 function Category(props) {
 
@@ -15,12 +15,12 @@ function Category(props) {
     children,
   } = props;
 
-  additionalClassName.unshift("h5p-discussion-category");
+  additionalClassName.unshift('h5p-discussion-category');
 
   return (
-    <div className={additionalClassName.join(" ")}>
+    <div className={additionalClassName.join(' ')}>
       {includeHeader && (
-        <div className={"h5p-discussion-category-header"}>
+        <div className={'h5p-discussion-category-header'}>
           <HeaderIcon />
           {title}
           {addArgument && (
@@ -31,7 +31,7 @@ function Category(props) {
         </div>
       )}
       <div
-        className={"h5p-discussion-category-content"}
+        className={'h5p-discussion-category-content'}
         id={categoryId}
       >
         {children}
@@ -53,7 +53,7 @@ Category.propTypes = {
 Category.defaultProps = {
   columnClassName: [],
   additionalClassName: [],
-  title: "",
+  title: '',
   addArgument: true,
   includeHeader: true,
   useNoArgumentsPlaceholder: true,

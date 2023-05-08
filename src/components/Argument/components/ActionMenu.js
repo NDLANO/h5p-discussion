@@ -1,11 +1,11 @@
 //@ts-check
-import React, {useEffect} from "react";
-import PropTypes from "prop-types";
-import {Popover as TinyPopover} from "react-tiny-popover";
-import classnames from "classnames";
-import trash from "../../../../assets/trash.svg";
-import {useDiscussionContext} from "../../../context/DiscussionContext";
-import {getBox} from "css-box-model";
+import React, {useEffect} from 'react';
+import PropTypes from 'prop-types';
+import {Popover as TinyPopover} from 'react-tiny-popover';
+import classnames from 'classnames';
+import trash from '../../../../assets/trash.svg';
+import {useDiscussionContext} from '../../../context/DiscussionContext';
+import {getBox} from 'css-box-model';
 
 function ActionMenu(props) {
 
@@ -38,7 +38,7 @@ function ActionMenu(props) {
     return () => window.removeEventListener('pointerdown', handleClickOutside);
   }, [parentElement]);
 
-  classNames.push("h5p-discussion-actionmenu");
+  classNames.push('h5p-discussion-actionmenu');
 
   function handleSelect(callback) {
     handleClose();
@@ -57,8 +57,8 @@ function ActionMenu(props) {
     let label;
     if (settings.label) {
       label = (<span
-        id={"action-" + index}
-        className={"h5p-discussion-popover-actionmenu-labeltext"}
+        id={'action-' + index}
+        className={'h5p-discussion-popover-actionmenu-labeltext'}
       >
         {settings.label}
       </span>);
@@ -66,8 +66,8 @@ function ActionMenu(props) {
     else {
       label = (
         <span
-          id={"action-" + index}
-          className={"h5p-discussion-popover-actionmenu-labeltext"}
+          id={'action-' + index}
+          className={'h5p-discussion-popover-actionmenu-labeltext'}
         >
           {translate('moveTo')} &quot;<span>{settings.title}</span>&quot;
         </span>
@@ -84,19 +84,19 @@ function ActionMenu(props) {
       >
         <input
           tabIndex={-1}
-          id={"input-" + settings.id}
+          id={'input-' + settings.id}
           value={settings.id}
-          type={"checkbox"}
+          type={'checkbox'}
           checked={settings.activeCategory}
           onChange={() => {
             if (settings.activeCategory !== true) {
               handleSelect(settings.onSelect);
             }
           }}
-          aria-labelledby={"action-" + index}
+          aria-labelledby={'action-' + index}
         />
         <span
-          className={classnames("h5p-ri", {
+          className={classnames('h5p-ri', {
             'hri-checked': settings.activeCategory,
             'hri-unchecked': !settings.activeCategory,
           })}/>
@@ -108,46 +108,46 @@ function ActionMenu(props) {
   function getDelete(settings) {
     return (
       <button
-        className={"h5p-discussion-popover-actionmenu-delete"}
+        className={'h5p-discussion-popover-actionmenu-delete'}
         aria-label={settings.title}
-        type={"button"}
-        onClick={e => {
+        type={'button'}
+        onClick={(e) => {
           e.preventDefault();
           settings.onSelect();
         }}
       >
         <img
           src={trash}
-          alt={""} // Image is merely decorational
+          alt={''} // Image is merely decorational
         />
         <span
-          className={"h5p-discussion-popover-actionmenu-labeltext"}>{settings.title}</span>
+          className={'h5p-discussion-popover-actionmenu-labeltext'}>{settings.title}</span>
       </button>
     );
   }
 
   return (
     <TinyPopover
-      containerClassName={classNames.join(" ")}
+      containerClassName={classNames.join(' ')}
       contentLocation={{
         top: parentBox.borderBox.height, left: -parentBox.border.left
       }}
       isOpen={show}
-      positions={["bottom"]}
+      positions={['bottom']}
       padding={0}
       reposition={false}
       parentElement={parentElement}
       containerStyle={{position: 'absolute', top: '56px'}}
       content={() => (
         <div
-          className={"h5p-discussion-popover-actionmenu"}
-          role={"dialog"}
-          aria-labelledby={"actionMenuTitle"}
-          aria-describedby={"actionMenuDescription"}
+          className={'h5p-discussion-popover-actionmenu'}
+          role={'dialog'}
+          aria-labelledby={'actionMenuTitle'}
+          aria-describedby={'actionMenuDescription'}
         >
-          <div className={"visible-hidden"}>
-            <p id={"actionMenuTitle"}>{translate('actionMenuTitle')}</p>
-            <p id={"actionMenuDescription"}>{translate('actionMenuDescription')}</p>
+          <div className={'visible-hidden'}>
+            <p id={'actionMenuTitle'}>{translate('actionMenuTitle')}</p>
+            <p id={'actionMenuDescription'}>{translate('actionMenuDescription')}</p>
           </div>
           <ul>
             {actions.map((action, index) => {
@@ -160,7 +160,7 @@ function ActionMenu(props) {
               }
               return (
                 <li
-                  key={"action-" + index}
+                  key={'action-' + index}
                 >
                   {content}
                 </li>
@@ -169,8 +169,8 @@ function ActionMenu(props) {
           </ul>
           <button
             onClick={handleClose}
-            className={"visible-hidden"}
-            type={"button"}
+            className={'visible-hidden'}
+            type={'button'}
           >{translate('close')}
           </button>
         </div>

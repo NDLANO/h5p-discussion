@@ -3,8 +3,8 @@ import 'fonts/H5PReflectionFont.scss';
 import React, {useEffect, useRef} from 'react';
 import PropTypes from 'prop-types';
 import Surface from './Surface/Surface';
-import Footer from "./Footer/Footer";
-import parseHtml from "html-react-parser";
+import Footer from './Footer/Footer';
+import parseHtml from 'html-react-parser';
 
 function Main(props) {
 
@@ -20,17 +20,17 @@ function Main(props) {
   } = props;
 
   useEffect(() => {
-    const filterResourceList = element => Object.keys(element).length !== 0 && element.constructor === Object;
+    const filterResourceList = (element) => Object.keys(element).length !== 0 && element.constructor === Object;
     if (resourcesList.params.resourceList && resourcesList.params.resourceList.filter(filterResourceList).length > 0) {
       const resourceList = new H5P.ResourceList(resourcesList.params, id, language);
       resourceList.attach(resourceContainer.current);
 
       collectExportValues('resources', () => resourcesList.params.resourceList
         .filter(filterResourceList)
-        .map(resource => Object.assign({}, {
-          title: "",
-          url: "",
-          introduction: "",
+        .map((resource) => Object.assign({}, {
+          title: '',
+          url: '',
+          introduction: '',
         }, resource)) || []);
     }
   }, [resourcesList]);
@@ -38,13 +38,13 @@ function Main(props) {
   return (
     <article>
       <div
-        className={"h5p-discussion-header"}
+        className={'h5p-discussion-header'}
       >{header}</div>
       <div
-        className={"h5p-discussion-surface-main"}
+        className={'h5p-discussion-surface-main'}
       >
         <div
-          className={"h5p-discussion-surface-info"}
+          className={'h5p-discussion-surface-info'}
           ref={resourceContainer}
         >
           {description && (

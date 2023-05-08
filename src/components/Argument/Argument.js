@@ -1,11 +1,11 @@
 import React, {useEffect, useRef, useState} from 'react';
 import PropTypes from 'prop-types';
-import EditableArgument from "./components/EditableArgument";
-import UnEditableArgument from "./components/UnEditableArgument";
-import ActionMenu from "./components/ActionMenu";
-import classnames from "classnames";
-import DragArrows from "./components/DragArrows";
-import {getDnDId} from "../utils";
+import EditableArgument from './components/EditableArgument';
+import UnEditableArgument from './components/UnEditableArgument';
+import ActionMenu from './components/ActionMenu';
+import classnames from 'classnames';
+import DragArrows from './components/DragArrows';
+import {getDnDId} from '../utils';
 
 function Argument(props) {
 
@@ -108,27 +108,27 @@ function ArgumentLayout(props) {
 
   return (
     <div
-      className={"h5p-discussion-argument-container"}
+      className={'h5p-discussion-argument-container'}
     >
       <div
-        className={classnames("h5p-discussion-argument", {
-          "h5p-discussion-active-draggable": activeDraggable
+        className={classnames('h5p-discussion-argument', {
+          'h5p-discussion-active-draggable': activeDraggable
         })}
       >
         <div
-          className={"h5p-discussion-argument-provided"}
+          className={'h5p-discussion-argument-provided'}
         >
           {isDragEnabled && (
             <DragArrows/>
           )}
           {statementDisplay}
           <button
-            className={"h5p-discussion-argument-actions"}
-            aria-label={"See available actions"}
+            className={'h5p-discussion-argument-actions'}
+            aria-label={'See available actions'}
             onClick={toggle}
-            type={"button"}
+            type={'button'}
           >
-            <span className={"fa fa-caret-down"}/>
+            <span className={'fa fa-caret-down'}/>
           </button>
         </div>
       </div>
