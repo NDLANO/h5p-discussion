@@ -1,6 +1,6 @@
-import React from "react";
-import { ArrowContainer, Popover as TinyPopover} from "react-tiny-popover";
-import PropTypes from "prop-types";
+import React from 'react';
+import { ArrowContainer, Popover as TinyPopover} from 'react-tiny-popover';
+import PropTypes from 'prop-types';
 
 const Popover = ({
   handleClose,
@@ -10,19 +10,19 @@ const Popover = ({
   classnames = [],
   header,
   close,
-  align = "end",
+  align = 'end',
   openerRect,
 }) => {
-  classnames.push("h5p-discussion-popover");
+  classnames.push('h5p-discussion-popover');
 
   return (
     <TinyPopover
-      containerClassName={classnames.join(" ")}
+      containerClassName={classnames.join(' ')}
       isOpen={show}
-      positions={["top", "bottom"]}
+      positions={['top', 'bottom']}
       padding={10}
       containerStyle={{
-        overflow: "unset",
+        overflow: 'unset',
       }}
       align={align}
       onClickOutside={handleClose}
@@ -30,23 +30,23 @@ const Popover = ({
         <ArrowContainer
           position={position}
           popoverRect={popoverRect}
-          arrowColor={"white"}
+          arrowColor={'white'}
           arrowSize={10}
           childRect={openerRect}
         >
-          <div className={"h5p-discussion-popover-container"}>
-            <div className={"h5p-discussion-popover-header"}>
+          <div className={'h5p-discussion-popover-container'}>
+            <div className={'h5p-discussion-popover-header'}>
               <div>{header}</div>
               <button
                 onClick={handleClose}
                 aria-label={close}
-                type={"button"}
-                className={"close-button"}
+                type={'button'}
+                className={'close-button'}
               >
-                <span className={"h5p-ri hri-close"} />
+                <span className={'h5p-ri hri-close'} />
               </button>
             </div>
-            <div className={"h5p-discussion-popover-content"}>
+            <div className={'h5p-discussion-popover-content'}>
               {popoverContent}
             </div>
           </div>

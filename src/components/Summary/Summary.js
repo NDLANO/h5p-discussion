@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import classnames from 'classnames';
 import {useDiscussionContext} from '../../context/DiscussionContext';
-import parseHtml from "html-react-parser";
+import parseHtml from 'html-react-parser';
 
 function Summary() {
 
@@ -24,10 +24,10 @@ function Summary() {
   return (
     <div
       className={classnames('h5p-discussion-summary')}
-      aria-labelledby={"summary-header"}
+      aria-labelledby={'summary-header'}
     >
       <label
-        id={"summary-header"}
+        id={'summary-header'}
         htmlFor={'summary'}
       >
         <div>{summaryHeader ? summaryHeader : translate('summary')}</div>
@@ -36,10 +36,10 @@ function Summary() {
         <div>{parseHtml(summaryInstruction)}</div>
       )}
       <textarea
-        id={"summary"}
+        id={'summary'}
         placeholder={translate('typeYourReasonsForSuchAnswers')}
         value={comment}
-        onChange={event => setComment(event.target.value)}
+        onChange={(event) => setComment(event.target.value)}
         aria-label={translate('typeYourReasonsForSuchAnswers')}
       />
     </div>

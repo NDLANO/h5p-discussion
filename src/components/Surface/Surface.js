@@ -1,135 +1,19 @@
 import React, {useEffect, useReducer, useCallback} from 'react';
 import {getBox} from 'css-box-model';
 import {useDiscussionContext} from 'context/DiscussionContext';
-import Summary from "../Summary/Summary";
-import {DragDropContext} from "react-beautiful-dnd";
-import * as tweenFunctions from "tween-functions";
-import Category from "../Categories/Category";
+import Summary from '../Summary/Summary';
+import {DragDropContext} from 'react-beautiful-dnd';
+import Category from '../Categories/Category';
 import {isMobile} from 'react-device-detect';
-import Element from "../DragAndDrop/Element";
-import Argument from "../Argument/Argument";
-import Column from "../DragAndDrop/Column";
+import Element from '../DragAndDrop/Element';
+import Argument from '../Argument/Argument';
+import Column from '../DragAndDrop/Column';
 import {CategoryDataObject, ArgumentDataObject, getDnDId} from '../utils.js';
-import {ActionMenuDataObject} from "../utils";
-import Dropzone from "../DragAndDrop/Dropzone"; 
+import {ActionMenuDataObject} from '../utils';
+import Dropzone from '../DragAndDrop/Dropzone';
 
 function Surface() {
   const context = useDiscussionContext();
-
-  function stateHeadQuarter(state, action) {
-    switch (action.type) {
-      case 'move': {
-        const {
-          from,
-          to
-        } = action.payload;
-        const newCategories = JSON.parse(JSON.stringify(state.categories));
-        const movedArgument = newCategories[newCategories.findIndex(category => getDnDId(category) === from.droppableId)].connectedArguments.splice(from.index, 1);
-        newCategories.map(category => {
-          category.actionTargetContainer = false;
-          if (getDnDId(category) === to.droppableId) {
-            category.connectedArguments.splice(to.index, 0, movedArgument[0]);
-          }
-        });
-        return {
-          ...state,
-          categories: newCategories,
-          hasRemainingUnprocessedArguments: newCategories.filter(category => category.isArgumentDefaultList && category.connectedArguments.length > 0).length > 0,
-          actionDropActive: false,
-        };
-      }
-      case 'editArgument': {
-        const {
-          id,
-          argumentText,
-        } = action.payload;
-        const newArguments = JSON.parse(JSON.stringify(state.argumentsList));
-        const argumentIndex = newArguments.findIndex(argument => argument.id === id);
-        if (argumentIndex !== -1) {
-          const argument = newArguments[argumentIndex];
-          argument.argumentText = argumentText;
-          argument.editMode = false;
-        }
-        return {
-          ...state,
-          argumentsList: newArguments
-        };
-      }
-      case 'deleteArgument': {
-        const {
-          id
-        } = action.payload;
-        const categories = JSON.parse(JSON.stringify(state.categories))
-          .map(category => {
-            category.connectedArguments = category.connectedArguments.filter(connectedArgument => connectedArgument !== id);
-            return category;
-          });
-        const argumentsList = state.argumentsList.filter(argument => argument.id !== id);
-
-        return {
-          ...state,
-          categories,
-          argumentsList,
-        };
-      }
-      case 'addArgument': {
-        const {
-          id
-        } = action.payload;
-
-        const argumentsList = Array.from(state.argumentsList);
-        const argumentId = state.idCounter + 1;
-        argumentsList.push(new ArgumentDataObject({
-          id: argumentId,
-          added: true,
-          editMode: true,
-        }));
-
-        const categories = JSON.parse(JSON.stringify(state.categories));
-        const targetIndex = categories.findIndex(category => category.id === id);
-        if (targetIndex === -1) {
-          return {
-            ...state
-          };
-        }
-        categories[targetIndex].connectedArguments.push(argumentId);
-        return {
-          ...state,
-          argumentsList,
-          categories,
-          idCounter: argumentId,
-        };
-      }
-      case 'reset': {
-        return init();
-      }
-      case "setTargetContainer": {
-        const newCategories = JSON.parse(JSON.stringify(state.categories));
-        return {
-          ...state,
-          categories: newCategories.map(category => {
-            category.actionTargetContainer = category.id === action.payload.container;
-            return category;
-          }),
-          actionDropActive: true,
-        };
-      }
-      default:
-        return state;
-    }
-  }
-
-  const memoizedReducer = useCallback(stateHeadQuarter, []);
-  const [state, dispatch] = useReducer(memoizedReducer, init());
-
-  let api;
-  const autoDragSensor = value => {
-    api = value;
-  };
-
-  useEffect(() => {
-    context.trigger('resize');
-  }, [state.argumentsList, state.categories]);
 
   const {
     collectExportValues,
@@ -140,9 +24,6 @@ function Surface() {
       provideSummary = true,
     }
   } = context;
-
-  registerReset(() => dispatch({type: "reset"}));
-  collectExportValues('userInput', () => ({categories: state.categories, argumentsList: state.argumentsList}));
 
   function init() {
     const {
@@ -169,12 +50,12 @@ function Surface() {
       categories.push(new CategoryDataObject({
         id: 'unprocessed',
         isArgumentDefaultList: true,
-        connectedArguments: argumentsList.filter(argument => argument.id % 2 === 0).map(argument => argument.id)
+        connectedArguments: argumentsList.filter((argument) => argument.id % 2 === 0).map((argument) => argument.id)
       }));
       categories.push(new CategoryDataObject({
         id: 'unprocessed-2',
         isArgumentDefaultList: true,
-        connectedArguments: argumentsList.filter(argument => argument.id % 2 === 1).map(argument => argument.id)
+        connectedArguments: argumentsList.filter((argument) => argument.id % 2 === 1).map((argument) => argument.id)
       }));
     }
     categories.push(new CategoryDataObject({
@@ -199,6 +80,124 @@ function Surface() {
     };
   }
 
+  function stateHeadQuarter(state, action) {
+    switch (action.type) {
+      case 'move': {
+        const {
+          from,
+          to
+        } = action.payload;
+        const newCategories = JSON.parse(JSON.stringify(state.categories));
+        const movedArgument = newCategories[newCategories.findIndex((category) => getDnDId(category) === from.droppableId)].connectedArguments.splice(from.index, 1);
+        newCategories.map((category) => {
+          category.actionTargetContainer = false;
+          if (getDnDId(category) === to.droppableId) {
+            category.connectedArguments.splice(to.index, 0, movedArgument[0]);
+          }
+        });
+        return {
+          ...state,
+          categories: newCategories,
+          hasRemainingUnprocessedArguments: newCategories.filter((category) => category.isArgumentDefaultList && category.connectedArguments.length > 0).length > 0,
+          actionDropActive: false,
+        };
+      }
+      case 'editArgument': {
+        const {
+          id,
+          argumentText,
+        } = action.payload;
+        const newArguments = JSON.parse(JSON.stringify(state.argumentsList));
+        const argumentIndex = newArguments.findIndex((argument) => argument.id === id);
+        if (argumentIndex !== -1) {
+          const argument = newArguments[argumentIndex];
+          argument.argumentText = argumentText;
+          argument.editMode = false;
+        }
+        return {
+          ...state,
+          argumentsList: newArguments
+        };
+      }
+      case 'deleteArgument': {
+        const {
+          id
+        } = action.payload;
+        const categories = JSON.parse(JSON.stringify(state.categories))
+          .map((category) => {
+            category.connectedArguments = category.connectedArguments.filter((connectedArgument) => connectedArgument !== id);
+            return category;
+          });
+        const argumentsList = state.argumentsList.filter((argument) => argument.id !== id);
+
+        return {
+          ...state,
+          categories,
+          argumentsList,
+        };
+      }
+      case 'addArgument': {
+        const {
+          id
+        } = action.payload;
+
+        const argumentsList = Array.from(state.argumentsList);
+        const argumentId = state.idCounter + 1;
+        argumentsList.push(new ArgumentDataObject({
+          id: argumentId,
+          added: true,
+          editMode: true,
+        }));
+
+        const categories = JSON.parse(JSON.stringify(state.categories));
+        const targetIndex = categories.findIndex((category) => category.id === id);
+        if (targetIndex === -1) {
+          return {
+            ...state
+          };
+        }
+        categories[targetIndex].connectedArguments.push(argumentId);
+        return {
+          ...state,
+          argumentsList,
+          categories,
+          idCounter: argumentId,
+        };
+      }
+      case 'reset': {
+        return init();
+      }
+      case 'setTargetContainer': {
+        const newCategories = JSON.parse(JSON.stringify(state.categories));
+        return {
+          ...state,
+          categories: newCategories.map((category) => {
+            category.actionTargetContainer = category.id === action.payload.container;
+            return category;
+          }),
+          actionDropActive: true,
+        };
+      }
+      default:
+        return state;
+    }
+  }
+
+  const memoizedReducer = useCallback(stateHeadQuarter, []);
+  const [state, dispatch] = useReducer(memoizedReducer, init());
+
+  let api;
+  const autoDragSensor = (value) => {
+    api = value;
+  };
+
+  useEffect(() => {
+    context.trigger('resize');
+  }, [state.argumentsList, state.categories]);
+
+  registerReset(() => dispatch({type: 'reset'}));
+  collectExportValues('userInput', () => ({categories: state.categories, argumentsList: state.argumentsList}));
+
   function onDropEnd(dragResult) {
     let {
       destination,
@@ -211,7 +210,7 @@ function Surface() {
 
     if (Array.isArray(destination.droppableId.match(/(.)+-dzone$/))) {
       destination.droppableId = destination.droppableId.replace('-dzone', '');
-      destination.index = state.categories[state.categories.findIndex(category => getDnDId(category) === destination.droppableId)].connectedArguments.length;
+      destination.index = state.categories[state.categories.findIndex((category) => getDnDId(category) === destination.droppableId)].connectedArguments.length;
     }
 
     dispatch({
@@ -222,27 +221,12 @@ function Surface() {
     });
   }
 
-  function getDynamicActions(argument) {
-    const dynamicActions = state.categories
-      .filter(category => category.isArgumentDefaultList !== true)
-      .map(category => new ActionMenuDataObject({
-        id: category.id,
-        title: category.title,
-        type: 'category',
-        activeCategory: category.connectedArguments.findIndex(argumentId => argumentId === argument.id) !== -1,
-        onSelect: () => startMoving(getDnDId(argument), category.id)
-      }));
-    if ( allowAddingOfArguments === true ) {
-      dynamicActions.push(new ActionMenuDataObject({
-        type: 'delete',
-        title: translate('deleteArgument'),
-        onSelect: () => dispatch({
-          type: 'deleteArgument',
-          payload: {id: argument.id},
-        })
-      }));
-    }
-    return dynamicActions;
+  function scroll(position) {
+    const frame = window.frameElement ? parent : window;
+    frame.scrollTo({
+      top: position.y,
+      behavior: 'smooth',
+    });
   }
 
   function moveStepByStep(drag, values) {
@@ -262,20 +246,12 @@ function Surface() {
     });
   }
 
-  function scroll(position) {
-    const frame = window.frameElement ? parent : window;
-    frame.scrollTo({
-      top: position.y,
-      behavior: 'smooth',
-    });
-  }
-
   const startMoving = function start(draggableElement, target) {
     const preDrag = api.tryGetLock(draggableElement);
     if (!preDrag) {
       return;
     }
-    dispatch({type: "setTargetContainer", payload: {container: target}});
+    dispatch({type: 'setTargetContainer', payload: {container: target}});
     const targetContainer = getBox(document.getElementById(target));
     const dragElement = getBox(document.getElementById(draggableElement));
     const start = dragElement.borderBox.center;
@@ -287,15 +263,42 @@ function Surface() {
 
     const points = [];
     const numberOfPoints = 60;
+
+    // Used from tween-functions that's not maintained anymore
+    const easeOutQuad = (t, b, _c, d) => -(_c - b) * (t /= d) * (t - 2) + b;
+
     for (let i = 0; i < numberOfPoints; i++) {
       points.push({
-        x: tweenFunctions.easeOutQuad(i, start.x, end.x, numberOfPoints),
-        y: tweenFunctions.easeOutQuad(i, start.y, end.y, numberOfPoints)
+        x: easeOutQuad(i, start.x, end.x, numberOfPoints),
+        y: easeOutQuad(i, start.y, end.y, numberOfPoints)
       });
     }
 
     moveStepByStep(drag, points);
   };
+
+  function getDynamicActions(argument) {
+    const dynamicActions = state.categories
+      .filter((category) => category.isArgumentDefaultList !== true)
+      .map((category) => new ActionMenuDataObject({
+        id: category.id,
+        title: category.title,
+        type: 'category',
+        activeCategory: category.connectedArguments.findIndex((argumentId) => argumentId === argument.id) !== -1,
+        onSelect: () => startMoving(getDnDId(argument), category.id)
+      }));
+    if ( allowAddingOfArguments === true ) {
+      dynamicActions.push(new ActionMenuDataObject({
+        type: 'delete',
+        title: translate('deleteArgument'),
+        onSelect: () => dispatch({
+          type: 'deleteArgument',
+          payload: {id: argument.id},
+        })
+      }));
+    }
+    return dynamicActions;
+  }
 
   return (
     <div
@@ -306,24 +309,24 @@ function Surface() {
         sensors={[autoDragSensor]}
       >
         <Category
-          categoryId={"unprocessed"}
+          categoryId={'unprocessed'}
           includeHeader={false}
-          additionalClassName={["h5p-discussion-unprocessed", !state.hasRemainingUnprocessedArguments ? "hidden" : ""]}
+          additionalClassName={['h5p-discussion-unprocessed', !state.hasRemainingUnprocessedArguments ? 'hidden' : '']}
           useNoArgumentsPlaceholder={false}
         >
           {state.categories
-            .filter(category => category.isArgumentDefaultList)
-            .map(category => (
+            .filter((category) => category.isArgumentDefaultList)
+            .map((category) => (
               <div
                 key={category.id}
               >
                 <Column
-                  additionalClassName={"h5p-discussion-unprocessed-argument-list"}
+                  additionalClassName={'h5p-discussion-unprocessed-argument-list'}
                   droppableId={getDnDId(category)}
                   argumentsList={state.argumentsList}
                 >
                   {category.connectedArguments
-                    .map(argument => state.argumentsList[state.argumentsList.findIndex(element => element.id === argument)])
+                    .map((argument) => state.argumentsList[state.argumentsList.findIndex((element) => element.id === argument)])
                     .map((argument, index) => (
                       <Element
                         key={getDnDId(argument)}
@@ -338,7 +341,7 @@ function Surface() {
                           isDragEnabled={!isMobile}
                           argument={argument}
                           enableEditing={allowAddingOfArguments}
-                          onArgumentChange={argumentText => dispatch({
+                          onArgumentChange={(argumentText) => dispatch({
                             type: 'editArgument',
                             payload: {id: argument.id, argumentText}
                           })}
@@ -350,8 +353,8 @@ function Surface() {
             ))}
         </Category>
         {state.categories
-          .filter(category => !category.isArgumentDefaultList)
-          .map(category => (
+          .filter((category) => !category.isArgumentDefaultList)
+          .map((category) => (
             <Category
               key={category.id}
               categoryId={category.id}
@@ -375,7 +378,7 @@ function Surface() {
                 />
               )}
               <Column
-                additionalClassName={"h5p-discussion-argument-list"}
+                additionalClassName={'h5p-discussion-argument-list'}
                 droppableId={getDnDId(category)}
                 argumentsList={state.argumentsList}
               >
@@ -383,7 +386,7 @@ function Surface() {
                   <span>{translate('noArguments')}</span>
                 )}
                 {category.connectedArguments
-                  .map(argument => state.argumentsList[state.argumentsList.findIndex(element => element.id === argument)])
+                  .map((argument) => state.argumentsList[state.argumentsList.findIndex((element) => element.id === argument)])
                   .map((argument, index) => (
                     <Element
                       key={getDnDId(argument)}
@@ -398,7 +401,7 @@ function Surface() {
                         isDragEnabled={!isMobile}
                         argument={argument}
                         enableEditing={allowAddingOfArguments}
-                        onArgumentChange={argumentText => dispatch({
+                        onArgumentChange={(argumentText) => dispatch({
                           type: 'editArgument',
                           payload: {id: argument.id, argumentText}
                         })}

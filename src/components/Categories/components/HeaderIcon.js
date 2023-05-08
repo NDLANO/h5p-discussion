@@ -4,10 +4,10 @@ import Thumb from './../../../../assets/thumb.svg';
 function HeaderIcon() {
   return (
     <span
-      className={"h5p-discussion-header-icon"}
+      className={'h5p-discussion-header-icon'}
     >
       <img
-        alt={""} // Merely decoration
+        alt={''} // Merely decoration
         src={Thumb}
       />
     </span>

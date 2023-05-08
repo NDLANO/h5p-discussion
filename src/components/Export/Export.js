@@ -1,6 +1,6 @@
 import React, {useRef} from 'react';
-import {useDiscussionContext} from "context/DiscussionContext";
-import {escapeHTML, stripHTML} from "../utils";
+import {useDiscussionContext} from 'context/DiscussionContext';
+import {escapeHTML, stripHTML} from '../utils';
 
 function Export() {
 
@@ -42,16 +42,16 @@ function Export() {
       summaryComment: summary,
       resources: resources,
       unprocessedArguments: userInput.categories
-        .filter(category => category.isArgumentDefaultList)
-        .map(category => category.connectedArguments)
+        .filter((category) => category.isArgumentDefaultList)
+        .map((category) => category.connectedArguments)
         .reduce((acc, val) => acc.concat(val), []),
       proArguments: userInput.categories
-        .filter(category => category.id === 'pro')
-        .map(category => category.connectedArguments.map(argumentId => userInput.argumentsList[argumentId]))
+        .filter((category) => category.id === 'pro')
+        .map((category) => category.connectedArguments.map((argumentId) => userInput.argumentsList[argumentId]))
         .reduce((acc, val) => acc.concat(val), []),
       contraArguments: userInput.categories
-        .filter(category => category.id === 'contra')
-        .map(category => category.connectedArguments.map(argumentId => userInput.argumentsList[argumentId]))
+        .filter((category) => category.id === 'contra')
+        .map((category) => category.connectedArguments.map((argumentId) => userInput.argumentsList[argumentId]))
         .reduce((acc, val) => acc.concat(val), []),
     });
   }
@@ -116,16 +116,16 @@ function Export() {
   return (
     <>
       <button
-        className={"h5p-discussion-button-export"}
+        className={'h5p-discussion-button-export'}
         onClick={handleExport}
-        type={"button"}
+        type={'button'}
       >
         <span
-          className={"h5p-ri hri-document"}
+          className={'h5p-ri hri-document'}
         />
         {translate('createDocument')}
       </button>
-      <div className={"export-container"} ref={exportContainer}/>
+      <div className={'export-container'} ref={exportContainer}/>
     </>
   );
 }

@@ -1,11 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {useDiscussionContext} from "context/DiscussionContext";
-
-AddArgument.propTypes = {
-  displayFull: PropTypes.bool,
-  onClick: PropTypes.func,
-};
+import {useDiscussionContext} from 'context/DiscussionContext';
 
 function AddArgument(props) {
 
@@ -17,16 +12,21 @@ function AddArgument(props) {
   return (
     <button
       aria-label={context.translate('addArgument')}
-      className={"h5p-discussion-header-argument-add"}
+      className={'h5p-discussion-header-argument-add'}
       onClick={onClick}
-      type={"button"}
+      type={'button'}
     >
       <span
-        className={"h5p-discussion-argument-add-icon fa fa-plus"}
+        className={'h5p-discussion-argument-add-icon fa fa-plus'}
       />
-      <span className={"h5p-discussion-argument-add-text"}>{context.translate('addArgument')}</span>
+      <span className={'h5p-discussion-argument-add-text'}>{context.translate('addArgument')}</span>
     </button>
   );
 }
+
+AddArgument.propTypes = {
+  displayFull: PropTypes.bool,
+  onClick: PropTypes.func,
+};
 
 export default AddArgument;
