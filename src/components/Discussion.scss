@@ -503,6 +503,14 @@ article, aside, details, figcaption, figure, footer, header, main, menu, nav, se
     text-shadow: 2px 1px 3px rgba(28,28,28,0.5);
     border-radius: $borderRadius $borderRadius 0 0;
 
+    .h5p-discussion-header-icon {
+      &::before {
+        font-family: "H5PFontAwesome4", sans-serif;
+        font-size: 1.5em;
+        font-weight: bold;
+        position: absolute;
+      }
+    }
   }
 
   .h5p-discussion-header-argument-add {
@@ -545,6 +553,11 @@ article, aside, details, figcaption, figure, footer, header, main, menu, nav, se
   .h5p-discussion-header-icon {
     background-color: #5bb06e;
     border: 3px solid #74d690;
+
+    &::before {
+      content: "\f087";
+      filter: drop-shadow(2px 2px 2px rgba(0 0 0 / 0.2));
+    }
   }
 }
 
@@ -558,9 +571,10 @@ article, aside, details, figcaption, figure, footer, header, main, menu, nav, se
     background-color: #de5050;
     border: 3px solid #fa837d;
 
-    img {
-      transform: rotateX(180deg);
-      filter: drop-shadow(2px -2px 2px rgba(0,0,0,0.2));
+    &::before {
+      content: "\f088";
+      filter: drop-shadow(2px -2px 2px rgba(0 0 0 / 0.2));
+      top: 0.6em;
     }
   }
 }
@@ -605,8 +619,19 @@ article, aside, details, figcaption, figure, footer, header, main, menu, nav, se
     display: flex;
     overflow: hidden;
     align-items: center;
+
     &:hover {
       background-color: rgba(3,3,3,0.05);
+    }
+  }
+
+  .h5p-discussion-popover-actionmenu-delete {
+    &::before {
+      content: "\f014";
+      font-family: "H5PFontAwesome4", sans-serif;
+      font-size: 1.25em;
+      left: 0.9em;
+      position: absolute;
     }
   }
 
@@ -644,6 +669,7 @@ article, aside, details, figcaption, figure, footer, header, main, menu, nav, se
 
   .h5p-discussion-popover-actionmenu-delete .h5p-discussion-popover-actionmenu-labeltext {
     color: #1a1616;
+    margin-left: 1.75em;
   }
 }
 
@@ -679,10 +705,6 @@ article, aside, details, figcaption, figure, footer, header, main, menu, nav, se
   top: -0.5rem;
   left: -0.5rem;
   box-shadow: 2px 2px 4px 1px rgba(3,3,3,0.2);
-
-  img {
-    filter: drop-shadow(2px 2px 2px rgba(0,0,0,0.2));
-  }
 }
 
 .h5p-ri {

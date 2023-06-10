@@ -3,7 +3,6 @@ import React, {useEffect} from 'react';
 import PropTypes from 'prop-types';
 import {Popover as TinyPopover} from 'react-tiny-popover';
 import classnames from 'classnames';
-import trash from '../../../../assets/trash.svg';
 import {useDiscussionContext} from '../../../context/DiscussionContext';
 import {getBox} from 'css-box-model';
 
@@ -116,12 +115,9 @@ function ActionMenu(props) {
           settings.onSelect();
         }}
       >
-        <img
-          src={trash}
-          alt={''} // Image is merely decorational
-        />
         <span
-          className={'h5p-discussion-popover-actionmenu-labeltext'}>{settings.title}</span>
+          className={'h5p-discussion-popover-actionmenu-labeltext'}>{settings.title}
+        </span>
       </button>
     );
   }
