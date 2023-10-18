@@ -1,4 +1,3 @@
-//@ts-check
 import React, {useEffect} from 'react';
 import PropTypes from 'prop-types';
 import {Popover as TinyPopover} from 'react-tiny-popover';
@@ -14,6 +13,7 @@ function ActionMenu(props) {
   } = context;
 
   const {
+    menuId,
     children,
     show,
     handleClose,
@@ -136,6 +136,7 @@ function ActionMenu(props) {
       containerStyle={{position: 'absolute', top: '56px'}}
       content={() => (
         <div
+          id={menuId}
           className={'h5p-discussion-popover-actionmenu'}
           role={'dialog'}
           aria-labelledby={'actionMenuTitle'}
