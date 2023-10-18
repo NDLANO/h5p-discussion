@@ -27,9 +27,15 @@ function EditableArgument(props) {
     toggleEditMode(false);
   };
 
-  const handleKeyUp = (event) => {
+  /**
+   * Handle keydown events.
+   * KeyDown is used instead of KeyUp to prevent focused input to be blurred
+   * when arguments are added with the enter key.
+   */
+  const handleKeyDown = (event) => {
+    // If enter key is pressed
     if (event.keyCode === 13) {
-      if ( inEditMode ) {
+      if (inEditMode) {
         handleBlur();
       }
       else {
@@ -54,7 +60,7 @@ function EditableArgument(props) {
       tabIndex={0}
       onClick={handleClick}
       className={'h5p-discussion-editable-container'}
-      onKeyUp={handleKeyUp}
+      onKeyDown={handleKeyDown}
       aria-labelledby={labelId}
     >
       <div>
