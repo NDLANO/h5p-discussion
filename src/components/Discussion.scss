@@ -546,13 +546,13 @@ article, aside, details, figcaption, figure, footer, header, main, menu, nav, se
 
 .h5p-discussion-pro {
   .h5p-discussion-category-header {
-    background-color: #54a169;
+    background-color: #458356;
     color: #ffffff;
   }
 
   .h5p-discussion-header-icon {
-    background-color: #5bb06e;
-    border: 3px solid #74d690;
+    background-color: #4D9360;
+    border: 3px solid #6CB27F;
 
     &::before {
       content: "\f087";
@@ -563,13 +563,13 @@ article, aside, details, figcaption, figure, footer, header, main, menu, nav, se
 
 .h5p-discussion-against {
   .h5p-discussion-category-header {
-    background-color: #de5050;
+    background-color: #D83131;
     color: #ffffff;
   }
 
   .h5p-discussion-header-icon {
-    background-color: #de5050;
-    border: 3px solid #fa837d;
+    background-color: #DB4343;
+    border: 3px solid #E57676;
 
     &::before {
       content: "\f088";
