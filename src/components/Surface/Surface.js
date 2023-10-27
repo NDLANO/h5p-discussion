@@ -370,7 +370,7 @@ function Surface() {
                   }
                 })}
             >
-              {!isMobile && (
+              {!isMobile && category.connectedArguments.length === 0 && (
                 <Dropzone
                   droppablePrefix={getDnDId(category)}
                   label={translate('dropArgumentsHere')}
