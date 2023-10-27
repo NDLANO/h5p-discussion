@@ -23,6 +23,8 @@ function Argument(props) {
 
   const [showPopover, togglePopover] = useState(false);
 
+  const actionMenuId = `action-menu-${argument.id}_${H5P.createUUID()}`;
+
   function toggle() {
     togglePopover((prevState) => !prevState);
   }
@@ -59,6 +61,8 @@ function Argument(props) {
       activeDraggable={isDragEnabled && isDragging}
       isDragEnabled={isDragEnabled}
       statementDisplay={displayStatement}
+      showPopover={showPopover}
+      menuId={actionMenuId}
       toggle={toggle}
     />
   );
@@ -66,6 +70,7 @@ function Argument(props) {
   if ( Array.isArray(actions) && actions.length > 0  && refReady) {
     argumentLayout = (
       <ActionMenu
+        menuId={actionMenuId}
         actions={actions}
         show={showPopover}
         handleClose={closePopover}
@@ -79,7 +84,6 @@ function Argument(props) {
   return (
     <div
       id={getDnDId(argument)}
-      aria-expanded={showPopover}
       ref={innerRef}
     >
       {argumentLayout}
@@ -103,6 +107,8 @@ function ArgumentLayout(props) {
     activeDraggable,
     isDragEnabled,
     statementDisplay,
+    showPopover,
+    menuId,
     toggle,
   } = props;
 
@@ -125,6 +131,8 @@ function ArgumentLayout(props) {
           <button
             className={'h5p-discussion-argument-actions'}
             aria-label={'See available actions'}
+            aria-expanded={showPopover}
+            aria-controls={menuId}
             onClick={toggle}
             type={'button'}
           >

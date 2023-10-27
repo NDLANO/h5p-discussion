@@ -29,7 +29,7 @@ function DeleteStatement(props) {
       onClick={onClick}
       type={'button'}
       onKeyUp={(event) => {
-        if (event.keyCode && event.keyCode === 8) {
+        if (event.key === 'Backspace' || event.key === 'Delete') {
           onClick();
         }
       }}
