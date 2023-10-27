@@ -57,6 +57,7 @@
       ]
     },
     {
+      "label": "Adaptación local",
       "fields": [
         {
           "label": "Encabezado para la columna 'A Favor'",
@@ -113,13 +114,8 @@
         {
           "label": "Texto adentro de la zona de caída de los argumentos cuando está deshabilitado el añadir nuevos argumentos",
           "default": "Dejar caer argumentos aquí"
-        },
-        {
-          "label": "Texto adentro de la zona de caída de los argumentos cuando está habilitado el añadir nuevos argumentos",
-          "default": "Dejar caer argumento existente o escribir uno nuevo"
         }
-      ],
-      "label": "Adaptación local"
+      ]
     },
     {
       "fields": [

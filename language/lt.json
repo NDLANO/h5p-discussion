@@ -112,12 +112,8 @@
           "default": "Ištrinti argumentą"
         },
         {
-          "label": "Text inside the arguments drop zone when adding new arguments are disabled",
+          "label": "Text inside the arguments drop zone",
           "default": "Mesti argumentus čia"
-        },
-        {
-          "label": "Text inside the arguments drop zone when adding new arguments are enabled",
-          "default": "Drop existing or write new argument"
         }
       ]
     },
