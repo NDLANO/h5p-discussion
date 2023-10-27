@@ -45,7 +45,7 @@ function ActionMenu(props) {
   }
 
   function handleKeyUp(event, callback) {
-    if (event.keyCode === 13) {
+    if (event.key === 'Enter') {
       handleSelect(callback);
     }
   }

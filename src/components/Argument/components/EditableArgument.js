@@ -34,7 +34,7 @@ function EditableArgument(props) {
    */
   const handleKeyDown = (event) => {
     // If enter key is pressed
-    if (event.keyCode === 13) {
+    if (event.key === 'Enter') {
       if (inEditMode) {
         handleBlur();
       }
