@@ -289,6 +289,15 @@ function Surface() {
       }));
     if ( allowAddingOfArguments === true ) {
       dynamicActions.push(new ActionMenuDataObject({
+        type: 'edit',
+        title: 'Edit argument',
+        onSelect: () => {
+          const argumentElement = document.getElementById(getDnDId(argument));
+          const textbox = argumentElement?.querySelector('.h5p-discussion-editable-container');
+          textbox?.click();
+        }
+      }));
+      dynamicActions.push(new ActionMenuDataObject({
         type: 'delete',
         title: translate('deleteArgument'),
         onSelect: () => dispatch({

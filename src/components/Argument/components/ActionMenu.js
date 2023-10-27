@@ -122,6 +122,24 @@ function ActionMenu(props) {
     );
   }
 
+  function getEdit(settings) {
+    return (
+      <button
+        className={'h5p-discussion-popover-actionmenu-edit'}
+        aria-label={settings.title}
+        type={'button'}
+        onClick={(e) => {
+          e.preventDefault();
+          handleSelect(settings.onSelect);
+        }}
+      >
+        <span
+          className={'h5p-discussion-popover-actionmenu-labeltext'}>{settings.title}
+        </span>
+      </button>
+    );
+  }
+
   return (
     <TinyPopover
       containerClassName={classNames.join(' ')}
@@ -151,6 +169,9 @@ function ActionMenu(props) {
               let content;
               if (action.type === 'delete') {
                 content = getDelete(action, index);
+              }
+              else if (action.type === 'edit') {
+                content = getEdit(action, index);
               }
               else {
                 content = getCategory(action, index);
