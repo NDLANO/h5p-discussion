@@ -340,6 +340,7 @@ function Surface() {
           includeHeader={false}
           additionalClassName={['h5p-discussion-unprocessed', !state.hasRemainingUnprocessedArguments ? 'hidden' : '']}
           useNoArgumentsPlaceholder={false}
+          addArgument={false}
         >
           {state.categories
             .filter((category) => category.isArgumentDefaultList)
