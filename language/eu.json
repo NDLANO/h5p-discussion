@@ -114,10 +114,6 @@
         {
           "label": "Argudioak jaregiteko eremuan dagoen testua ezin denean argudio berriak gehitu",
           "default": "Jaregin argudioak hona"
-        },
-        {
-          "label": "Argudioak jaregiteko eremuan dagoen testua argudio berriak gehitu daitezkeenean",
-          "default": "Jaregin dagoen argudioa edo idatzi berri bat"
         }
       ]
     },

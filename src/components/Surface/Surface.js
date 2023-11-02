@@ -370,10 +370,10 @@ function Surface() {
                   }
                 })}
             >
-              {!isMobile && (
+              {!isMobile && category.connectedArguments.length === 0 && (
                 <Dropzone
                   droppablePrefix={getDnDId(category)}
-                  label={translate(allowAddingOfArguments ? 'dropExistingOrAddNewArgument' : 'dropArgumentsHere')}
+                  label={translate('dropArgumentsHere')}
                   disableDrop={state.actionDropActive || (state.actionDropActive && !category.actionTargetContainer)}
                 />
               )}
