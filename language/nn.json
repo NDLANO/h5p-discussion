@@ -112,6 +112,10 @@
           "default": "Slett argument"
         },
         {
+          "label": "Tekst som brukes for å indikere 'Rediger argument' muligheten",
+          "default": "Rediger argument"
+        },
+        {
           "label": "Tekst som vises inne i slippsonen for argumenter",
           "default": "Slipp argumenter her"
         }

@@ -290,7 +290,7 @@ function Surface() {
     if ( allowAddingOfArguments === true ) {
       dynamicActions.push(new ActionMenuDataObject({
         type: 'edit',
-        title: 'Edit argument',
+        title: translate('editArgument'),
         onSelect: () => {
           const argumentElement = document.getElementById(getDnDId(argument));
           const textbox = argumentElement?.querySelector('.h5p-discussion-editable-container');

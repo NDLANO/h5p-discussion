@@ -112,6 +112,10 @@
           "default": "Ištrinti argumentą"
         },
         {
+          "label": "Label used to show the edit action",
+          "default": "Edit argument"
+        },
+        {
           "label": "Text inside the arguments drop zone",
           "default": "Mesti argumentus čia"
         }

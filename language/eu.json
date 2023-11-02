@@ -112,6 +112,10 @@
           "default": "Ezabatu argudioa"
         },
         {
+          "label": "Label used to show the edit action",
+          "default": "Edit argument"
+        },
+        {
           "label": "Argudioak jaregiteko eremuan dagoen testua ezin denean argudio berriak gehitu",
           "default": "Jaregin argudioak hona"
         }
