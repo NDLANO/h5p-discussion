@@ -15,7 +15,7 @@ function EditableArgument(props) {
     }
   }, []);
 
-  const handleClick = () => {
+  const startEditing = () => {
     if (inEditMode === false) {
       toggleEditMode(true);
       inputRef.current.value = props.argument;
@@ -23,7 +23,7 @@ function EditableArgument(props) {
     }
   };
 
-  const handleBlur = () => {
+  const stopEditing = () => {
     toggleEditMode(false);
   };
 
@@ -36,16 +36,12 @@ function EditableArgument(props) {
     // If enter key is pressed
     if (event.key === 'Enter') {
       if (inEditMode) {
-        handleBlur();
-      }
-      else {
-        handleClick();
+        stopEditing();
       }
     }
   };
 
   const id = 'es_' + props.idBase;
-  const labelId = 'label_' + id;
   const inputId = 'input_' + id;
 
   /*
@@ -55,41 +51,39 @@ function EditableArgument(props) {
    *       is ARIA labelling handled that way?
    */
   return (
-    <div
-      role={'textbox'}
-      tabIndex={0}
-      onClick={handleClick}
-      className={'h5p-discussion-editable-container'}
-      onKeyDown={handleKeyDown}
-      aria-labelledby={labelId}
-    >
-      <div>
-        <label
-          title={props.argument}
-          htmlFor={inputId}
-          id={labelId}
-          className={classnames('h5p-discussion-editable', {
-            'hidden': inEditMode === false,
-          })}
-        >
-          <span className={'visible-hidden'}>Argument</span>
-          <input
-            className={'h5p-discussion-editable'}
-            ref={inputRef}
-            onBlur={handleBlur}
-            onChange={debounce(() => props.onBlur(inputRef.current.value), 200)}
-            aria-label={'Edit argument ' + props.argument}
-            id={inputId}
-          />
-        </label>
-        <p
-          className={classnames('h5p-discussion-noneditable', {
+    <div className={'h5p-discussion-editable-container'}>
+      <button
+        className={classnames('h5p-discussion-editable-button', {
             'hidden': inEditMode === true,
-          })}
-        >
-          {props.argument}
-        </p>
-      </div>
+        })}
+        onClick={startEditing}
+      >
+        <span className={'visible-hidden'}>{'Edit argument' + props.argument}</span>
+      </button>
+      <label
+        title={props.argument}
+        htmlFor={inputId}
+        className={classnames('h5p-discussion-editable', {
+          'hidden': inEditMode === false,
+        })}
+      >
+        <span className={'visible-hidden'}>Argument</span>
+        <input
+          className={'h5p-discussion-editable'}
+          ref={inputRef}
+          onBlur={stopEditing}
+          onChange={debounce(() => props.onBlur(inputRef.current.value), 200)}
+          onKeyDown={handleKeyDown}
+          id={inputId}
+        />
+      </label>
+      <p
+        className={classnames('h5p-discussion-noneditable', {
+          'hidden': inEditMode === true,
+        })}
+      >
+        {props.argument}
+      </p>
     </div>
   );
 }
