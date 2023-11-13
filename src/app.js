@@ -62,6 +62,7 @@ H5P.Discussion = (function () {
       moveTo: 'Move to',
       deleteArgument: 'Delete argument',
       editArgument: 'Edit argument',
+      argument: 'Argument',
       actionMenuTitle: 'Action menu',
       actionMenuDescription: 'Select the action you want to perform on this argument',
       dropArgumentsHere: 'Drop arguments here',

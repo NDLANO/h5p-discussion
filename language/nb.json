@@ -116,6 +116,10 @@
           "default": "Rediger argument"
         },
         {
+          "label": "Tekst for argumentet",
+          "default": "Argument"
+        },
+        {
           "label": "Tekst som vises inne i slippsonen for argumenter",
           "default": "Slipp argumenter her"
         }
