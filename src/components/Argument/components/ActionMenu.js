@@ -108,15 +108,15 @@ function ActionMenu(props) {
     return (
       <button
         className={'h5p-discussion-popover-actionmenu-delete'}
-        aria-label={settings.title}
         type={'button'}
         onClick={(e) => {
           e.preventDefault();
           settings.onSelect();
         }}
       >
-        <span
-          className={'h5p-discussion-popover-actionmenu-labeltext'}>{settings.title}
+        <span className={'h5p-ri h5p-discussion-popover-actionmenu-delete-icon'} aria-hidden={true} />
+        <span className={'h5p-discussion-popover-actionmenu-labeltext'}>
+          {settings.title}
         </span>
       </button>
     );
@@ -126,15 +126,15 @@ function ActionMenu(props) {
     return (
       <button
         className={'h5p-discussion-popover-actionmenu-edit'}
-        aria-label={settings.title}
         type={'button'}
         onClick={(e) => {
           e.preventDefault();
           handleSelect(settings.onSelect);
         }}
       >
-        <span
-          className={'h5p-discussion-popover-actionmenu-labeltext'}>{settings.title}
+        <span className={'h5p-ri hri-pencil'} aria-hidden={true} />
+        <span className={'h5p-discussion-popover-actionmenu-labeltext'}>
+          {settings.title}
         </span>
       </button>
     );

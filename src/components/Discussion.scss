@@ -627,23 +627,11 @@ article, aside, details, figcaption, figure, footer, header, main, menu, nav, se
     }
   }
 
-  .h5p-discussion-popover-actionmenu-delete {
+  .h5p-discussion-popover-actionmenu-delete-icon {
     &::before {
       content: "\f014";
       font-family: "H5PFontAwesome4", sans-serif;
       font-size: 1.25em;
-      left: 0.9em;
-      position: absolute;
-    }
-  }
-
-  .h5p-discussion-popover-actionmenu-edit {
-    &::before {
-      content: "\f040";
-      font-family: "H5PFontAwesome4", sans-serif;
-      font-size: 1.25em;
-      left: 0.9em;
-      position: absolute;
     }
   }
 
@@ -682,7 +670,6 @@ article, aside, details, figcaption, figure, footer, header, main, menu, nav, se
   .h5p-discussion-popover-actionmenu-delete .h5p-discussion-popover-actionmenu-labeltext,
   .h5p-discussion-popover-actionmenu-edit .h5p-discussion-popover-actionmenu-labeltext {
     color: #1a1616;
-    margin-left: 1.75em;
   }
 }
 
