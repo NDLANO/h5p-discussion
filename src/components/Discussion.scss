@@ -507,7 +507,7 @@ article, aside, details, figcaption, figure, footer, header, main, menu, nav, se
       &::before {
         font-family: "H5PFontAwesome4", sans-serif;
         font-size: 1.5em;
-        font-weight: bold;
+        font-style: normal;
         position: absolute;
       }
     }
@@ -555,7 +555,7 @@ article, aside, details, figcaption, figure, footer, header, main, menu, nav, se
     border: 3px solid #6CB27F;
 
     &::before {
-      content: "\f087";
+      content: "\f164";
       filter: drop-shadow(2px 2px 2px rgba(0 0 0 / 0.2));
     }
   }
@@ -572,7 +572,7 @@ article, aside, details, figcaption, figure, footer, header, main, menu, nav, se
     border: 3px solid #E57676;
 
     &::before {
-      content: "\f088";
+      content: "\f165";
       filter: drop-shadow(2px -2px 2px rgba(0 0 0 / 0.2));
       top: 0.6em;
     }
