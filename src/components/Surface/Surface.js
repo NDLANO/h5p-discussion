@@ -407,13 +407,6 @@ function Surface() {
                   }
                 })}
             >
-              {!isMobile && category.connectedArguments.length === 0 && (
-                <Dropzone
-                  droppablePrefix={getDnDId(category)}
-                  label={translate('dropArgumentsHere')}
-                  disableDrop={state.actionDropActive || (state.actionDropActive && !category.actionTargetContainer)}
-                />
-              )}
               <Column
                 additionalClassName={'h5p-discussion-argument-list'}
                 droppableId={getDnDId(category)}
@@ -421,6 +414,13 @@ function Surface() {
               >
                 {isMobile && category.useNoArgumentsPlaceholder && category.connectedArguments.length === 0 && (
                   <span>{translate('noArguments')}</span>
+                )}
+                {!isMobile && category.connectedArguments.length === 0 && (
+                  <Dropzone
+                    droppablePrefix={getDnDId(category)}
+                    label={translate('dropArgumentsHere')}
+                    disableDrop={state.actionDropActive || (state.actionDropActive && !category.actionTargetContainer)}
+                  />
                 )}
                 {category.connectedArguments
                   .map((argument) => state.argumentsList[state.argumentsList.findIndex((element) => element.id === argument)])

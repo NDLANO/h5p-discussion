@@ -160,7 +160,7 @@ article, aside, details, figcaption, figure, footer, header, main, menu, nav, se
 }
 
 .h5p-discussion-column{
-  padding: 0 1rem;
+  margin: 0 1rem;
 }
 
 .h5p-discussion-surface {
@@ -563,7 +563,7 @@ article, aside, details, figcaption, figure, footer, header, main, menu, nav, se
   }
 
   .h5p-discussion-column{
-    padding: 1rem;
+    margin: 1rem;
   }
 }
 
@@ -922,7 +922,6 @@ article, aside, details, figcaption, figure, footer, header, main, menu, nav, se
 .h5p-discussion-dropzone {
   border: 2px dashed #cfcfcf;
   border-radius: 5px;
-  margin: 1rem;
 
   & > div {
     font-size: 0.875rem;
@@ -930,14 +929,13 @@ article, aside, details, figcaption, figure, footer, header, main, menu, nav, se
     text-decoration: none solid rgb(102, 102, 102);
     line-height: 1.25rem;
     flex: auto;
-    height: 4em;
+    height: 4rem;
     align-items: center;
     justify-content: center;
     display: flex;
-    text-align: center;
-    padding: 0.2rem
   }
 
+  .h5p-discussion-drag-active &,
   &.h5p-discussion-active {
     border-color: #1a73d9;
 
