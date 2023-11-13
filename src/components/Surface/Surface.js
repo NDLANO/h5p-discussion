@@ -102,6 +102,26 @@ function Surface() {
           actionDropActive: false,
         };
       }
+      case 'setEditMode': {
+        const {
+          id,
+          editMode,
+        } = action.payload;
+        const newArguments = state.argumentsList.map((argument) => {
+          if (argument.id === id) {
+            return {
+              ...argument,
+              editMode: editMode,
+            };
+          }
+          return argument;
+        });
+
+        return {
+          ...state,
+          argumentsList: newArguments
+        };
+      }
       case 'editArgument': {
         const {
           id,
@@ -112,7 +132,6 @@ function Surface() {
         if (argumentIndex !== -1) {
           const argument = newArguments[argumentIndex];
           argument.argumentText = argumentText;
-          argument.editMode = false;
         }
         return {
           ...state,
@@ -289,6 +308,14 @@ function Surface() {
       }));
     if ( allowAddingOfArguments === true ) {
       dynamicActions.push(new ActionMenuDataObject({
+        type: 'edit',
+        title: translate('editArgument'),
+        onSelect: () => dispatch({
+          type: 'setEditMode',
+          payload: {id: argument.id, editMode: true}
+        })
+      }));
+      dynamicActions.push(new ActionMenuDataObject({
         type: 'delete',
         title: translate('deleteArgument'),
         onSelect: () => dispatch({
@@ -345,6 +372,15 @@ function Surface() {
                             type: 'editArgument',
                             payload: {id: argument.id, argumentText}
                           })}
+                          startEditing={() => dispatch({
+                            type: 'setEditMode',
+                            payload: {id: argument.id, editMode: true}
+                          })}
+                          stopEditing={() => dispatch({
+                            type: 'setEditMode',
+                            payload: {id: argument.id, editMode: false}
+                          })
+                          }
                         />
                       </Element>
                     ))}
@@ -404,6 +440,14 @@ function Surface() {
                         onArgumentChange={(argumentText) => dispatch({
                           type: 'editArgument',
                           payload: {id: argument.id, argumentText}
+                        })}
+                        startEditing={() => dispatch({
+                          type: 'setEditMode',
+                          payload: {id: argument.id, editMode: true}
+                        })}
+                        stopEditing={() => dispatch({
+                          type: 'setEditMode',
+                          payload: {id: argument.id, editMode: false}
                         })}
                       />
                     </Element>

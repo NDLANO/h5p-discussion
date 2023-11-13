@@ -614,7 +614,9 @@ article, aside, details, figcaption, figure, footer, header, main, menu, nav, se
   flex: auto;
 
   label,
-  .h5p-discussion-popover-actionmenu-delete {
+  .h5p-discussion-popover-actionmenu-delete,
+  .h5p-discussion-popover-actionmenu-edit {
+    color: #1a1616;
     padding: 1rem 0.9rem;
     display: flex;
     overflow: hidden;
@@ -625,13 +627,11 @@ article, aside, details, figcaption, figure, footer, header, main, menu, nav, se
     }
   }
 
-  .h5p-discussion-popover-actionmenu-delete {
+  .h5p-discussion-popover-actionmenu-delete-icon {
     &::before {
       content: "\f014";
       font-family: "H5PFontAwesome4", sans-serif;
       font-size: 1.25em;
-      left: 0.9em;
-      position: absolute;
     }
   }
 
@@ -667,9 +667,9 @@ article, aside, details, figcaption, figure, footer, header, main, menu, nav, se
     color: #121212;
   }
 
-  .h5p-discussion-popover-actionmenu-delete .h5p-discussion-popover-actionmenu-labeltext {
+  .h5p-discussion-popover-actionmenu-delete .h5p-discussion-popover-actionmenu-labeltext,
+  .h5p-discussion-popover-actionmenu-edit .h5p-discussion-popover-actionmenu-labeltext {
     color: #1a1616;
-    margin-left: 1.75em;
   }
 }
 

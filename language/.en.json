@@ -112,6 +112,14 @@
           "default": "Delete argument"
         },
         {
+          "label": "Label used to show the edit action",
+          "default": "Edit argument"
+        },
+        {
+          "label": "Label for the argument",
+          "default": "Argument"
+        },
+        {
           "label": "Text inside the arguments drop zone",
           "default": "Drop arguments here"
         }

@@ -108,15 +108,33 @@ function ActionMenu(props) {
     return (
       <button
         className={'h5p-discussion-popover-actionmenu-delete'}
-        aria-label={settings.title}
         type={'button'}
         onClick={(e) => {
           e.preventDefault();
           settings.onSelect();
         }}
       >
-        <span
-          className={'h5p-discussion-popover-actionmenu-labeltext'}>{settings.title}
+        <span className={'h5p-ri h5p-discussion-popover-actionmenu-delete-icon'} aria-hidden={true} />
+        <span className={'h5p-discussion-popover-actionmenu-labeltext'}>
+          {settings.title}
+        </span>
+      </button>
+    );
+  }
+
+  function getEdit(settings) {
+    return (
+      <button
+        className={'h5p-discussion-popover-actionmenu-edit'}
+        type={'button'}
+        onClick={(e) => {
+          e.preventDefault();
+          handleSelect(settings.onSelect);
+        }}
+      >
+        <span className={'h5p-ri hri-pencil'} aria-hidden={true} />
+        <span className={'h5p-discussion-popover-actionmenu-labeltext'}>
+          {settings.title}
         </span>
       </button>
     );
@@ -151,6 +169,9 @@ function ActionMenu(props) {
               let content;
               if (action.type === 'delete') {
                 content = getDelete(action, index);
+              }
+              else if (action.type === 'edit') {
+                content = getEdit(action, index);
               }
               else {
                 content = getCategory(action, index);
