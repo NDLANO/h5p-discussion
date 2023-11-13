@@ -1,31 +1,27 @@
-import React, {useState, useRef, useEffect} from 'react';
+import React, {useRef, useEffect} from 'react';
 import PropsTypes from 'prop-types';
 import classnames from 'classnames';
 import {debounce} from '../../utils';
+import {useDiscussionContext} from '../../../context/DiscussionContext';
 
-function EditableArgument(props) {
-
-  const [inEditMode, toggleEditMode] = useState(props.inEditMode);
+function EditableArgument({
+  argument,
+  inEditMode,
+  onChange,
+  startEditing,
+  stopEditing,
+  idBase,
+}) {
+  const { translate } = useDiscussionContext();
 
   const inputRef = useRef();
 
   useEffect(() => {
     if (inEditMode === true) {
+      inputRef.current.value = argument;
       inputRef.current.focus();
     }
-  }, []);
-
-  const handleClick = () => {
-    if (inEditMode === false) {
-      toggleEditMode(true);
-      inputRef.current.value = props.argument;
-      setTimeout(() => inputRef.current.focus(), 0);
-    }
-  };
-
-  const handleBlur = () => {
-    toggleEditMode(false);
-  };
+  }, [inEditMode]);
 
   /**
    * Handle keydown events.
@@ -33,18 +29,17 @@ function EditableArgument(props) {
    * when arguments are added with the enter key.
    */
   const handleKeyDown = (event) => {
-    // If enter key is pressed
     if (event.key === 'Enter') {
       if (inEditMode) {
-        handleBlur();
+        stopEditing();
       }
       else {
-        handleClick();
+        startEditing();
       }
     }
   };
 
-  const id = 'es_' + props.idBase;
+  const id = 'es_' + idBase;
   const labelId = 'label_' + id;
   const inputId = 'input_' + id;
 
@@ -58,14 +53,14 @@ function EditableArgument(props) {
     <div
       role={'textbox'}
       tabIndex={0}
-      onClick={handleClick}
+      onClick={startEditing}
       className={'h5p-discussion-editable-container'}
       onKeyDown={handleKeyDown}
       aria-labelledby={labelId}
     >
       <div>
         <label
-          title={props.argument}
+          title={argument}
           htmlFor={inputId}
           id={labelId}
           className={classnames('h5p-discussion-editable', {
@@ -76,9 +71,9 @@ function EditableArgument(props) {
           <input
             className={'h5p-discussion-editable'}
             ref={inputRef}
-            onBlur={handleBlur}
-            onChange={debounce(() => props.onBlur(inputRef.current.value), 200)}
-            aria-label={'Edit argument ' + props.argument}
+            onBlur={stopEditing}
+            onChange={debounce(() => onChange(inputRef.current.value), 200)}
+            aria-label={`${translate('editArgument')} ${argument}`}
             id={inputId}
           />
         </label>
@@ -87,7 +82,7 @@ function EditableArgument(props) {
             'hidden': inEditMode === true,
           })}
         >
-          {props.argument}
+          {argument}
         </p>
       </div>
     </div>
@@ -97,7 +92,9 @@ function EditableArgument(props) {
 EditableArgument.propTypes = {
   argument: PropsTypes.string,
   inEditMode: PropsTypes.bool,
-  onBlur: PropsTypes.func,
+  onChange: PropsTypes.func,
+  startEditing: PropsTypes.func,
+  stopEditing: PropsTypes.func,
   idBase: PropsTypes.oneOfType([
     PropsTypes.string,
     PropsTypes.number,

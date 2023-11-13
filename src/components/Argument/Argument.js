@@ -7,19 +7,18 @@ import classnames from 'classnames';
 import DragArrows from './components/DragArrows';
 import {getDnDId} from '../utils';
 
-function Argument(props) {
-
+function Argument({
+  argument,
+  onArgumentChange,
+  startEditing,
+  stopEditing,
+  enableEditing = false,
+  isDragging = false,
+  isDragEnabled = true,
+  actions,
+}) {
   const innerRef = useRef(null);
   const [refReady, setRef] = useState(false);
-
-  const {
-    argument,
-    onArgumentChange,
-    enableEditing = false,
-    isDragging = false,
-    isDragEnabled = true,
-    actions,
-  } = props;
 
   const [showPopover, togglePopover] = useState(false);
 
@@ -43,17 +42,15 @@ function Argument(props) {
       <EditableArgument
         argument={argument.argumentText}
         inEditMode={argument.editMode}
-        onBlur={onArgumentChange}
+        onChange={onArgumentChange}
+        startEditing={startEditing}
+        stopEditing={stopEditing}
         idBase={argument.id}
       />
     );
   }
   else {
-    displayStatement = (
-      <UnEditableArgument
-        argument={argument.argumentText}
-      />
-    );
+    displayStatement = <UnEditableArgument argument={argument.argumentText} />;
   }
 
   let argumentLayout = (
@@ -82,10 +79,7 @@ function Argument(props) {
   }
 
   return (
-    <div
-      id={getDnDId(argument)}
-      ref={innerRef}
-    >
+    <div id={getDnDId(argument)} ref={innerRef}>
       {argumentLayout}
     </div>
   );
@@ -94,6 +88,8 @@ function Argument(props) {
 Argument.propTypes = {
   argument: PropTypes.object,
   onArgumentChange: PropTypes.func,
+  startEditing: PropTypes.func,
+  stopEditing: PropTypes.func,
   enableEditing: PropTypes.bool,
   onArgumentDelete: PropTypes.func,
   isDragging: PropTypes.bool,
@@ -101,29 +97,22 @@ Argument.propTypes = {
   actions: PropTypes.array,
 };
 
-function ArgumentLayout(props) {
-
-  const {
-    activeDraggable,
-    isDragEnabled,
-    statementDisplay,
-    showPopover,
-    menuId,
-    toggle,
-  } = props;
-
+function ArgumentLayout({
+  activeDraggable,
+  isDragEnabled,
+  statementDisplay,
+  showPopover,
+  menuId,
+  toggle,
+}) {
   return (
-    <div
-      className={'h5p-discussion-argument-container'}
-    >
+    <div className={'h5p-discussion-argument-container'}>
       <div
         className={classnames('h5p-discussion-argument', {
           'h5p-discussion-active-draggable': activeDraggable
         })}
       >
-        <div
-          className={'h5p-discussion-argument-provided'}
-        >
+        <div className={'h5p-discussion-argument-provided'}>
           {isDragEnabled && (
             <DragArrows/>
           )}
@@ -132,7 +121,7 @@ function ArgumentLayout(props) {
             className={'h5p-discussion-argument-actions'}
             aria-label={'See available actions'}
             aria-expanded={showPopover}
-            aria-controls={menuId}
+            aria-controls={showPopover ? menuId : undefined}
             onClick={toggle}
             type={'button'}
           >
@@ -153,13 +142,9 @@ ArgumentLayout.propTypes = {
 };
 
 ArgumentLayout.defaultProps = {
-  toggle: () => {
-  },
+  toggle: () => {},
   isDragEnabled: true,
   activeDraggable: false,
 };
 
-export {
-  Argument as default,
-  ArgumentLayout
-};
+export { Argument as default, ArgumentLayout };
