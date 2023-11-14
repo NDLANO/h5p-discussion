@@ -171,3 +171,13 @@ export function getRatio(container) {
   const computedStyles = window.getComputedStyle(container);
   return container.offsetWidth / parseFloat(computedStyles.getPropertyValue('font-size'));
 }
+
+/**
+ * Check if a number is even
+ * 
+ * @param {number} number
+ * @returns {boolean}
+ */
+export function isEven(number) {
+  return number % 2 === 0;
+}

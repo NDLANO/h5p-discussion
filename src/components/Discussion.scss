@@ -99,6 +99,13 @@ article, aside, details, figcaption, figure, footer, header, main, menu, nav, se
       display: flex;
     }
   }
+
+  .h5p-discussion-right-aligned {
+    .h5p-discussion-actionmenu {
+      left: unset !important;
+      right: 0;
+    }
+  }
 }
 
 .h5p-large-tablet-size,
@@ -383,6 +390,10 @@ article, aside, details, figcaption, figure, footer, header, main, menu, nav, se
 .h5p-discussion-draggable-element,
 .h5p-discussion-draggable-element > div {
   width: 100%;
+}
+
+.h5p-discussion-draggable-element > div {
+  position: relative;
 }
 
 .h5p-discussion-add {
