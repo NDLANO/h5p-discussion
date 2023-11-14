@@ -23,11 +23,6 @@ function Category(props) {
         <div className={'h5p-discussion-category-header'}>
           <HeaderIcon />
           {title}
-          {addArgument && (
-            <AddArgument
-              onClick={onAddArgument}
-            />
-          )}
         </div>
       )}
       <div
@@ -35,6 +30,11 @@ function Category(props) {
         id={categoryId}
       >
         {children}
+        {addArgument && (
+          <AddArgument
+            onClick={onAddArgument}
+          />
+        )}
       </div>
     </div>
   );

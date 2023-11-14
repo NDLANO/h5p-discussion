@@ -12,14 +12,14 @@ function AddArgument(props) {
   return (
     <button
       aria-label={context.translate('addArgument')}
-      className={'h5p-discussion-header-argument-add'}
+      className={'h5p-discussion-add-button'}
       onClick={onClick}
       type={'button'}
     >
-      <span
-        className={'h5p-discussion-argument-add-icon fa fa-plus'}
-      />
-      <span className={'h5p-discussion-argument-add-text'}>{context.translate('addArgument')}</span>
+      <div className={'h5p-discussion-add-button-content'}>
+        <span className={'h5p-discussion-add-button-icon fa fa-plus'} aria-hidden={true} />
+        <span className={'h5p-discussion-add-button-text'}>{context.translate('addArgument')}</span>
+      </div>
     </button>
   );
 }

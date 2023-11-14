@@ -115,29 +115,10 @@ article, aside, details, figcaption, figure, footer, header, main, menu, nav, se
   .h5p-discussion-argument-container > div {
     display: flex;
   }
-
-  .h5p-discussion-pro,
-  .h5p-discussion-against {
-    .h5p-discussion-header-argument-add {
-      display: flex;
-      align-items: center;
-      cursor: pointer;
-
-      :not(.fa){
-        display: block;
-        text-decoration: underline;
-      }
-
-      .fa {
-        font-size: 0.8rem;
-        margin-right: 0.4rem;
-      }
-    }
-  }
 }
 
 .h5p-discussion-column{
-  padding: 0 1rem;
+  margin: 0 1rem;
 }
 
 .h5p-discussion-surface {
@@ -485,10 +466,6 @@ article, aside, details, figcaption, figure, footer, header, main, menu, nav, se
   border-radius: $borderRadius;
   border: 2px solid #dbe2e8;
   padding: 1rem;
-
-  .h5p-discussion-header-argument-add {
-    display: none;
-  }
 }
 
 .h5p-discussion-pro,
@@ -513,22 +490,43 @@ article, aside, details, figcaption, figure, footer, header, main, menu, nav, se
     }
   }
 
-  .h5p-discussion-header-argument-add {
-    margin-left: auto;
-    margin-right: 0.5rem;
-    background: transparent;
-    border: 0;
-    color: inherit;
-    display: flex;
+  .h5p-discussion-add-button {
+    background-color: #fff;
+    border: 1px solid #dbe2e8;
+    border-radius: 0.3125rem;
+    cursor: pointer;
+    display: inline-block;
+    margin: 0 1rem 1rem;
+    padding: 0.1875rem;
+    text-align: center;
+    width: fit-content;
+    word-break: break-word;
 
-    :not(.fa){
-      display: none;
+    .h5p-discussion-add-button-content {
+      align-items: center;
+      background-color: rgba(219,226,232,.25);
+      background-size: cover;
+      border: none;
+      border-radius: inherit;
+      color: #363636;
+      display: flex;
+      flex-wrap: nowrap;
+      font-size: 1rem;
+      font-weight: bold;
+      padding: 0.3125rem 0.625rem;
+
+      .fa {
+        color: inherit;
+        font-size: 1.25rem;
+        margin-right: 0.5675rem;
+      }
     }
 
-    .fa {
-      font-size: 1.6rem;
+    &:hover {
+      .h5p-discussion-add-button-content {
+        background-color: #ffffff;
+      }
     }
-
   }
 
   .h5p-discussion-category-content {
@@ -540,7 +538,7 @@ article, aside, details, figcaption, figure, footer, header, main, menu, nav, se
   }
 
   .h5p-discussion-column{
-    padding: 1rem;
+    margin: 1rem;
   }
 }
 
@@ -899,7 +897,6 @@ article, aside, details, figcaption, figure, footer, header, main, menu, nav, se
 .h5p-discussion-dropzone {
   border: 2px dashed #cfcfcf;
   border-radius: 5px;
-  margin: 1rem;
 
   & > div {
     font-size: 0.875rem;
@@ -907,14 +904,13 @@ article, aside, details, figcaption, figure, footer, header, main, menu, nav, se
     text-decoration: none solid rgb(102, 102, 102);
     line-height: 1.25rem;
     flex: auto;
-    height: 4em;
+    height: 4rem;
     align-items: center;
     justify-content: center;
     display: flex;
-    text-align: center;
-    padding: 0.2rem
   }
 
+  .h5p-discussion-drag-active &,
   &.h5p-discussion-active {
     border-color: #1a73d9;
 
