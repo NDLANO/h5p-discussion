@@ -9,8 +9,9 @@ import Element from '../DragAndDrop/Element';
 import Argument from '../Argument/Argument';
 import Column from '../DragAndDrop/Column';
 import {CategoryDataObject, ArgumentDataObject, getDnDId} from '../utils.js';
-import {ActionMenuDataObject} from '../utils';
+import {ActionMenuDataObject, isEven} from '../utils';
 import Dropzone from '../DragAndDrop/Dropzone';
+import classnames from 'classnames';
 
 function Surface() {
   const context = useDiscussionContext();
@@ -344,12 +345,14 @@ function Surface() {
         >
           {state.categories
             .filter((category) => category.isArgumentDefaultList)
-            .map((category) => (
+            .map((category, index) => (
               <div
                 key={category.id}
               >
                 <Column
-                  additionalClassName={'h5p-discussion-unprocessed-argument-list'}
+                  additionalClassName={classnames('h5p-discussion-unprocessed-argument-list', {
+                    'h5p-discussion-right-aligned': isEven(index + 1)
+                  })}
                   droppableId={getDnDId(category)}
                   argumentsList={state.argumentsList}
                 >
@@ -391,7 +394,7 @@ function Surface() {
         </Category>
         {state.categories
           .filter((category) => !category.isArgumentDefaultList)
-          .map((category) => (
+          .map((category, index) => (
             <Category
               key={category.id}
               categoryId={category.id}
@@ -408,7 +411,9 @@ function Surface() {
                 })}
             >
               <Column
-                additionalClassName={'h5p-discussion-argument-list'}
+                additionalClassName={classnames('h5p-discussion-argument-list', {
+                  'h5p-discussion-right-aligned': isEven(index + 1)
+                })}
                 droppableId={getDnDId(category)}
                 argumentsList={state.argumentsList}
               >
