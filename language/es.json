@@ -120,7 +120,7 @@
           "default": "Argument"
         },
         {
-          "label": "Texto adentro de la zona de caída de los argumentos cuando está deshabilitado el añadir nuevos argumentos",
+          "label": "Texto dentro de la zona de colocación de argumentos",
           "default": "Dejar caer argumentos aquí"
         }
       ]
