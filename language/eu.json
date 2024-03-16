@@ -52,7 +52,7 @@
         },
         {
           "label": "Erakutsi laburpena",
-          "description": "Erabiltzaileak bere erantzunen arrazoiak azalduz laburpen bat ematea nahi al duzu?"
+          "description": "Erabiltzaileak bere erantzunen arrazoiak azalduz laburpen bat ematea nahi al duzu"
         }
       ]
     },
@@ -112,15 +112,15 @@
           "default": "Ezabatu argudioa"
         },
         {
-          "label": "Label used to show the edit action",
-          "default": "Edit argument"
+          "label": "Edizio-ekintza erakusteko erabiltzen den etiketa",
+          "default": "Editatu argumentua"
         },
         {
-          "label": "Label for the argument",
-          "default": "Argument"
+          "label": "Argudiorako etiketa",
+          "default": "Argudioa"
         },
         {
-          "label": "Argudioak jaregiteko eremuan dagoen testua ezin denean argudio berriak gehitu",
+          "label": "Argumentuak jaregiteko eremuaren barruan dagoen testua",
           "default": "Jaregin argudioak hona"
         }
       ]
