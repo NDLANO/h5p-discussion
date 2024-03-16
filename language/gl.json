@@ -120,7 +120,7 @@
           "default": "Argument"
         },
         {
-          "label": "Texto na zona de solta de argumentos cando a adición de argumentos está desactivada",
+          "label": "Texto dentro da zona de caída de argumentos",
           "default": "Solta aquí os teus argumentos"
         }
       ]
