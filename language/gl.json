@@ -112,15 +112,15 @@
           "default": "Borrar argumento"
         },
         {
-          "label": "Label used to show the edit action",
-          "default": "Edit argument"
+          "label": "Etiqueta utilizada para mostrar a acción de edición",
+          "default": "Editar argumento"
         },
         {
-          "label": "Label for the argument",
-          "default": "Argument"
+          "label": "Etiqueta para o argumento",
+          "default": "Argumento"
         },
         {
-          "label": "Texto na zona de solta de argumentos cando a adición de argumentos está desactivada",
+          "label": "Texto dentro da zona de caída de argumentos",
           "default": "Solta aquí os teus argumentos"
         }
       ]

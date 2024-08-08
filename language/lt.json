@@ -60,19 +60,19 @@
       "label": "Lokalizuoti",
       "fields": [
         {
-          "label": "Header for the 'For' column",
-          "default": "Arguments FOR"
+          "label": "Pavadinimas 'For' stulpeliui",
+          "default": "Argumentai FOR"
         },
         {
-          "label": "Header for the 'Against' column",
-          "default": "Arguments AGAINST"
+          "label": "Pavadinimas 'Against' stulpeliui",
+          "default": "Argumentai AGAINST"
         },
         {
-          "label": "Placeholder for the text boxes",
-          "default": "Give a brief summary in your own words"
+          "label": "Vieta teksto rašymui",
+          "default": "Pateikite trumpą santrauką savo žodžiais"
         },
         {
-          "label": "Placeholder when no arguments are connected",
+          "label": "Kursoriaus vieta, kai argumentai neprijungti",
           "default": "Argumentų nėra"
         },
         {
@@ -81,34 +81,34 @@
         },
         {
           "label": "Mygtuko „Paleisti iš naujo“ pavadinimas",
-          "default": "Restart"
+          "default": "Perkrauti"
         },
         {
-          "label": "Label for the \"Add argument\"-button",
+          "label": "\"Pridėti argumentą\" mygtuko pavadinimas",
           "default": "Pridėti argumentą"
         },
         {
-          "label": "Label for the \"Yes\"-button",
+          "label": "\"Taip\" mygtuko pavadinimas",
           "default": "Taip"
         },
         {
-          "label": "Label for the \"No\"-button",
-          "default": "No"
+          "label": "\"Ne\" mygtuko pavadinimas",
+          "default": "Ne"
         },
         {
           "label": "Informuoti naudotoj1, kad jei jis tęs, duomenys bus prarasti",
           "default": "Jei tęsite, visi pakeitimai bus prarasti"
         },
         {
-          "label": "Label for the \"Continue\"-button",
+          "label": "\"Tęsti\" mygtuko pavadinimas",
           "default": "Tęsti"
         },
         {
-          "label": "Short text in front of the options to where you can move the arguments",
+          "label": "Trumpas tekstas prieš parinktis, kur galite perkelti argumentus",
           "default": "Perkelti į"
         },
         {
-          "label": "Label used to show the delete action",
+          "label": "Naikinimo veiksmo rodymo pavadinimas",
           "default": "Ištrinti argumentą"
         },
         {
@@ -126,15 +126,15 @@
       ]
     },
     {
-      "label": "Resource report",
+      "label": "Resurso ataskaita",
       "fields": [
         {
-          "label": "Label for \"Create document\"-button",
+          "label": "\"Kurti dokumentą\" mygtuko pavadinmas",
           "default": "Sukurti dokumentą"
         },
         {
-          "label": "Label on \"Export\" button",
-          "default": "Export"
+          "label": "\"Eksportuoti\" mygtuko pavadinimas",
+          "default": "Eksportuoti"
         },
         {
           "label": "Mygtuko „Pasirinkti viską“ pavadinimas",
@@ -149,19 +149,19 @@
           "default": "Pavadinimas"
         },
         {
-          "label": "Intro header in resource table",
-          "default": "Intro"
+          "label": "Įvado antraštė ištekliaus lentelėje",
+          "default": "Įvadas"
         },
         {
-          "label": "Url header in resource table",
-          "default": "Url"
+          "label": "URL antraštė ištekliaus lentelėje",
+          "default": "URL"
         },
         {
-          "label": "Label when no resources are found",
+          "label": "Pavadinimas, kai nerandama išteklių",
           "default": "Nėra išteklių"
         },
         {
-          "label": "Label when no summary is provided",
+          "label": "Pavadinimas, kai nepateikiama santrauka",
           "default": "Nėra komentaro"
         }
       ]
@@ -170,25 +170,25 @@
       "label": "Pritaikymas",
       "fields": [
         {
-          "label": "Used instead of 'Close'-icon",
+          "label": "Naudojama vietoje 'Uždaryti' mygtuko",
           "default": "Uždaryti"
         },
         {
-          "label": "Used instead of 'Drag'-icon",
+          "label": "Naudojama vietoje 'Mesti' mygtuko",
           "default": "Mesti"
         },
         {
-          "label": "'Draggable item' label for screenreaders",
-          "description": "Available variables are :argument",
+          "label": "„Metami elementai“ pavadinimas ekrano skaitytuvams",
+          "description": "Galimi kintamieji yra :argument",
           "default": "Metamas elementas: :argument"
         },
         {
-          "label": "Title for the actions menu dialog",
-          "default": "Actions menu"
+          "label": "Pavadinimas veiksmų meniu dialogo langui",
+          "default": "Veiksmų meniu"
         },
         {
-          "label": "Description for the actions menu dialog",
-          "default": "Select the action you want to perform on this argument"
+          "label": "Veiksmų meniu dialogo lango aprašymas",
+          "default": "Pasirinkite veiksmą, kurį norite atlikti su šiuo argumentu"
         }
       ]
     }
