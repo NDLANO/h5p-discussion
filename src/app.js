@@ -1,8 +1,8 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import Main from './components/Main';
-import {DiscussionContextProvider} from './context/DiscussionContext';
-import {breakpoints, getRatio, sanitizeParams} from './components/utils';
+import { DiscussionContextProvider } from './context/DiscussionContext';
+import { breakpoints, getRatio, sanitizeParams } from './components/utils';
 
 // Load library
 H5P.Discussion = (function () {
@@ -73,7 +73,8 @@ H5P.Discussion = (function () {
       wrapper.classList.add('h5p-discussion-wrapper');
       this.wrapper = wrapper;
 
-      ReactDOM.render(
+      const root = createRoot(this.wrapper); // Use createRoot instead of ReactDOM.render
+      root.render(
         <DiscussionContextProvider value={this}>
           <Main
             {...this.params}
@@ -81,18 +82,16 @@ H5P.Discussion = (function () {
             language={language}
             collectExportValues={this.collectExportValues}
           />
-        </DiscussionContextProvider>,
-        this.wrapper
+        </DiscussionContextProvider>
       );
     };
 
     this.collectExportValues = (index, callback) => {
       if (typeof index !== 'undefined') {
-        this.collectExportValuesStack.push({key: index, callback: callback});
-      }
-      else {
+        this.collectExportValuesStack.push({ key: index, callback: callback });
+      } else {
         const exportValues = {};
-        this.collectExportValuesStack.forEach(({key, callback}) => exportValues[key] = callback());
+        this.collectExportValuesStack.forEach(({ key, callback }) => exportValues[key] = callback());
         return exportValues;
       }
     };
@@ -125,7 +124,7 @@ H5P.Discussion = (function () {
      * @param ratio
      */
     this.addBreakPoints = (wrapper, ratio = getRatio(container)) => {
-      if ( ratio === this.currentRatio) {
+      if (ratio === this.currentRatio) {
         return;
       }
       this.activeBreakpoints = [];
@@ -133,8 +132,7 @@ H5P.Discussion = (function () {
         if (item.shouldAdd(ratio)) {
           wrapper.classList.add(item.className);
           this.activeBreakpoints.push(item.className);
-        }
-        else {
+        } else {
           wrapper.classList.remove(item.className);
         }
       });
@@ -150,12 +148,12 @@ H5P.Discussion = (function () {
     };
 
     /**
-         * Help fetch the correct translations.
-         *
-         * @params key
-         * @params vars
-         * @return {string}
-         */
+     * Help fetch the correct translations.
+     *
+     * @params key
+     * @params vars
+     * @return {string}
+     */
     this.translate = (key, vars) => {
       let translation = this.translations[key];
       if (vars !== undefined && vars !== null) {
